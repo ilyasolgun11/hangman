@@ -1,43 +1,58 @@
 from words import random_word
+from hangman import *
 
-def game():
-    hangman_word = random_word()
-    print(hangman_word)
-    score = 7
-    guessed_letters = []
-    guessed_correct_letters = []
-    guessed_word = []
-    while score > 0:
-        user_input = input("Guess a letter in the word: ")
-        if len(user_input) > 1:
-            print("You guessed a word")
-            if user_input == hangman_word:
-                guessed_word.append(user_input)
-                print(f"You won! the word was {hangman_word}")
+class HangmanGame:
+    def __init__(self):
+        self.player_won = False
+        self.hangman_word = random_word()
+        self.hangman_stage = hangman_stages
+        self.stages = 0
+        self.score = 7
+        self.guessed_letters = []
+        self.guessed_correct_letters = []
+        self.guessed_word = []
+
+    def play(self):
+        print(self.hangman_word)
+
+        while self.score > 0:
+            user_input = input("Guess a letter or a word: \n>>> ").lower()
+            if len(user_input) > 1:
+                self.guess_word(user_input)
+            else:
+                self.guess_letter(user_input)
+            
+            if self.score == 0 or self.player_won == True:
+                print("You have lost!")
                 break
-            else:
-                 guessed_word.append(user_input)
-                 print(guessed_word)
-                 score -= 1
-                 print(f"False {user_input} is not the word, your score is now {score}")
-        else: 
-            if user_input in guessed_letters:
-                print(f"You have guessed {user_input} already.")
-                print(guessed_letters)
-            elif user_input in hangman_word:
-                guessed_correct_letters.append(user_input)
-                guessed_letters.append(user_input)
-                print("Correct!")
-                if set(guessed_correct_letters) == set(set(hangman_word)):
-                    print(f"You won! The word was {hangman_word}")
-                    print(guessed_correct_letters)
-                    break
-            else:
-                guessed_letters.append(user_input)
-                score -= 1
-                print(f"False {user_input} is not in the word, your score is now {score}")
 
-        if score == 0:
-            print("You have lost")
-            break
-game()
+    def guess_word(self, user_input):
+        if user_input == self.hangman_word:
+            print(f"You have won! the word was {self.hangman_word}")
+            self.player_won == True
+        else:
+            self.guessed_word.append(user_input)
+            self.score -= 1
+            self.stages += 1
+            print(f"Wrong! {user_input} is not the word, your score is now {self.score}")
+            print(self.hangman_stage[self.stages])
+    
+    def guess_letter(self, user_input):
+        if user_input in self.guessed_letters or user_input in self.guessed_correct_letters:
+            print(f"You have guessed {user_input} already")
+        elif user_input in self.hangman_word:
+            self.guessed_correct_letters.append(user_input)
+            print(f"Correct {user_input} is in the word!")
+            if set(self.guessed_correct_letters) == set(self.hangman_word):
+                print(f"You have won! the word is {self.hangman_word}")
+                self.player_won == True
+        else:
+            self.guessed_letters.append(user_input)
+            self.score -= 1
+            self.stages += 1
+            print(f"Wrong! {user_input} is not in the word your score is now {self.score}")
+            print(self.hangman_stage[self.stages])
+
+if __name__ == "__main__":
+    hangman_game = HangmanGame()
+    hangman_game.play()

@@ -75,6 +75,10 @@ class HangmanGame:
             print(f"You have won! the word was {self.hangman_word}")
             self.player_won = True
         else:
+            if self.points < 10:
+                pass
+            else:
+                self.points -= 10
             self.score -= 1
             self.guessed_letters.append(user_input)
             self.game_hint_message = f"Wrong! {user_input} is not the word"
@@ -85,16 +89,18 @@ class HangmanGame:
                 pass
     
     def guess_letter(self, user_input):
-        if user_input in self.guessed_letters or user_input in self.guessed_correct_letters:
-            self.game_hint_message = f"You have guessed {user_input} already"
-        elif user_input in self.hangman_word:
-            self.guessed_correct_letters.append(user_input)
-            self.update_display_word(user_input)
-            self.game_hint_message = f"Correct {user_input} is in the word!"
-            self.points += 25
+        if user_input in self.hangman_word:
+            print(self.hangman_stage[self.stages])
+            if user_input in self.guessed_letters or user_input in self.guessed_correct_letters:
+                self.game_hint_message = f"You have guessed {user_input} already"
+            elif user_input in self.hangman_word:
+                self.guessed_correct_letters.append(user_input)
+                self.update_display_word(user_input)
+                self.game_hint_message = f"Correct {user_input} is in the word!"
+                self.points += 25
             if "_" not in self.display_word:
                 print(f"You have won! the word is {self.hangman_word}")
-                self.player_won = True
+                self.player_won = True 
         else:
             if self.points < 10:
                 pass
@@ -108,6 +114,7 @@ class HangmanGame:
                 print(self.hangman_stage[self.stages])
             else:
                 pass
+
     def update_display_word(self, user_input):
         updated_display = ""
         for word_char, display_char in zip(self.hangman_word, self.display_word):
@@ -119,6 +126,7 @@ class HangmanGame:
         
     def game_lose(self):
         print(self.lose_logo)
+        print(f"Points: {self.points}\n")
         while True: 
             print("A - Play again\nB - Exit game")
             user_choice = input(">>> ").lower()

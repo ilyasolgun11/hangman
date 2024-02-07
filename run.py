@@ -38,11 +38,14 @@ class HangmanGame:
         print(self.hangman_word)
         while self.score > 0:
             user_input = input("Guess a letter or a word: \n>>> ").lower()
-            if len(user_input) > 1:
-                self.guess_word(user_input)
+            if user_input.isalpha(): 
+                if len(user_input) == 1:
+                    self.guess_letter(user_input)
+                else:
+                    self.guess_word(user_input)
             else:
-                self.guess_letter(user_input)
-            
+                print("Your input is neither a letter or a word, try again.")
+
             if self.score == 0 or self.player_won == True:
                 print("You have lost!")
                 break

@@ -1,6 +1,8 @@
 from words import random_word
 from hangman import *
-
+import colorama
+from colorama import Fore
+colorama.init(autoreset=True)
 
 class HangmanGame:
     def __init__(self):
@@ -11,6 +13,7 @@ class HangmanGame:
         self.stages = 0
         self.game_logo = hangman_logo
         self.lose_logo = lose_logo_hangman
+        self.win_logo = win_logo_hangman
         self.score = 7
         self.points = 0
         self.guessed_letters = []
@@ -63,10 +66,10 @@ class HangmanGame:
                 self.game_hint_message = "Your input is neither a letter or a word, try again."
 
             if self.score == 0:
-                self.game_lose()
+                self.game_end()
 
             if self.player_won == True:
-                break
+                self.game_end()
 
     def guess_word(self, user_input):
         if user_input in self.guessed_words:
@@ -117,15 +120,21 @@ class HangmanGame:
 
     def update_display_word(self, user_input):
         updated_display = ""
-        for word_char, display_char in zip(self.hangman_word, self.display_word):
-            if word_char == user_input or display_char != "_":
-                updated_display += word_char
+        for winning_word, displayed_word in zip(self.hangman_word, self.display_word):
+            if winning_word == user_input or displayed_word != "_":
+                updated_display += winning_word
             else:
                 updated_display += "_"
         self.display_word = updated_display  
         
-    def game_lose(self):
-        print(self.lose_logo)
+    def game_end(self):
+        if self.player_won == True:
+            print(self.win_logo)
+            print(Fore.GREEN + "Amazing job! You have saved him!\n")
+        else:
+            print(self.lose_logo)
+            print(Fore.RED + "Better luck next time, my dude is dead!\n")
+        
         print(f"Points: {self.points}\n")
         while True: 
             print("A - Play again\nB - Exit game")
@@ -138,6 +147,7 @@ class HangmanGame:
                 break
             else:
                 print("Please enter a valid option.")
+
 
 
 if __name__ == "__main__":

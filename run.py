@@ -59,7 +59,10 @@ class HangmanGame:
             else: 
                 print(Fore.RED + f"Points: {self.points}\n")
             print("---------------------------------------------------")
-            print(Fore.YELLOW + f"You have {self.score} attempt{"" if self.score == 1 else "s"} left\n")
+            if self.score == 1:
+                print(Fore.YELLOW + f"You have {self.score} attempt left")
+            else:
+                print(Fore.YELLOW + f"You have {self.score} attempts left")
             if self.score > 2:
                 user_input = input("Guess a letter or a word: \n>>> ").lower()
             else:

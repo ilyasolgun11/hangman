@@ -82,8 +82,13 @@ class HangmanGame:
         if user_input in self.guessed_words:
             self.game_hint_message = Fore.RED + f"You have guessed the word {user_input} already."
         elif user_input == self.hangman_word:
-            print(f"You have won! the word was {self.hangman_word}")
-            self.player_won = True
+            if len(self.guessed_correct_letters) < round(len(self.hangman_word) / 2):
+                self.points += 500
+                print(f"You have won! the word was {self.hangman_word}")
+                self.player_won = True
+            else:
+                print(f"You have won! the word was {self.hangman_word}")
+                self.player_won = True
         else:
             if self.points < 10:
                 pass
@@ -133,6 +138,18 @@ class HangmanGame:
             else:
                 updated_display += "_"
         self.display_word = updated_display  
+
+    def reset_game(self):
+        self.player_won = False
+        self.hangman_word = random_word()
+        self.display_word = "_" * len(self.hangman_word)
+        self.stages = 0
+        self.score = 7
+        self.points = 0
+        self.guessed_letters = []
+        self.guessed_words = []
+        self.guessed_correct_letters = ""
+        self.game_hint_message = ""
         
     def game_end(self):
         if self.player_won == True:
@@ -147,6 +164,7 @@ class HangmanGame:
             print("A - Play again\nB - Exit game")
             user_choice = input(">>> ").lower()
             if user_choice == "a":
+                self.reset_game()
                 self.play()
             elif user_choice == "b":
                 print(f"Thanks for playing {self.name_of_player}!")

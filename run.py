@@ -1,6 +1,7 @@
 from words import random_word
 from hangman import *
 
+
 class HangmanGame:
     def __init__(self):
         self.player_won = False
@@ -18,7 +19,7 @@ class HangmanGame:
         self.game_hint_message = ""
 
     def player_info(self):
-        print(self.game_logo[0])
+        print(self.game_logo)
         self.name_of_player = input("What is your name?\n>>> ")
         self.location_of_player = input("Which country are your from?\n>>> ")
         self.how_to_play()
@@ -42,7 +43,10 @@ class HangmanGame:
         while self.score > 0:
             print(self.game_hint_message)
             print(self.hangman_stage[self.stages])
+            print(f"Guessed wrong letters:\n{self.guessed_letters}")
             print(self.display_word)
+            print("---------------------------------------------------")
+            print(f"You have {self.score} attempts left")
             user_input = input("Guess a letter or a word: \n>>> ").lower()
             if user_input.isalpha(): 
                 if len(user_input) == 1:
@@ -69,7 +73,7 @@ class HangmanGame:
             self.guessed_words.append(user_input)
             self.score -= 1
             self.stages += 1
-            self.game_hint_message = f"Wrong! {user_input} is not the word, your score is now {self.score}"
+            self.game_hint_message = f"Wrong! {user_input} is not the word"
             print(self.hangman_stage[self.stages])
     
     def guess_letter(self, user_input):
@@ -86,7 +90,7 @@ class HangmanGame:
             self.guessed_letters.append(user_input)
             self.score -= 1
             self.stages += 1
-            self.game_hint_message = f"Wrong! {user_input} is not in the word, your score is now {self.score}"
+            self.game_hint_message = f"Wrong! the letter {user_input} is not in the word"
             print(self.hangman_stage[self.stages])
 
     def update_display_word(self, user_input):

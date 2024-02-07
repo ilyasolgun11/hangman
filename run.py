@@ -46,7 +46,7 @@ class HangmanGame:
             print(f"Guessed wrong letters:\n{self.guessed_letters}")
             print(self.display_word)
             print("---------------------------------------------------")
-            print(f"You have {self.score} attempts left")
+            print(f"You have {self.score} attempt{"" if self.score == 1 else "s"} left")
             user_input = input("Guess a letter or a word: \n>>> ").lower()
             if user_input.isalpha(): 
                 if len(user_input) == 1:

@@ -1,4 +1,5 @@
 from words import random_word
+import sys
 from hangman import *
 import colorama
 from colorama import Fore
@@ -170,10 +171,11 @@ class HangmanGame:
             if user_choice == "a":
                 self.reset_game()
                 self.play()
+                break
             elif user_choice == "b":
                 print(f"Thanks for playing {self.name_of_player}!")
                 print("Hangman awaits your return!")
-                break
+                sys.exit()
             else:
                 print("Please enter a valid option.")
 

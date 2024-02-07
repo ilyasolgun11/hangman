@@ -14,6 +14,7 @@ class HangmanGame:
         self.guessed_word = []
         self.name_of_player = ""
         self.location_of_player = ""
+        self.game_hint_message = ""
 
     def player_info(self):
         print(self.game_logo[0])
@@ -36,7 +37,10 @@ class HangmanGame:
 
     def play(self):
         print(self.hangman_word)
+        self.game_hint_message = f"You have to guess a word with {len(self.hangman_word)} letters"
         while self.score > 0:
+            print(self.game_hint_message)
+            print(self.hangman_stage[self.stages])
             user_input = input("Guess a letter or a word: \n>>> ").lower()
             if user_input.isalpha(): 
                 if len(user_input) == 1:
@@ -44,7 +48,7 @@ class HangmanGame:
                 else:
                     self.guess_word(user_input)
             else:
-                print("Your input is neither a letter or a word, try again.")
+                self.game_hint_message = "Your input is neither a letter or a word, try again."
 
             if self.score == 0 or self.player_won == True:
                 print("You have lost!")
@@ -58,15 +62,15 @@ class HangmanGame:
             self.guessed_word.append(user_input)
             self.score -= 1
             self.stages += 1
-            print(f"Wrong! {user_input} is not the word, your score is now {self.score}")
+            self.game_hint_message = f"Wrong! {user_input} is not the word, your score is now {self.score}"
             print(self.hangman_stage[self.stages])
     
     def guess_letter(self, user_input):
         if user_input in self.guessed_letters or user_input in self.guessed_correct_letters:
-            print(f"You have guessed {user_input} already")
+            self.game_hint_message = f"You have guessed {user_input} already"
         elif user_input in self.hangman_word:
             self.guessed_correct_letters.append(user_input)
-            print(f"Correct {user_input} is in the word!")
+            self.game_hint_message = f"Correct {user_input} is in the word!"
             if set(self.guessed_correct_letters) == set(self.hangman_word):
                 print(f"You have won! the word is {self.hangman_word}")
                 self.player_won == True
@@ -74,8 +78,9 @@ class HangmanGame:
             self.guessed_letters.append(user_input)
             self.score -= 1
             self.stages += 1
-            print(f"Wrong! {user_input} is not in the word your score is now {self.score}")
+            self.game_hint_message = f"Wrong! {user_input} is not in the word, your score is now {self.score}"
             print(self.hangman_stage[self.stages])
+        
 
 if __name__ == "__main__":
     hangman_game = HangmanGame()

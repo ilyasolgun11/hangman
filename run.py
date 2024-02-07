@@ -17,7 +17,7 @@ class HangmanGame:
 
     def player_info(self):
         print(self.game_logo[0])
-        self.name_of_player = input("What is your name?\n>>> ").lower()
+        self.name_of_player = input("What is your name?\n>>> ")
         self.location_of_player = input("Which country are your from?\n>>> ")
         self.how_to_play()
     
@@ -36,7 +36,6 @@ class HangmanGame:
 
     def play(self):
         print(self.hangman_word)
-
         while self.score > 0:
             user_input = input("Guess a letter or a word: \n>>> ").lower()
             if len(user_input) > 1:

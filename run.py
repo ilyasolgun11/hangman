@@ -7,10 +7,32 @@ class HangmanGame:
         self.hangman_word = random_word()
         self.hangman_stage = hangman_stages
         self.stages = 0
+        self.game_logo = hangman_logo
         self.score = 7
         self.guessed_letters = []
         self.guessed_correct_letters = []
         self.guessed_word = []
+        self.name_of_player = ""
+        self.location_of_player = ""
+
+    def player_info(self):
+        print(self.game_logo[0])
+        self.name_of_player = input("What is your name?\n>>> ").lower()
+        self.location_of_player = input("Which country are your from?\n>>> ")
+        self.how_to_play()
+    
+    def how_to_play(self):
+        print(f"Hello {self.name_of_player}! Welcome to Ultimate Hangman!")
+        while True:
+            player_option = input("Type (P)lay or (B)ack\n>>> ").lower()
+            if player_option == "p":
+                self.play()
+                break
+            elif player_option == "b":
+                self.player_info()
+                break
+            else:
+                print("Please enter a valid option.")
 
     def play(self):
         print(self.hangman_word)
@@ -55,4 +77,4 @@ class HangmanGame:
 
 if __name__ == "__main__":
     hangman_game = HangmanGame()
-    hangman_game.play()
+    hangman_game.player_info()

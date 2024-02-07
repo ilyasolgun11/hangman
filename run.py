@@ -25,14 +25,15 @@ class HangmanGame:
 
     def player_info(self):
         print(self.game_logo)
-        self.name_of_player = input("What is your name?\n>>> ")
-        self.location_of_player = input("Which country are your from?\n>>> ")
+        print(Fore.YELLOW + "Welcome stranger!! could you be the one to save this poor guy from a gruesome death? i hope so! fill in your name and location to begin.\n")
+        self.name_of_player = input(Fore.BLUE + "What is your name?\n>>> ")
+        self.location_of_player = input(Fore.BLUE + "Which country are your from?\n>>> ")
         self.how_to_play()
     
     def how_to_play(self):
-        print(f"Hello {self.name_of_player}! Welcome to Ultimate Hangman!")
+        print(f"Hello {self.name_of_player}! We suggest you to read the rules before you begin.\n")
         while True:
-            player_option = input("Type (P)lay or (B)ack\n>>> ").lower()
+            player_option = input("Type 'p' to play or 'b' to go back\n>>> ").lower()
             if player_option == "p":
                 self.play()
                 break
@@ -83,7 +84,7 @@ class HangmanGame:
             self.game_hint_message = Fore.RED + f"You have guessed the word {user_input} already."
         elif user_input == self.hangman_word:
             if len(self.guessed_correct_letters) < round(len(self.hangman_word) / 2):
-                self.points += 500
+                self.points += 750
                 print(f"You have won! the word was {self.hangman_word}")
                 self.player_won = True
             else:

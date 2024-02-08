@@ -1,9 +1,30 @@
 from words import random_word
 import sys
+import gspread
+from google.oauth2.service_account import Credentials
 from hangman import *
 import colorama
 from colorama import Fore
 colorama.init(autoreset=True)
+
+SCOPE = [
+    "https://www.googleapis.com/auth/spreadsheets",
+    "https://www.googleapis.com/auth/drive.file",
+    "https://www.googleapis.com/auth/drive"
+]
+
+CREDS = Credentials.from_service_account_file('creds.json')
+SCOPED_CREDS = CREDS.with_scopes(SCOPE)
+GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
+SPREADSHEET_NAME = 'ultimate-hangman-leaderboard'
+SHEET = GSPREAD_CLIENT.open(SPREADSHEET_NAME)
+worksheet = SHEET.get_worksheet(0)
+
+data_to_add = ["Ilyas", 7600, "2024-02-08", "London"]
+
+worksheet.append_row(data_to_add)
+
+print("Data added successfully.")
 
 class HangmanGame:
     def __init__(self):
@@ -181,6 +202,6 @@ class HangmanGame:
 
 
 
-if __name__ == "__main__":
-    hangman_game = HangmanGame()
-    hangman_game.player_info()
+# if __name__ == "__main__":
+#     hangman_game = HangmanGame()
+#     hangman_game.player_info()

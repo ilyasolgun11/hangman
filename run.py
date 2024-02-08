@@ -4,6 +4,7 @@ import gspread
 from google.oauth2.service_account import Credentials
 from datetime import datetime
 import time
+from pprint import pprint
 from hangman import *
 import colorama
 from colorama import Fore
@@ -47,21 +48,24 @@ class HangmanGame:
         print(self.game_logo)
         print(Fore.YELLOW + "Welcome stranger!! could you be the one to save this poor guy from a \ngruesome death? i hope so! fill in your name and location to begin.\n")
         self.name_of_player = input(Fore.BLUE + "What is your name?\n>>> ")
-        self.location_of_player = input(Fore.BLUE + "Which country are your from?\n>>> ")
+        self.location_of_player = input(Fore.BLUE + "Which country/city are your from?\n>>> ")
         self.how_to_play()
     
     def how_to_play(self):
         print(f"Hello {self.name_of_player}! We suggest you to read the rules before you begin.\n")
         while True:
-            player_option = input("Type 'p' to play or 'b' to go back\n>>> ").lower()
+            player_option = input("Type 'P' to Play, 'L' for Leaderboard or 'B' to go Back\n>>> ").lower()
             if player_option == "p":
                 self.play()
+                break
+            elif player_option == "l":
+                self.get_leaderboard_data
                 break
             elif player_option == "b":
                 self.player_info()
                 break
             else:
-                print("Please enter a valid option.")
+                print(Fore.RED + "Please enter a valid option.")
 
     def play(self):
         print(self.hangman_word)
@@ -184,15 +188,15 @@ class HangmanGame:
     def game_end(self):
         if self.player_won == True:
             print(self.win_logo)
-            print(Fore.GREEN + "Amazing job! You have saved him!\n")
+            print(Fore.GREEN + f"Amazing job! the word was indeed {self.hangman_word}!\n")
         else:
             print(self.lose_logo)
             print(Fore.RED + "Better luck next time, my dude is dead!\n")
         
         print(f"Points: {self.points}\n")
-        print("Leaderboard's updated.\n")
+        print(Fore.YELLOW + "Leaderboard's updated.\n")
         while True: 
-            print("A - Play again\nB - Exit game")
+            print("A - Play again\nB - Exit game\nC - Leaderboard")
             user_choice = input(">>> ").lower()
             if user_choice == "a":
                 self.reset_game()
@@ -202,10 +206,49 @@ class HangmanGame:
                 print(f"Thanks for playing {self.name_of_player}!")
                 print("Hangman awaits your return!")
                 sys.exit()
+            elif user_choice == "c":
+                self.reset_game()
+                self.get_leaderboard_data()
+                break
             else:
                 print("Please enter a valid option.")
 
+    def get_leaderboard_data(self):
+        leaderboard_data = worksheet.get_all_records()
+        sorted_leaderboard = sorted(leaderboard_data, key=lambda x: x['Points'], reverse=True)
+        print(Fore.YELLOW + "------------------------------------------")
+        print(Fore.YELLOW + "T O P   3 0   L E A D E R B O A R D")
+        print(Fore.YELLOW + "------------------------------------------\n")
+        print(Fore.BLUE + "POSITION     NAME         POINTS       LOCATION           DATE         TIME TO WIN")
+        
+        for position, player_data in enumerate(sorted_leaderboard[:20], start=1):
+            
+            position_str = str(position).ljust(13)
+            name_str = player_data['Name'].ljust(13)
+            points_str = str(player_data['Points']).ljust(13)
+            location_str = player_data['Country/City'].ljust(19)
+            date_str = player_data['Date'].ljust(13)
+            time_to_win_str = player_data['Time to win'].ljust(16)
+            
+            print(Fore.CYAN + f"{position_str}{name_str}{Fore.GREEN + f"{points_str}"}{Fore.CYAN + f"{location_str}"}{date_str}{time_to_win_str}")
 
+        while True: 
+            print("")
+            print(Fore.BLUE + "A - Play again\nB - Exit game\nC - Leaderboard")
+            user_choice = input(">>> ").lower()
+            if user_choice == "a":
+                self.reset_game()
+                self.play()
+                break
+            elif user_choice == "b":
+                print(f"Thanks for playing {self.name_of_player}!")
+                print("Hangman awaits your return!")
+                sys.exit()
+            elif user_choice == "c":
+                self.get_leaderboard_data()
+                break
+            else:
+                print(Fore.RED + "Please enter a valid option.")
 
 if __name__ == "__main__":
     hangman_game = HangmanGame()

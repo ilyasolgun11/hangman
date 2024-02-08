@@ -72,7 +72,7 @@ class HangmanGame:
         """
         print(self.game_logo)
         print(Fore.YELLOW + "Welcome stranger!! could you be the one to save this poor guy from a \ngruesome death? i hope so! fill in your name and location to\n see how to play guide.\n")
-        self.name_of_player = input(Fore.BLUE + "What is your name?\n>>> ")
+        self.name_of_player = input(Fore.BLUE + "What is your first name?\n>>> ")
         self.location_of_player = input(Fore.BLUE + "Which country/city are your from?\n>>> ")
         self.how_to_play()
     

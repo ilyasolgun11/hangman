@@ -2,6 +2,7 @@ from words import random_word
 import sys
 import gspread
 from google.oauth2.service_account import Credentials
+from datetime import datetime
 from hangman import *
 import colorama
 from colorama import Fore
@@ -20,11 +21,6 @@ SPREADSHEET_NAME = 'ultimate-hangman-leaderboard'
 SHEET = GSPREAD_CLIENT.open(SPREADSHEET_NAME)
 worksheet = SHEET.get_worksheet(0)
 
-data_to_add = ["Ilyas", 7600, "2024-02-08", "London"]
-
-worksheet.append_row(data_to_add)
-
-print("Data added successfully.")
 
 class HangmanGame:
     def __init__(self):
@@ -102,6 +98,8 @@ class HangmanGame:
                 self.game_end()
 
             if self.player_won == True:
+                data_to_add = [self.name_of_player, self.points, datetime.now().strftime('%d/%m/%Y'), self.location_of_player]
+                worksheet.append_row(data_to_add)
                 self.game_end()
 
     def guess_word(self, user_input):
@@ -186,6 +184,7 @@ class HangmanGame:
             print(Fore.RED + "Better luck next time, my dude is dead!\n")
         
         print(f"Points: {self.points}\n")
+        print("Leaderboard's updated.\n")
         while True: 
             print("A - Play again\nB - Exit game")
             user_choice = input(">>> ").lower()
@@ -202,6 +201,6 @@ class HangmanGame:
 
 
 
-# if __name__ == "__main__":
-#     hangman_game = HangmanGame()
-#     hangman_game.player_info()
+if __name__ == "__main__":
+    hangman_game = HangmanGame()
+    hangman_game.player_info()

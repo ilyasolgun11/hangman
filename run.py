@@ -146,7 +146,7 @@ class HangmanGame:
         Checks if the user word input is correct or not, increments or decrements points accordingly
         """
         if user_input in self.guessed_words:
-            self.game_hint_message = Fore.RED + f"You have guessed the word {user_input} already."
+            self.game_hint_message = Fore.YELLOW + f"You have guessed the word '{user_input}' already."
         elif user_input == self.hangman_word:
             if len(self.guessed_correct_letters) < round(len(self.hangman_word) / 2) + 1:
                 self.points += 750
@@ -176,7 +176,7 @@ class HangmanGame:
         if user_input in self.hangman_word:
             print(self.hangman_stage[self.stages])
             if user_input in self.guessed_letters or user_input in self.guessed_correct_letters:
-                self.game_hint_message = Fore.RED + f"You have guessed {user_input} already"
+                self.game_hint_message = Fore.YELLOW + f"You have guessed the letter '{user_input}' already"
             elif user_input in self.hangman_word:
                 self.guessed_correct_letters.append(user_input)
                 self.update_display_word(user_input)

@@ -264,7 +264,7 @@ class HangmanGame:
 
     def get_leaderboard_data(self):
         """
-        Gets leaderboard data from google sheets and displays the top 20 highers scores, also gives user the option
+        Gets leaderboard data from google sheets and displays the top 20 highest scores, also gives user the option
         to play again or exit the game
         """
         leaderboard_data = worksheet.get_all_records()

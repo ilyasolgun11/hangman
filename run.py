@@ -83,14 +83,14 @@ class HangmanGame:
         print(self.how_to_play_guide)
         print(Fore.YELLOW + f"Hello {self.name_of_player}! We suggest you to read the how to play\nguide above before you begin.\n")
         while True:
-            player_option = input("Type 'P' to Play, 'L' for Leaderboard or 'B' to go Back\n>>> ").lower()
-            if player_option == "p":
+            player_option = input("Type 'P' to Play, 'L' for Leaderboard or 'B' to go Back\n>>> ")
+            if player_option.lower() == "p":
                 self.play()
                 break
-            elif player_option == "l":
+            elif player_option.lower() == "l":
                 self.get_leaderboard_data()
                 break
-            elif player_option == "b":
+            elif player_option.lower() == "b":
                 self.player_info()
                 break
             else:
@@ -246,18 +246,18 @@ class HangmanGame:
         print(Fore.YELLOW + "Leaderboard's updated.\n")
         while True: 
             print("A - Play again\nB - Exit game\nC - Leaderboard")
-            user_choice = input(">>> ").lower()
-            if user_choice == "a":
+            user_choice = input(">>> ")
+            if user_choice.lower() == "a":
                 self.reset_game()
                 self.play()
                 break
-            elif user_choice == "b":
+            elif user_choice.lower() == "b":
                 print(f"Thanks for playing {self.name_of_player}!")
                 print("Hangman awaits your return!")
                 sys.exit()
-            elif user_choice == "c":
-                self.reset_game()
+            elif user_choice.lower() == "c":
                 self.get_leaderboard_data()
+                self.reset_game()
                 break
             else:
                 print("Please enter a valid option.")
@@ -288,12 +288,12 @@ class HangmanGame:
         while True: 
             print("")
             print(Fore.BLUE + "A - Play again\nB - Exit game\n")
-            user_choice = input(">>> ").lower()
-            if user_choice == "a":
+            user_choice = input(">>> ")
+            if user_choice.lower() == "a":
                 self.reset_game()
                 self.play()
                 break
-            elif user_choice == "b":
+            elif user_choice.lower() == "b":
                 print(f"Thanks for playing {self.name_of_player}!")
                 print("Hangman awaits your return!")
                 sys.exit()

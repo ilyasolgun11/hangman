@@ -88,7 +88,7 @@ class HangmanGame:
                 self.play()
                 break
             elif player_option == "l":
-                self.get_leaderboard_data
+                self.get_leaderboard_data()
                 break
             elif player_option == "b":
                 self.player_info()

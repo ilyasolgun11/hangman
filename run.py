@@ -230,7 +230,7 @@ class HangmanGame:
             date_str = player_data['Date'].ljust(13)
             time_to_win_str = player_data['Time to win'].ljust(16)
             
-            print(Fore.CYAN + f"{position_str}{name_str}{Fore.GREEN + f"{points_str}"}{Fore.CYAN + f"{location_str}"}{date_str}{time_to_win_str}")
+            print(Fore.CYAN + f"{position_str}{name_str}{points_str}{location_str}{date_str}{time_to_win_str}")
 
         while True: 
             print("")

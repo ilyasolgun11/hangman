@@ -4,7 +4,6 @@ import gspread
 from google.oauth2.service_account import Credentials
 from datetime import datetime
 import time
-from pprint import pprint
 from hangman import *
 import colorama
 from colorama import Fore
@@ -98,7 +97,6 @@ class HangmanGame:
         Starts the game and depending on the user input "word", "letter", it calls
         the corresponding functions guess_word() or guess_letter()
         """
-        print(self.hangman_word)
         self.start_time = time.time()
         self.game_hint_message = Fore.GREEN + f"You have to guess a word with {len(self.hangman_word)} letters"
         while self.score > 0:

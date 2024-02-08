@@ -71,7 +71,7 @@ class HangmanGame:
         Collect player information before starting the game.
         """
         print(self.game_logo)
-        print(Fore.YELLOW + "Welcome stranger!! could you be the one to save this poor guy from a \ngruesome death? i hope so! fill in your name and location to\nsee the how to play guide.\n")
+        print(Fore.YELLOW + "Welcome stranger! could you be the one to save this poor guy from a \ngruesome death? i hope so! fill in your name and location to\nsee the how to play guide.\n")
         self.name_of_player = input(Fore.BLUE + "What is your first name?\n>>> ")
         self.location_of_player = input(Fore.BLUE + "Which country/city are your from?\n>>> ")
         self.how_to_play()
@@ -98,6 +98,7 @@ class HangmanGame:
         Starts the game and depending on the user input "word", "letter", it calls
         the corresponding functions guess_word() or guess_letter()
         """
+        print(self.hangman_word)
         self.start_time = time.time()
         self.game_hint_message = Fore.GREEN + f"You have to guess a word with {len(self.hangman_word)} letters"
         while self.score > 0:
@@ -136,7 +137,7 @@ class HangmanGame:
             if self.player_won == True:
                 end_time = time.time()
                 elapsed_time = end_time - self.start_time
-                data_to_add = [self.name_of_player, self.points, datetime.now().strftime('%d/%m/%Y'), self.location_of_player, f"{elapsed_time:.2f} seconds"]
+                data_to_add = [self.name_of_player, self.points, datetime.now().strftime('%d/%m/%Y'), self.location_of_player, f"{elapsed_time:.2f} seconds", self.hangman_word]
                 worksheet.append_row(data_to_add)
                 self.game_end()
                 
@@ -269,18 +270,19 @@ class HangmanGame:
         print(Fore.YELLOW + "------------------------------------------")
         print(Fore.YELLOW + "T O P   2 0   L E A D E R B O A R D")
         print(Fore.YELLOW + "------------------------------------------\n")
-        print(Fore.BLUE + "POSITION     NAME         POINTS       LOCATION           DATE         TIME TO WIN")
+        print(Fore.BLUE + "POSITION  NAME      POINTS LOCATION    DATE        TIME TO WIN    WORD")
         
         for position, player_data in enumerate(sorted_leaderboard[:20], start=1):
             
-            position_str = str(position).ljust(13)
-            name_str = player_data['Name'].ljust(13)
-            points_str = str(player_data['Points']).ljust(13)
-            location_str = player_data['Country/City'].ljust(19)
-            date_str = player_data['Date'].ljust(13)
-            time_to_win_str = player_data['Time to win'].ljust(16)
+            position_str = str(position).ljust(10)
+            name_str = player_data['Name'].ljust(10).capitalize()
+            points_str = str(player_data['Points']).ljust(7)
+            location_str = player_data['Country/City'].ljust(12).capitalize()
+            date_str = player_data['Date'].ljust(12)
+            time_to_win_str = player_data['Time to win'].ljust(15)
+            winning_word = player_data['Winning word'].ljust(12).capitalize()
             
-            print(Fore.GREEN + f"{position_str}{name_str}{points_str}{location_str}{date_str}{time_to_win_str}")
+            print(Fore.GREEN + f"{position_str}{name_str}{points_str}{location_str}{date_str}{time_to_win_str}{winning_word}")
 
         while True: 
             print("")

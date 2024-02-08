@@ -235,12 +235,12 @@ class HangmanGame:
         if self.player_won == True:
             print(self.win_logo)
             print(Fore.GREEN + f"Amazing job! the word was indeed {self.hangman_word}!\n")
+            print(Fore.YELLOW + "Leaderboard's updated.\n")
         else:
             print(self.lose_logo)
             print(Fore.RED + "Better luck next time, my dude is dead!\n")
         
         print(f"Points: {self.points}\n")
-        print(Fore.YELLOW + "Leaderboard's updated.\n")
         while True: 
             print("A - Play again\nB - Exit game\nC - Leaderboard")
             user_choice = input(">>> ")

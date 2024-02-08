@@ -67,6 +67,9 @@ class HangmanGame:
         self.game_hint_message = ""
 
     def player_info(self):
+        """
+        Collect player information before starting the game.
+        """
         print(self.game_logo)
         print(Fore.YELLOW + "Welcome stranger!! could you be the one to save this poor guy from a \ngruesome death? i hope so! fill in your name and location to begin.\n")
         self.name_of_player = input(Fore.BLUE + "What is your name?\n>>> ")
@@ -74,6 +77,9 @@ class HangmanGame:
         self.how_to_play()
     
     def how_to_play(self):
+        """
+        Provide instructions on how to play the game.
+        """
         print(self.how_to_play_guide)
         print(Fore.YELLOW + f"Hello {self.name_of_player}! We suggest you to read the how to play\nguide above before you begin.\n")
         while True:
@@ -91,6 +97,10 @@ class HangmanGame:
                 print(Fore.RED + "Please enter a valid option.")
 
     def play(self):
+        """
+        Starts the game and depending on the user input "word", "letter", it calls
+        the corresponding functions guess_word() or guess_letter()
+        """
         self.start_time = time.time()
         self.game_hint_message = Fore.GREEN + f"You have to guess a word with {len(self.hangman_word)} letters"
         while self.score > 0:
@@ -135,6 +145,9 @@ class HangmanGame:
                 
 
     def guess_word(self, user_input):
+        """
+        Checks if the user word input is correct or not, increments or decrements points accordingly
+        """
         if user_input in self.guessed_words:
             self.game_hint_message = Fore.RED + f"You have guessed the word {user_input} already."
         elif user_input == self.hangman_word:
@@ -160,6 +173,9 @@ class HangmanGame:
                 pass
     
     def guess_letter(self, user_input):
+        """
+        Checks if user letter input is correct or not, increments or decrements points accordingly
+        """
         if user_input in self.hangman_word:
             print(self.hangman_stage[self.stages])
             if user_input in self.guessed_letters or user_input in self.guessed_correct_letters:
@@ -187,6 +203,10 @@ class HangmanGame:
                 pass
 
     def update_display_word(self, user_input):
+        """
+        Checks if the user letter input is in the self.hangman_word, if it is it reveals
+        the letter in the correct place
+        """
         updated_display = ""
         for winning_word, displayed_word in zip(self.hangman_word, self.display_word):
             if winning_word == user_input or displayed_word != "_":
@@ -196,6 +216,9 @@ class HangmanGame:
         self.display_word = updated_display  
 
     def reset_game(self):
+        """
+        Resets only the class attributes that need to be reset, leaves the user name and location the same
+        """
         self.player_won = False
         self.hangman_word = random_word()
         self.display_word = "_" * len(self.hangman_word)
@@ -208,6 +231,10 @@ class HangmanGame:
         self.game_hint_message = ""
         
     def game_end(self):
+        """
+        Displays win or lose screen depending if the user won or not, also asks the user if they
+        want to play again, check leaderboard or exit the game
+        """
         if self.player_won == True:
             print(self.win_logo)
             print(Fore.GREEN + f"Amazing job! the word was indeed {self.hangman_word}!\n")
@@ -236,6 +263,10 @@ class HangmanGame:
                 print("Please enter a valid option.")
 
     def get_leaderboard_data(self):
+        """
+        Gets leaderboard data from google sheets and displays the top 20 highers scores, also gives user the option
+        to play again or exit the game
+        """
         leaderboard_data = worksheet.get_all_records()
         sorted_leaderboard = sorted(leaderboard_data, key=lambda x: x['Points'], reverse=True)
         print(Fore.YELLOW + "------------------------------------------")
@@ -266,9 +297,6 @@ class HangmanGame:
                 print(f"Thanks for playing {self.name_of_player}!")
                 print("Hangman awaits your return!")
                 sys.exit()
-            elif user_choice == "c":
-                self.get_leaderboard_data()
-                break
             else:
                 print(Fore.RED + "Please enter a valid option.")
 

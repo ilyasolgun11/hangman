@@ -287,7 +287,7 @@ class HangmanGame:
 
         while True: 
             print("")
-            print(Fore.BLUE + "A - Play again\nB - Exit game\nC - Leaderboard")
+            print(Fore.BLUE + "A - Play again\nB - Exit game\n")
             user_choice = input(">>> ").lower()
             if user_choice == "a":
                 self.reset_game()

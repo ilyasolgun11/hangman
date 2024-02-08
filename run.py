@@ -116,7 +116,7 @@ class HangmanGame:
         if user_input in self.guessed_words:
             self.game_hint_message = Fore.RED + f"You have guessed the word {user_input} already."
         elif user_input == self.hangman_word:
-            if len(self.guessed_correct_letters) < round(len(self.hangman_word) / 2):
+            if len(self.guessed_correct_letters) < round(len(self.hangman_word) / 2) + 1:
                 self.points += 750
                 print(f"You have won! the word was {self.hangman_word}")
                 self.player_won = True

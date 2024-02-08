@@ -83,12 +83,9 @@ class HangmanGame:
         print(self.how_to_play_guide)
         print(Fore.YELLOW + f"Hello {self.name_of_player}! We suggest you to read the how to play\nguide above before you begin.\n")
         while True:
-            player_option = input("Type 'P' to Play, 'L' for Leaderboard or 'B' to go Back\n>>> ")
+            player_option = input("Type 'P' to Play 'B' to go Back\n>>> ")
             if player_option.lower() == "p":
                 self.play()
-                break
-            elif player_option.lower() == "l":
-                self.get_leaderboard_data()
                 break
             elif player_option.lower() == "b":
                 self.player_info()

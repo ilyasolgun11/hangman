@@ -25,6 +25,27 @@ worksheet = SHEET.get_worksheet(0)
 
 
 class HangmanGame:
+    """Class representing a Hangman game.
+
+        Attributes:
+        - start_time (float): Timestamp representing the start time of the game.
+        - player_won (bool): Flag indicating whether the player has won the game.
+        - hangman_word (str): The word to be guessed by the player.
+        - display_word (str): Current state of the word being guessed, with underscores for unrevealed letters.
+        - hangman_stage (list): List of ASCII art representations for different stages of the hangman.
+        - stages (int): Current stage of the hangman figure.
+        - game_logo (str): ASCII art representing the game logo.
+        - lose_logo (str): ASCII art representing the lose scenario logo.
+        - win_logo (str): ASCII art representing the win scenario logo.
+        - score (int): Remaining attempts for the player to guess the word.
+        - points (int): Current score of the player.
+        - guessed_letters (list): List of letters guessed by the player.
+        - guessed_words (list): List of words guessed by the player.
+        - guessed_correct_letters (list): List of correctly guessed letters.
+        - name_of_player (str): Name of the player.
+        - location_of_player (str): Location of the player.
+        - game
+    """
     def __init__(self):
         self.start_time = None
         self.player_won = False
@@ -35,6 +56,7 @@ class HangmanGame:
         self.game_logo = hangman_logo
         self.lose_logo = lose_logo_hangman
         self.win_logo = win_logo_hangman
+        self.how_to_play_guide = how_to_play_guide
         self.score = 7
         self.points = 0
         self.guessed_letters = []
@@ -52,7 +74,8 @@ class HangmanGame:
         self.how_to_play()
     
     def how_to_play(self):
-        print(f"Hello {self.name_of_player}! We suggest you to read the rules before you begin.\n")
+        print(self.how_to_play_guide)
+        print(Fore.YELLOW + f"Hello {self.name_of_player}! We suggest you to read the how to play\nguide above before you begin.\n")
         while True:
             player_option = input("Type 'P' to Play, 'L' for Leaderboard or 'B' to go Back\n>>> ").lower()
             if player_option == "p":
@@ -126,7 +149,7 @@ class HangmanGame:
             if self.points < 10:
                 pass
             else:
-                self.points -= 10
+                self.points = 0
             self.score -= 1
             self.guessed_letters.append(user_input)
             self.game_hint_message = Fore.RED + f"Wrong! {user_input} is not the word"

@@ -270,7 +270,7 @@ class HangmanGame:
         leaderboard_data = worksheet.get_all_records()
         sorted_leaderboard = sorted(leaderboard_data, key=lambda x: x['Points'], reverse=True)
         print(Fore.YELLOW + "------------------------------------------")
-        print(Fore.YELLOW + "T O P   3 0   L E A D E R B O A R D")
+        print(Fore.YELLOW + "T O P   2 0   L E A D E R B O A R D")
         print(Fore.YELLOW + "------------------------------------------\n")
         print(Fore.BLUE + "POSITION     NAME         POINTS       LOCATION           DATE         TIME TO WIN")
         

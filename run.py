@@ -3,6 +3,7 @@ import sys
 import gspread
 from google.oauth2.service_account import Credentials
 from datetime import datetime
+import time
 from hangman import *
 import colorama
 from colorama import Fore
@@ -24,6 +25,7 @@ worksheet = SHEET.get_worksheet(0)
 
 class HangmanGame:
     def __init__(self):
+        self.start_time = None
         self.player_won = False
         self.hangman_word = random_word()
         self.display_word = "_" * len(self.hangman_word)
@@ -63,6 +65,7 @@ class HangmanGame:
 
     def play(self):
         print(self.hangman_word)
+        self.start_time = time.time()
         self.game_hint_message = Fore.GREEN + f"You have to guess a word with {len(self.hangman_word)} letters"
         while self.score > 0:
             if self.stages == 0:
@@ -98,9 +101,12 @@ class HangmanGame:
                 self.game_end()
 
             if self.player_won == True:
-                data_to_add = [self.name_of_player, self.points, datetime.now().strftime('%d/%m/%Y'), self.location_of_player]
+                end_time = time.time()
+                elapsed_time = end_time - self.start_time
+                data_to_add = [self.name_of_player, self.points, datetime.now().strftime('%d/%m/%Y'), self.location_of_player, f"{elapsed_time:.2f} seconds"]
                 worksheet.append_row(data_to_add)
                 self.game_end()
+                
 
     def guess_word(self, user_input):
         if user_input in self.guessed_words:

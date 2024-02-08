@@ -182,7 +182,7 @@ class HangmanGame:
         self.points = 0
         self.guessed_letters = []
         self.guessed_words = []
-        self.guessed_correct_letters = ""
+        self.guessed_correct_letters = []
         self.game_hint_message = ""
         
     def game_end(self):

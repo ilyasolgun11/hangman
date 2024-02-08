@@ -68,7 +68,6 @@ class HangmanGame:
                 print(Fore.RED + "Please enter a valid option.")
 
     def play(self):
-        print(self.hangman_word)
         self.start_time = time.time()
         self.game_hint_message = Fore.GREEN + f"You have to guess a word with {len(self.hangman_word)} letters"
         while self.score > 0:

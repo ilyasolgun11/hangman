@@ -97,6 +97,7 @@ class HangmanGame:
         Starts the game and depending on the user input "word", "letter", it calls
         the corresponding functions guess_word() or guess_letter()
         """
+        print(self.hangman_word)
         self.start_time = time.time()
         self.game_hint_message = Fore.GREEN + f"You have to guess a word with {len(self.hangman_word)} letters"
         while self.score > 0:
@@ -147,11 +148,12 @@ class HangmanGame:
         if user_input in self.guessed_words:
             self.game_hint_message = Fore.YELLOW + f"You have guessed the word '{user_input}' already."
         elif user_input == self.hangman_word:
-            if len(self.guessed_correct_letters) < round(len(self.hangman_word) / 2) + 1:
+            if len(self.guessed_correct_letters) < round(len(self.hangman_word) / 2):
                 self.points += 750
                 print(f"You have won! the word was {self.hangman_word}")
                 self.player_won = True
             else:
+                self.points += 100
                 print(f"You have won! the word was {self.hangman_word}")
                 self.player_won = True
         else:

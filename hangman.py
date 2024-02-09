@@ -198,6 +198,8 @@ how_to_play_guide = Fore.BLUE +  """
 |                                                              |
 |    Points system:                                            |
 |   + 25 points each time you guess a letter right             |
+|    + 100 points if you guess the word right with half of     |
+|      the word exposed                                        |
 |   + 750 points if you guess the word right without           |
 |    revealing the first half of the word already              |
 |   - 10 points if you guess a letter wrong, only applies if   |

@@ -49,7 +49,7 @@ class HangmanGame:
         self.start_time = None
         self.player_won = False
         self.hangman_word = random_word()
-        self.display_word = "_" * len(self.hangman_word)
+        self.display_word = "_ " * len(self.hangman_word)
         self.hangman_stage = hangman_stages
         self.stages = 0
         self.game_logo = hangman_logo
@@ -207,10 +207,10 @@ class HangmanGame:
         updated_display = ""
         for winning_word, displayed_word in zip(self.hangman_word, self.display_word):
             if winning_word == user_input or displayed_word != "_":
-                updated_display += winning_word + " "
+                updated_display += winning_word 
             else:
                 updated_display += "_"
-        self.display_word = updated_display.strip()
+        self.display_word = updated_display
 
     def reset_game(self):
         """

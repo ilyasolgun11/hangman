@@ -152,7 +152,7 @@ class HangmanGame(PlayerInfo):
                             pass
                         else:
                             self.points -= 25
-                            response = requests.get(url, headers=headers)
+                        response = requests.get(url, headers=headers)
                         try:
                             with open('dictionary.json') as f:
                                 data = json.load(f)

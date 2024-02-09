@@ -5,11 +5,12 @@ import requests
 from google.oauth2.service_account import Credentials
 from datetime import datetime
 import time
+import json
 from hangman import *
 import colorama
 from colorama import Fore
 colorama.init(autoreset=True)
-from dict import headers
+
 
 
 SCOPE = [
@@ -101,7 +102,6 @@ class HangmanGame:
         Starts the game and depending on the user input "word", "letter", it calls
         the corresponding functions guess_word() or guess_letter()
         """
-        print(self.hangman_word)
         self.start_time = time.time()
         self.game_hint_message = Fore.GREEN + f"You have to guess a word with {len(self.hangman_word)} letters"
         url = f"https://dictionary-data-api.p.rapidapi.com/definition/{self.hangman_word}"
@@ -131,6 +131,11 @@ class HangmanGame:
                         pass
                     else:
                         self.points -= 25
+                    with open('dictionary.json') as f:
+                        data = json.load(f)
+
+                        headers = data.get('headers', {})
+
                     response = requests.get(url, headers=headers)
                     if response.status_code == 200:
                         data = response.json()

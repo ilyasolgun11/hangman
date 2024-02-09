@@ -100,7 +100,8 @@ class HangmanGame:
     def play(self):
         """
         Starts the game and depending on the user input "word", "letter", it calls
-        the corresponding functions guess_word() or guess_letter()
+        the corresponding functions guess_word() or guess_letter(). Also if user selects the hint option
+        it calls the api to get the definition of the hangman word.
         """
         self.start_time = time.time()
         self.game_hint_message = Fore.GREEN + f"You have to guess a word with {len(self.hangman_word)} letters"
@@ -127,15 +128,13 @@ class HangmanGame:
                 if user_hint_option.lower() == "yes":
                     print("Grabbing definition...")
                     self.hints_remaining -= 1
-                    if self.points > 25:
+                    if self.points > 30:
                         pass
                     else:
                         self.points -= 25
                     with open('dictionary.json') as f:
                         data = json.load(f)
-
                         headers = data.get('headers', {})
-
                     response = requests.get(url, headers=headers)
                     if response.status_code == 200:
                         data = response.json()

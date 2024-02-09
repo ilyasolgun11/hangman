@@ -11,6 +11,8 @@ import colorama
 from colorama import Fore
 colorama.init(autoreset=True)
 
+
+
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
     "https://www.googleapis.com/auth/drive.file",
@@ -152,15 +154,10 @@ class HangmanGame(PlayerInfo):
                             pass
                         else:
                             self.points -= 25
+                        with open('dictionary.json') as f:
+                            data = json.load(f)
+                            headers = data.get('headers', {})
                         response = requests.get(url, headers=headers)
-                        try:
-                            with open('dictionary.json') as f:
-                                data = json.load(f)
-                                headers = data.get('headers', {})
-                        except FileNotFoundError:
-                            print("Error: 'dictionary.json' not found. Please make sure the file is in the correct location.")
-                        except json.JSONDecodeError:
-                            print("Error: 'dictionary.json' is not a valid JSON file. Please check the file contents.")
                         if response.status_code == 200:
                             data = response.json()
                             meanings = data.get('meaning', [])
@@ -368,7 +365,7 @@ class HangmanGame(PlayerInfo):
             winning_word = player_data['Winning word'].ljust(12).capitalize()
             hint_used = player_data['Hint used?'].ljust(12).capitalize()
             print(Fore.GREEN + f"{position_str}{name_str}{points_str}{location_str}{date_str}{time_to_win_str}{winning_word}{hint_used}")
-
+            
         # While the user does not select an invalid option (anything other than a or b) then keep asking them for a valid input
         while True: 
             print("")

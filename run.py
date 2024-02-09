@@ -6,7 +6,6 @@ from google.oauth2.service_account import Credentials
 from datetime import datetime
 import time
 import json
-from dictionary import headers
 from hangman import *
 import colorama
 from colorama import Fore
@@ -155,6 +154,9 @@ class HangmanGame(PlayerInfo):
                             pass
                         else:
                             self.points -= 25
+                        with open('dictionary.json') as f:
+                            data = json.load(f)
+                            headers = data.get('headers', {})
                         response = requests.get(url, headers=headers)
                         if response.status_code == 200:
                             data = response.json()

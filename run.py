@@ -124,30 +124,36 @@ class HangmanGame:
             else:
                 print(Fore.YELLOW + f"You have {self.score} attempts left")
             if self.hints_remaining == 1 and self.score < 4:
-                user_hint_option = input(Fore.CYAN + "Do you want to use your hint token? (yes/no)\n>>> ")
-                if user_hint_option.lower() == "yes":
-                    print("Grabbing definition...")
-                    self.hints_remaining -= 1
-                    if self.points > 30:
-                        pass
-                    else:
-                        self.points -= 25
-                    with open('dictionary.json') as f:
-                        data = json.load(f)
-                        headers = data.get('headers', {})
-                    response = requests.get(url, headers=headers)
-                    if response.status_code == 200:
-                        data = response.json()
-                        meanings = data.get('meaning', [])
-                        if meanings:
-                            definition = meanings[0]["values"][0]
-                            print(Fore.BLUE + f"Definition of word: {definition.replace(self.hangman_word, '(hangman-word)')}")
+                while True:
+                    user_hint_option = input(Fore.CYAN + "Do you want to use your hint token? (yes/no)\n>>> "+ Fore.RESET)
+                    if user_hint_option.lower() == "yes":
+                        print("Grabbing definition...")
+                        self.hints_remaining -= 1
+                        if self.points > 30:
+                            pass
                         else:
-                            print("No meanings found.")
+                            self.points -= 25
+                        with open('dictionary.json') as f:
+                            data = json.load(f)
+                            headers = data.get('headers', {})
+                        response = requests.get(url, headers=headers)
+                        if response.status_code == 200:
+                            data = response.json()
+                            meanings = data.get('meaning', [])
+                            if meanings:
+                                definition = meanings[0]["values"][0]
+                                print(Fore.BLUE + f"Definition of word: {definition.replace(self.hangman_word, '(hangman-word)')}")
+                            else:
+                                print("No meanings found.")
+                        else:
+                            print(f"Error: Sorry, no definitions found...")
+                        break
+                    elif user_hint_option.lower() == "no":
+                        pass
+                        break
                     else:
-                        print(f"Error: Sorry, no definitions found...")
-                elif user_hint_option.lower() == "no":
-                    pass
+                        print(Fore.YELLOW + "Please enter either yes or no")
+
                 if self.score > 2:
                     user_input = input("Guess a letter or a word: \n>>> ").lower()
                 else:
@@ -299,7 +305,7 @@ class HangmanGame:
                 self.reset_game()
                 break
             else:
-                print("Please enter a valid option.")
+                print(Fore.YELLOW + "Please enter a valid option.")
 
     def get_leaderboard_data(self):
         """
@@ -339,7 +345,7 @@ class HangmanGame:
                 print("Hangman awaits your return!")
                 sys.exit()
             else:
-                print(Fore.RED + "Please enter a valid option.")
+                print(Fore.YELLOW + "Please enter a valid option.")
 
 if __name__ == "__main__":
     hangman_game = HangmanGame()

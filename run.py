@@ -49,7 +49,7 @@ class HangmanGame:
         self.start_time = None
         self.player_won = False
         self.hangman_word = random_word()
-        self.display_word = "_ " * len(self.hangman_word)
+        self.display_word = "_" * len(self.hangman_word)
         self.hangman_stage = hangman_stages
         self.stages = 0
         self.game_logo = hangman_logo
@@ -106,7 +106,7 @@ class HangmanGame:
                 pass
             print(f"{self.game_hint_message}\n")
             print(Fore.RED + f"Guessed wrong letters:\n{self.guessed_letters}\n")
-            print(f"Word: {self.display_word}\n")
+            print(f"Word: {' '.join(self.display_word)}\n")
             if self.points >= 25:
                 print(Fore.GREEN + f"Points: {self.points}\n")
             else: 
@@ -127,7 +127,6 @@ class HangmanGame:
                 else:
                     self.guess_word(user_input)
             else:
-                print(self.hangman_stage[self.stages])
                 self.game_hint_message = Fore.RED + "Your input is neither a letter or a word, try again."
 
             if self.score == 0:
@@ -207,10 +206,10 @@ class HangmanGame:
         updated_display = ""
         for winning_word, displayed_word in zip(self.hangman_word, self.display_word):
             if winning_word == user_input or displayed_word != "_":
-                updated_display += winning_word 
+                updated_display += winning_word
             else:
                 updated_display += "_"
-        self.display_word = updated_display
+        self.display_word = updated_display  
 
     def reset_game(self):
         """
@@ -240,7 +239,7 @@ class HangmanGame:
             print(self.lose_logo)
             print(Fore.RED + "Better luck next time, my dude is dead!\n")
         
-        print(f"The word was "+ Fore.YELLOW +f"{self.hangman_word}\n")
+        print(f"The word was "+ Fore.YELLOW +f"{self.hangman_word}")
         print(f"Points: {self.points}\n")
         while True: 
             print("A - Play again\nB - Exit game\nC - Leaderboard")

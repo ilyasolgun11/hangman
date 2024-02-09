@@ -27,7 +27,27 @@ SHEET = GSPREAD_CLIENT.open(SPREADSHEET_NAME)
 worksheet = SHEET.get_worksheet(0)
 
 
-class HangmanGame:
+class PlayerInfo:
+    """Class collecting using name and location.
+
+        Attributes:
+        - name_of_player (str) grabs the name of player and stores it
+        - location_of_player (str) grabs the location of player and stores it
+    """
+    def __init__(self):
+        self.name_of_player = ""
+        self.location_of_player = ""
+    def collect_info(self):
+        """
+        Collect player information before starting the game.
+        """
+        print(self.game_logo)
+        print(Fore.YELLOW + "Welcome stranger! could you be the one to save this poor guy from a \ngruesome death? i hope so! fill in your name and location to\nsee the how to play guide.\n")
+        self.name_of_player = input(Fore.BLUE + "What is your first name?\n>>> ")
+        self.location_of_player = input(Fore.BLUE + "Which country/city are your from?\n>>> ")
+        self.how_to_play()
+
+class HangmanGame(PlayerInfo):
     """Class representing a Hangman game.
 
         Attributes:
@@ -45,11 +65,10 @@ class HangmanGame:
         - guessed_letters (list): List of letters guessed by the player.
         - guessed_words (list): List of words guessed by the player.
         - guessed_correct_letters (list): List of correctly guessed letters.
-        - name_of_player (str): Name of the player.
-        - location_of_player (str): Location of the player.
-        - game
+        - game_hint_message (str): holds value thats shown in the game screen.
     """
     def __init__(self):
+        super().__init__()
         self.start_time = None
         self.player_won = False
         self.hangman_word = random_word()
@@ -66,19 +85,7 @@ class HangmanGame:
         self.guessed_letters = []
         self.guessed_words = []
         self.guessed_correct_letters = []
-        self.name_of_player = ""
-        self.location_of_player = ""
         self.game_hint_message = ""
-
-    def player_info(self):
-        """
-        Collect player information before starting the game.
-        """
-        print(self.game_logo)
-        print(Fore.YELLOW + "Welcome stranger! could you be the one to save this poor guy from a \ngruesome death? i hope so! fill in your name and location to\nsee the how to play guide.\n")
-        self.name_of_player = input(Fore.BLUE + "What is your first name?\n>>> ")
-        self.location_of_player = input(Fore.BLUE + "Which country/city are your from?\n>>> ")
-        self.how_to_play()
     
     def how_to_play(self):
         """
@@ -346,4 +353,4 @@ class HangmanGame:
 
 if __name__ == "__main__":
     hangman_game = HangmanGame()
-    hangman_game.player_info()
+    hangman_game.collect_info()

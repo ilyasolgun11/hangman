@@ -6,6 +6,7 @@ from google.oauth2.service_account import Credentials
 from datetime import datetime
 import time
 import json
+from dictionary import headers
 from hangman import *
 import colorama
 from colorama import Fore
@@ -154,9 +155,6 @@ class HangmanGame(PlayerInfo):
                             pass
                         else:
                             self.points -= 25
-                        with open('dictionary.json') as f:
-                            data = json.load(f)
-                            headers = data.get('headers', {})
                         response = requests.get(url, headers=headers)
                         if response.status_code == 200:
                             data = response.json()
@@ -365,7 +363,7 @@ class HangmanGame(PlayerInfo):
             winning_word = player_data['Winning word'].ljust(12).capitalize()
             hint_used = player_data['Hint used?'].ljust(12).capitalize()
             print(Fore.GREEN + f"{position_str}{name_str}{points_str}{location_str}{date_str}{time_to_win_str}{winning_word}{hint_used}")
-            
+
         # While the user does not select an invalid option (anything other than a or b) then keep asking them for a valid input
         while True: 
             print("")

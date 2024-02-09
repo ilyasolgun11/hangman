@@ -195,6 +195,10 @@ how_to_play_guide = Fore.BLUE +  """
 |    deducted by 10 each time.                                 |
 |    3 - If the attempts reach 0, hangman will be killed       |
 |    and you will lose the game.                               |
+|    4 - Each time you play you will get a hint token, if      |
+|    you use it you will get the definition of the word        |
+|    but also 25 points will be deducted if you have more      |
+|    than 25 already.                                          |
 |                                                              |
 |    Points system:                                            |
 |   + 25 points each time you guess a letter right             |

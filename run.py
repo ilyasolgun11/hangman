@@ -1,6 +1,7 @@
 from words import random_word
 import sys
 import gspread
+import requests
 from google.oauth2.service_account import Credentials
 from datetime import datetime
 import time
@@ -8,6 +9,8 @@ from hangman import *
 import colorama
 from colorama import Fore
 colorama.init(autoreset=True)
+from dictionary import headers
+
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -56,6 +59,7 @@ class HangmanGame:
         self.lose_logo = lose_logo_hangman
         self.win_logo = win_logo_hangman
         self.how_to_play_guide = how_to_play_guide
+        self.hints_remaining = 1
         self.score = 7
         self.points = 0
         self.guessed_letters = []
@@ -100,6 +104,7 @@ class HangmanGame:
         print(self.hangman_word)
         self.start_time = time.time()
         self.game_hint_message = Fore.GREEN + f"You have to guess a word with {len(self.hangman_word)} letters"
+        url = f"https://dictionary-data-api.p.rapidapi.com/definition/{self.hangman_word}"
         while self.score > 0:
             if self.stages == 0:
                 print(self.hangman_stage[self.stages])
@@ -117,11 +122,37 @@ class HangmanGame:
                 print(Fore.YELLOW + f"You have {self.score} attempt left")
             else:
                 print(Fore.YELLOW + f"You have {self.score} attempts left")
-            if self.score > 2:
-                user_input = input("Guess a letter or a word: \n>>> ").lower()
-            else:
-                user_input = input(Fore.RED + "Guess a letter or a word, Hurry!: \n>>> ").lower()
-            
+            if self.hints_remaining == 1 and self.score < 5:
+                user_hint_option = input("Do you want to use your hint token? (yes/no)\n>>> ")
+                if user_hint_option.lower() == "yes":
+                    print("Grabbing definition...")
+                    self.hints_remaining -= 1
+                    if self.points > 25:
+                        pass
+                    else:
+                        self.points -= 25
+                    response = requests.get(url, headers=headers)
+                    if response.status_code == 200:
+                        data = response.json()
+                        meanings = data.get('meaning', [])
+                        if meanings:
+                            definition = meanings[0]["values"][0]
+                            print(Fore.BLUE + f"Definition of word: {definition.replace(self.hangman_word, "(hangman-word)")}")
+                        else:
+                            print("No meanings found.")
+                    else:
+                        print(f"Error: Sorry, no definitions found...")
+                elif user_hint_option.lower() == "no":
+                    pass
+                if self.score > 2:
+                    user_input = input("Guess a letter or a word: \n>>> ").lower()
+                else:
+                    user_input = input(Fore.RED + "Guess a letter or a word, Hurry!: \n>>> ").lower()
+            else: 
+                if self.score > 2:
+                    user_input = input("Guess a letter or a word: \n>>> ").lower()
+                else:
+                    user_input = input(Fore.RED + "Guess a letter or a word, Hurry!: \n>>> ").lower()
             if user_input.isalpha(): 
                 if len(user_input) == 1:
                     self.guess_letter(user_input)
@@ -134,9 +165,13 @@ class HangmanGame:
                 self.game_end()
 
             if self.player_won == True:
+                if self.hints_remaining == 1:
+                    hints_used = "No"
+                else:
+                    hints_used = "Yes"
                 end_time = time.time()
                 elapsed_time = end_time - self.start_time
-                data_to_add = [self.name_of_player, self.points, datetime.now().strftime('%d/%m/%Y'), self.location_of_player, f"{elapsed_time:.2f} seconds", self.hangman_word]
+                data_to_add = [self.name_of_player, self.points, datetime.now().strftime('%d/%m/%Y'), self.location_of_player, f"{elapsed_time:.2f} seconds", self.hangman_word, hints_used]
                 worksheet.append_row(data_to_add)
                 self.game_end()
                 
@@ -227,6 +262,7 @@ class HangmanGame:
         self.guessed_words = []
         self.guessed_correct_letters = []
         self.game_hint_message = ""
+        self.hints_remaining = 1
         
     def game_end(self):
         """
@@ -235,13 +271,13 @@ class HangmanGame:
         """
         if self.player_won == True:
             print(self.win_logo)
-            print(Fore.GREEN + f"Amazing job! the word was indeed {self.hangman_word}!\n")
+            print(Fore.GREEN + f"Amazing job! you saved him!\n")
             print(Fore.YELLOW + "Leaderboard's updated.\n")
         else:
             print(self.lose_logo)
             print(Fore.RED + "Better luck next time, my dude is dead!\n")
         
-        print(f"The word was "+ Fore.YELLOW +f"{self.hangman_word}")
+        print(f"The word was "+ Fore.YELLOW +f"{self.hangman_word}\n")
         print(f"Points: {self.points}\n")
         while True: 
             print("A - Play again\nB - Exit game\nC - Leaderboard")
@@ -271,7 +307,7 @@ class HangmanGame:
         print(Fore.YELLOW + "------------------------------------------")
         print(Fore.YELLOW + "T O P   2 0   L E A D E R B O A R D")
         print(Fore.YELLOW + "------------------------------------------\n")
-        print(Fore.BLUE + "POSITION  NAME      POINTS LOCATION    DATE        TIME TO WIN    WORD")
+        print(Fore.BLUE + "POSITION  NAME      POINTS LOCATION    DATE        TIME TO WIN    WORD     HINT USED?")
         
         for position, player_data in enumerate(sorted_leaderboard[:20], start=1):
             
@@ -282,8 +318,9 @@ class HangmanGame:
             date_str = player_data['Date'].ljust(12)
             time_to_win_str = player_data['Time to win'].ljust(15)
             winning_word = player_data['Winning word'].ljust(12).capitalize()
+            hint_used = player_data['Hint used?'].ljust(12).capitalize()
             
-            print(Fore.GREEN + f"{position_str}{name_str}{points_str}{location_str}{date_str}{time_to_win_str}{winning_word}")
+            print(Fore.GREEN + f"{position_str}{name_str}{points_str}{location_str}{date_str}{time_to_win_str}{winning_word}{hint_used}")
 
         while True: 
             print("")

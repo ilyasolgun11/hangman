@@ -9,7 +9,7 @@ words = [
     "daughter", "decide", "delicious", "describe", "design", "different", "direction", "discover", "discussion", "education",
     "electric", "elephant", "emergency", "enormous", "entertain", "environment", "everywhere", "excellent", "exercise", "experience",
     "explain", "familiar", "favorite", "February", "fireplace", "football", "forever", "forget", "fortunate", "friendship",
-    "generous", "gentleman", "giraffe", "government", "grandmother", "happiness", "health", "heartfelt", "helicopter", "holiday",
+    "generous", "gentleman", "government", "grandmother", "happiness", "health", "heartfelt", "helicopter", "holiday",
     "hospital", "important", "impossible", "incredible", "information", "innocent", "interesting", "invisible", "invitation", "January",
     "journey", "knowledge", "landscape", "language", "laughter", "learning", "leisure", "library", "listening", "literature",
     "lollipop", "lunchtime", "magazine", "magnificent", "management", "marriage", "measurement", "meditate", "memory", "mermaid",

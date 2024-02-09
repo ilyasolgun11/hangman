@@ -9,7 +9,7 @@ from hangman import *
 import colorama
 from colorama import Fore
 colorama.init(autoreset=True)
-from dictionary import headers
+from dict import headers
 
 
 SCOPE = [
@@ -138,7 +138,6 @@ class HangmanGame:
                         if meanings:
                             definition = meanings[0]["values"][0]
                             print(Fore.BLUE + f"Definition of word: {definition.replace(self.hangman_word, '(hangman-word)')}")
-
                         else:
                             print("No meanings found.")
                     else:

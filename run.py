@@ -11,8 +11,6 @@ import colorama
 from colorama import Fore
 colorama.init(autoreset=True)
 
-
-
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
     "https://www.googleapis.com/auth/drive.file",
@@ -154,9 +152,15 @@ class HangmanGame(PlayerInfo):
                             pass
                         else:
                             self.points -= 25
-                        with open('dictionary.json') as f:
-                            data = json.load(f)
-                            headers = data.get('headers', {})
+                        try:
+                            with open('dictionary.json') as f:
+                                data = json.load(f)
+                                headers = data.get('headers', {})
+                        except FileNotFoundError:
+                            print("Error: 'dictionary.json' not found. Please make sure the file is in the correct location.")
+                        except json.JSONDecodeError:
+                            print("Error: 'dictionary.json' is not a valid JSON file. Please check the file contents.")
+                            
                         response = requests.get(url, headers=headers)
                         if response.status_code == 200:
                             data = response.json()

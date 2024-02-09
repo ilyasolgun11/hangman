@@ -206,10 +206,10 @@ class HangmanGame:
         updated_display = ""
         for winning_word, displayed_word in zip(self.hangman_word, self.display_word):
             if winning_word == user_input or displayed_word != "_":
-                updated_display += winning_word
+                updated_display += winning_word + " "
             else:
                 updated_display += "_"
-        self.display_word = updated_display  
+        self.display_word = updated_display.strip()
 
     def reset_game(self):
         """

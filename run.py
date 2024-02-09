@@ -287,7 +287,7 @@ class HangmanGame:
             print(self.lose_logo)
             print(Fore.RED + "Better luck next time, my dude is dead!\n")
         
-        print(f"The word was "+ Fore.YELLOW +f"{self.hangman_word}\n")
+        print(f"The word was "+ Fore.CYAN +f"{self.hangman_word}\n")
         print(f"Points: {self.points}\n")
         while True: 
             print("A - Play again\nB - Exit game\nC - Leaderboard")

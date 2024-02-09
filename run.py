@@ -124,7 +124,7 @@ class HangmanGame:
             else:
                 print(Fore.YELLOW + f"You have {self.score} attempts left")
             if self.hints_remaining == 1 and self.score < 4:
-                user_hint_option = input("Do you want to use your hint token? (yes/no)\n>>> ")
+                user_hint_option = input(Fore.CYAN + "Do you want to use your hint token? (yes/no)\n>>> ")
                 if user_hint_option.lower() == "yes":
                     print("Grabbing definition...")
                     self.hints_remaining -= 1

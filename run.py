@@ -127,6 +127,7 @@ class HangmanGame:
                 else:
                     self.guess_word(user_input)
             else:
+                print(self.hangman_stage[self.stages])
                 self.game_hint_message = Fore.RED + "Your input is neither a letter or a word, try again."
 
             if self.score == 0:

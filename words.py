@@ -5,7 +5,7 @@ words = [
     "apple", "arrive", "article", "asking", "athlete", "attention", "average", "awesome", "balance", "because",
     "before", "believe", "beneath", "between", "beyond", "bicycle", "birthday", "blanket", "building", "butterfly",
     "camera", "capital", "careful", "certain", "champion", "children", "chocolate", "clothing", "colorful", "comfortable",
-    "community", "complete", "continue", "contribute", "convention", "conversation", "courageous", "curious", "dangerous",
+    "community", "complete", "continue", "contribute", "convention", "courageous", "curious", "dangerous",
     "daughter", "decide", "delicious", "describe", "design", "different", "direction", "discover", "discussion", "education",
     "electric", "elephant", "emergency", "enormous", "entertain", "environment", "everywhere", "excellent", "exercise", "experience",
     "explain", "familiar", "favorite", "February", "fireplace", "football", "forever", "forget", "fortunate", "friendship",

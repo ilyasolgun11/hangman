@@ -87,8 +87,8 @@ class HangmanGame:
         print(self.how_to_play_guide)
         print(Fore.YELLOW + f"Hello {self.name_of_player}! We suggest you to read the how to play\nguide above before you begin.\n")
         while True:
-            player_option = input("Type 'P' to Play 'B' to go Back\n>>> ")
-            if player_option.lower() == "p":
+            player_option = input(Fore.BLUE + "A - Start game\nB - Go back\n>>> ")
+            if player_option.lower() == "a":
                 self.play()
                 break
             elif player_option.lower() == "b":
@@ -125,9 +125,9 @@ class HangmanGame:
                 print(Fore.YELLOW + f"You have {self.score} attempts left")
             if self.hints_remaining == 1 and self.score < 4:
                 while True:
-                    user_hint_option = input(Fore.CYAN + "Do you want to use your hint token? (yes/no)\n>>> "+ Fore.RESET)
-                    if user_hint_option.lower() == "yes":
-                        print("Grabbing definition...")
+                    user_hint_option = input(Fore.CYAN + "Do you want to use your hint token?\nA - Yes i want to use my hint token\nB - No i got this\n>>> "+ Fore.RESET)
+                    if user_hint_option.lower() == "a":
+                        print(Fore.YELLOW + "Grabbing definition...")
                         self.hints_remaining -= 1
                         if self.points > 30:
                             pass
@@ -142,13 +142,13 @@ class HangmanGame:
                             meanings = data.get('meaning', [])
                             if meanings:
                                 definition = meanings[0]["values"][0]
-                                print(Fore.BLUE + f"Definition of word: {definition.replace(self.hangman_word, '(hangman-word)')}")
+                                print(Fore.BLUE + f"Definition of word: {definition.replace(self.hangman_word, '(hidden winning word)')}")
                             else:
                                 print("No meanings found.")
                         else:
                             print(f"Error: Sorry, no definitions found...")
                         break
-                    elif user_hint_option.lower() == "no":
+                    elif user_hint_option.lower() == "b":
                         pass
                         break
                     else:
@@ -202,10 +202,7 @@ class HangmanGame:
                 print(f"You have won! the word was {self.hangman_word}")
                 self.player_won = True
         else:
-            if self.points < 10:
-                pass
-            else:
-                self.points = 0
+            self.points = 0
             self.score -= 1
             self.guessed_letters.append(user_input)
             self.game_hint_message = Fore.RED + f"Wrong! {user_input} is not the word"

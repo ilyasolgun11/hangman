@@ -24,8 +24,6 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SPREADSHEET_NAME = 'ultimate-hangman-leaderboard'
 SHEET = GSPREAD_CLIENT.open(SPREADSHEET_NAME)
-worksheet = SHEET.get_worksheet(0)
-
 
 class PlayerInfo:
     """Class collecting using name and location.
@@ -77,14 +75,16 @@ class HangmanGame(PlayerInfo):
         super().__init__()
         self.start_time = None
         self.player_won = False
-        self.hangman_word = random_word()
-        self.display_word = "_" * len(self.hangman_word)
+        self.selected_worksheet = "easy mode"
+        self.hangman_word = random_word("easy mode")
+        self.display_word = "_" * len(random_word("easy mode"))
         self.hangman_stage = hangman_stages
         self.stages = 0
         self.game_logo = hangman_logo
         self.lose_logo = lose_logo_hangman
         self.win_logo = win_logo_hangman
         self.how_to_play_guide = how_to_play_guide
+        self.game_modes_display = game_modes_display
         self.hints_remaining = 1
         self.score = 7
         self.points = 0
@@ -97,20 +97,45 @@ class HangmanGame(PlayerInfo):
         """
         Provide instructions on how to play the game.
         """
-        print(self.how_to_play_guide)
         print(Fore.YELLOW + f"Hello {self.name_of_player}! We suggest you to read the how to play\nguide above before you begin.\n")
         # Gives the user the option of starting the game and also going back, it will repeat that question until the user 
         # provides the correct input, this is done using a while loop
         while True:
-            player_option = input(Fore.BLUE + "A - Start game\nB - Go back\n>>> ")
+            player_option = input(Fore.BLUE + "A - Choose game mode\nB - Go back\n>>> ")
             if player_option.lower() == "a":
-                self.play()
+                self.choose_game_mode()
                 break
             elif player_option.lower() == "b":
                 self.collect_info()
                 break
             else:
-                print(Fore.RED + "Please enter a valid option.")
+                print(Fore.YELLOW + "Please enter a valid option.")
+        
+    def choose_game_mode(self):
+        print(self.game_modes_display)
+        while True:
+            player_mode_option = input(Fore.BLUE + "A - Easy mode\nB - Intermediate mode\nC - Hard mode\n>>> ")
+            if player_mode_option.lower() == "a":
+                self.hangman_word = random_word("easy mode")
+                self.display_word = "_" * len(random_word("easy mode"))
+                self.selected_worksheet = "easy mode"
+                self.play()
+                break
+            elif player_mode_option.lower() == "b":
+                self.hangman_word = random_word("intermediate mode")
+                self.display_word = "_" * len(random_word("intermediate mode"))
+                self.selected_worksheet = "intermediate mode"
+                self.play()
+                break
+            elif player_mode_option.lower() == "c":
+                self.hangman_word = random_word("hard mode")
+                self.display_word = "_" * len(random_word("hard mode"))
+                self.selected_worksheet = "hard mode"
+                self.play()
+                break
+            else:
+                print(Fore.YELLOW + "Please enter a valid option.")
+
 
     def play(self):
         """
@@ -125,10 +150,7 @@ class HangmanGame(PlayerInfo):
         url = f"https://dictionary-data-api.p.rapidapi.com/definition/{self.hangman_word}"
         # While user score is more than 0 (the game is still going on) display the game screen
         while self.score > 0:
-            if self.stages == 0:
-                print(self.hangman_stage[self.stages])
-            else:
-                pass
+            print(self.hangman_stage[self.stages])
             print(f"{self.game_hint_message}\n")
             print(Fore.RED + f"Guessed wrong letters:\n{self.guessed_letters}\n")
             print(f"Word: {' '.join(self.display_word)}\n")
@@ -206,7 +228,7 @@ class HangmanGame(PlayerInfo):
                 end_time = time.time()
                 elapsed_time = end_time - self.start_time
                 data_to_add = [self.name_of_player, self.points, datetime.now().strftime('%d/%m/%Y'), self.location_of_player, f"{elapsed_time:.2f} seconds", self.hangman_word, hints_used]
-                worksheet.append_row(data_to_add)
+                SHEET.worksheet(self.selected_worksheet).append_row(data_to_add)
                 self.game_end()
                 
 
@@ -297,7 +319,7 @@ class HangmanGame(PlayerInfo):
         Resets only the class attributes that need to be reset, leaves the user name and location the same
         """
         self.player_won = False
-        self.hangman_word = random_word()
+        self.hangman_word = random_word(self.selected_worksheet)
         self.display_word = "_" * len(self.hangman_word)
         self.stages = 0
         self.score = 7
@@ -325,11 +347,11 @@ class HangmanGame(PlayerInfo):
         print(f"Points: {self.points}\n")
         # While the user does not select an invalid option (anything other than a, b or c) then keep asking them for a valid input
         while True: 
-            print("A - Play again\nB - Exit game\nC - Leaderboard")
+            print(Fore.BLUE + "A - Play again\nB - Exit game\nC - Leaderboard")
             user_choice = input(">>> ")
             if user_choice.lower() == "a":
                 self.reset_game()
-                self.play()
+                self.choose_game_mode()
                 break
             elif user_choice.lower() == "b":
                 print(f"Thanks for playing {self.name_of_player}!")
@@ -347,15 +369,22 @@ class HangmanGame(PlayerInfo):
         Gets leaderboard data from google sheets and displays the top 20 highest scores, also gives user the option
         to play again or exit the game
         """
-        leaderboard_data = worksheet.get_all_records()
+        leaderboard_sheet = SHEET.worksheet(self.selected_worksheet)
+        leaderboard_data = leaderboard_sheet.get_all_records()
         sorted_leaderboard = sorted(leaderboard_data, key=lambda x: x['Points'], reverse=True)
-        print(Fore.YELLOW + "------------------------------------------")
-        print(Fore.YELLOW + "T O P   2 0   L E A D E R B O A R D")
-        print(Fore.YELLOW + "------------------------------------------\n")
+        if self.selected_worksheet == "easy mode":
+            leaderboard_header_mode = "E A S Y   M O D E"
+        elif self.selected_worksheet == "intermediate mode":
+             leaderboard_header_mode = "I N T E R M E D I A T E    M O D E"
+        elif self.selected_worksheet == "hard mode":
+             leaderboard_header_mode = "H A R D    M O D E"
+        print(Fore.YELLOW + "-------------------------------------------------------------------------")
+        print(Fore.YELLOW + f"  T O P   1 5   L E A D E R B O A R D  |  {leaderboard_header_mode}")
+        print(Fore.YELLOW + "-------------------------------------------------------------------------\n")
         print(Fore.BLUE + "POSITION  NAME      POINTS LOCATION    DATE        TIME TO WIN    WORD     HINT USED?")
         # Using the data from worksheet.get_all_records(), the data is displayed with designated column widths to separate 
         # columns evenly without overflow
-        for position, player_data in enumerate(sorted_leaderboard[:20], start=1):
+        for position, player_data in enumerate(sorted_leaderboard[:15], start=1):
             position_str = str(position).ljust(10)
             name_str = player_data['Name'].ljust(10).capitalize()
             points_str = str(player_data['Points']).ljust(7)
@@ -369,16 +398,37 @@ class HangmanGame(PlayerInfo):
         # While the user does not select an invalid option (anything other than a or b) then keep asking them for a valid input
         while True: 
             print("")
-            print(Fore.BLUE + "A - Play again\nB - Exit game\n")
-            user_choice = input(">>> ")
+            user_choice = input(Fore.BLUE + "A - Play again\nB - See other mode leaderboard's\nC - Exit game\n>>> ")
             if user_choice.lower() == "a":
                 self.reset_game()
-                self.play()
+                self.choose_game_mode()
                 break
             elif user_choice.lower() == "b":
+                self.leaderboard_mode_choice()
+                break
+            elif user_choice.lower() == "c":
                 print(f"Thanks for playing {self.name_of_player}!")
                 print("Hangman awaits your return!")
                 sys.exit()
+            else:
+                print(Fore.YELLOW + "Please enter a valid option.")
+    
+    def leaderboard_mode_choice(self):
+        while True: 
+            print("")
+            user_choice = input(Fore.BLUE + "A - Easy mode leaderboard\nB - Intermediate mode leaderboard\nC - Hard mode leaderboard\n>>> ")
+            if user_choice.lower() == "a":
+                self.selected_worksheet = "easy mode"
+                self.get_leaderboard_data()
+                break
+            elif user_choice.lower() == "b":
+                self.selected_worksheet = "intermediate mode"
+                self.get_leaderboard_data()
+                break
+            elif user_choice.lower() == "c":
+                self.selected_worksheet = "hard mode"
+                self.get_leaderboard_data()
+                break
             else:
                 print(Fore.YELLOW + "Please enter a valid option.")
 

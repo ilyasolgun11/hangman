@@ -1,36 +1,39 @@
 import random
 
-words = [
-     "about", "after", "again", "airplane", "almost", "always", "animal", "another", "answer", "apartment",
-    "apple", "arrive", "article", "asking", "athlete", "attention", "average", "awesome", "balance", "because",
+easy_mode = ["about", "after", "again", "apple", "arrive", "asking", "athlete", "before", "being", "below",
+              "blank", "blend", "bread", "brief", "bring", "build", "bunch", "burst", "cake", "cause",
+              "chair", "child", "climb", "close", "color", "could", "cover", "cream", "dance", "design",
+              "doing", "early", "earth", "enjoy", "event", "every", "explore", "fence", "field", "first",
+              "flame", "floor", "flower", "fresh", "fruit", "funny", "gather", "gift", "glide", "going"]
+
+intermediate_mode = ["balance", "because",
     "before", "believe", "beneath", "between", "beyond", "bicycle", "birthday", "blanket", "building", "butterfly",
-    "camera", "capital", "careful", "certain", "champion", "children", "chocolate", "clothing", "colorful", "comfortable",
-    "community", "complete", "continue", "contribute", "convention", "courageous", "curious", "dangerous",
+    "camera", "capital", "careful", "certain", "champion", "children", "chocolate", "clothing", "colorful", "comfortable", "complete", "continue", "contribute", "convention", "courageous", "curious", "dangerous",
     "daughter", "decide", "delicious", "describe", "design", "different", "direction", "discover", "discussion", "education",
     "electric", "elephant", "emergency", "enormous", "entertain", "environment", "everywhere", "excellent", "exercise", "experience",
     "explain", "familiar", "favorite", "February", "fireplace", "football", "forever", "forget", "fortunate", "friendship",
-    "generous", "gentleman", "government", "grandmother", "happiness", "health", "heartfelt", "helicopter", "holiday",
-    "hospital", "important", "impossible", "incredible", "information", "innocent", "interesting", "invisible", "invitation", "January",
-    "journey", "knowledge", "landscape", "language", "laughter", "learning", "leisure", "library", "listening", "literature",
-    "lollipop", "lunchtime", "magazine", "magnificent", "management", "marriage", "measurement", "meditate", "memory", "mermaid",
-    "message", "millionaire", "minimize", "miracle", "moment", "necessary", "neighborhood", "nighttime", "nonsense", "nothing",
-    "November", "numerous", "obstacle", "occupation", "ocean", "offensive", "official", "operation", "opportunity", "optimistic",
-    "organization", "outstanding", "overcome", "pancake", "paradise", "participate", "passenger", "peaceful", "penguin", "percentage",
-    "performance", "permission", "photograph", "physical", "pleasure", "politeness", "population", "possibility", "potato", "practical",
-    "precious", "preparation", "principle", "procedure", "procrastinate", "productive", "profession", "promenade", "promotion", "property",
-    "prosperity", "punishment", "puzzle", "quarrel", "question", "quietly", "quintessence", "quotation", "radiance", "realize",
-    "reasonable", "reception", "recognition", "rectangle", "reflection", "relaxation", "remarkable", "remembrance", "renewable", "repair",
-    "resistance", "restaurant", "revolution", "satisfaction", "secretary", "sensation", "sensitive", "separation", "serious", "shimmer",
-    "signature", "significant", "silhouette", "simultaneously", "slumber", "solitude", "spectacular", "spirit", "spontaneous", "strawberry",
-    "substantial", "successful", "sufficient", "sumptuous", "superior", "support", "surprise", "suspension", "symphony", "technology",
-    "telegraph", "telephone", "television", "temperature", "thankful", "thorough", "thoughtful", "thousand", "tomorrow", "trampoline",
-    "transformation", "tranquil", "transparent", "treasure", "triangle", "tropical", "twilight", "umbrella", "understanding", "unexpected",
-    "university", "unlimited", "valuable", "vegetable", "venture", "victory", "vintage", "visibility", "volunteer", "voyage", "waterfall",
-    "weather", "wedding", "whisper", "wilderness", "winter", "wonderful", "worry", "writing", "yearning", "yesterday", "zeppelin"
+    "generous", "gentleman", "government", "grandmother", "happiness", "health", "heartfelt"]
+
+hard_mode = [
+    "meticulous", "profound", "ubiquitous", "ephemeral", "serendipity", "quintessential", "ephemeral", "paradigm", "ineffable", "vernacular",
+    "effervescent", "obfuscate", "innuendo", "vicissitude", "labyrinthine", "sesquipedalian", "mellifluous", "antithesis", "esoteric", "recalcitrant",
+    "insidious", "disparate", "ostentatious", "nonchalant", "disparate", "perfidious", "pedantic", "perspicacious", "disparate", "disparate",
+    "disparate", "pernicious", "recalcitrant", "ubiquitous", "vexatious", "idiosyncrasy", "lackadaisical", "languid", "quizzical", "sycophant",
+    "zeitgeist", "alacrity", "quandary", "disparate", "inchoate", "indolent", "proclivity", "disparate", "paradoxical", "ephemeral",
+    "obfuscate", "disparate", "disparate", "plethora", "idiosyncrasy", "disparate", "disparate", "quizzical", "profound", "quandary",
+    "disparate", "quixotic", "disparate", "disparate", "quizzical", "profound", "quandary", "disparate", "quizzical", "profound"
 ]
 
-def random_word():
+def random_word(mode):
     """
     Gets a random word within the words list
     """
-    return random.choice(words)
+    if mode == "easy mode":
+        return random.choice(easy_mode)
+    elif mode == "intermediate mode":
+        return random.choice(intermediate_mode)
+    elif mode == "hard mode":
+        return random.choice(hard_mode)
+    else:
+        raise ValueError(f"Invalid mode: {mode}")
+    

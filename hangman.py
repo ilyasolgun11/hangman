@@ -213,3 +213,25 @@ how_to_play_guide = Fore.BLUE +  """
 |                                                              |
 |______________________________________________________________|
 """
+
+game_modes_display = Fore.CYAN + """
+ ______________________________________________________________
+|                                                              |
+|                                                              |
+|                     G A M E   M O D E S :                    |
+|                                                              |
+|     Easy mode:                                               |
+|     Consists of 50 words that are very common in normal      | 
+|     day to day conversations.                                |
+|                                                              |
+|     Intermediate mode:                                       | 
+|     Consists of 70 words that are longer and harder to       |
+|     guess compared to the easy mode                          |
+|                                                              |
+|     Hard mode:                                               |
+|     Consists of 100 words that are very rare in day          |
+|     to day conversation                                      |
+|                                                              |
+|______________________________________________________________|
+
+"""

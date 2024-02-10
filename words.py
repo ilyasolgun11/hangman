@@ -11,8 +11,7 @@ intermediate_mode = ["balance", "because",
     "camera", "capital", "careful", "certain", "champion", "children", "chocolate", "clothing", "colorful", "comfortable", "complete", "continue", "contribute", "convention", "courageous", "curious", "dangerous",
     "daughter", "decide", "delicious", "describe", "design", "different", "direction", "discover", "discussion", "education",
     "electric", "elephant", "emergency", "enormous", "entertain", "environment", "everywhere", "excellent", "exercise", "experience",
-    "explain", "familiar", "favorite", "February", "fireplace", "football", "forever", "forget", "fortunate", "friendship",
-    "generous", "gentleman", "government", "grandmother", "happiness", "health", "heartfelt"]
+    "explain", "familiar", "favorite", "February", "fireplace", "football", "forever", "forget"]
 
 hard_mode = [
     "meticulous", "profound", "ubiquitous", "ephemeral", "serendipity", "quintessential", "ephemeral", "paradigm", "ineffable", "vernacular",

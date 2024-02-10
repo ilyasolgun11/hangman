@@ -378,9 +378,9 @@ class HangmanGame(PlayerInfo):
              leaderboard_header_mode = "I N T E R M E D I A T E    M O D E"
         elif self.selected_worksheet == "hard mode":
              leaderboard_header_mode = "H A R D    M O D E"
-        print(Fore.YELLOW + "-------------------------------------------------------------------------")
+        print(Fore.YELLOW + "--------------------------------------------------------------------------------")
         print(Fore.YELLOW + f"  T O P   1 5   L E A D E R B O A R D  |  {leaderboard_header_mode}")
-        print(Fore.YELLOW + "-------------------------------------------------------------------------\n")
+        print(Fore.YELLOW + "--------------------------------------------------------------------------------\n")
         print(Fore.BLUE + "POSITION  NAME      POINTS LOCATION    DATE        TIME TO WIN    WORD     HINT USED?")
         # Using the data from worksheet.get_all_records(), the data is displayed with designated column widths to separate 
         # columns evenly without overflow

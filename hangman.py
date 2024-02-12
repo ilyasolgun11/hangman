@@ -229,8 +229,8 @@ game_modes_display = Fore.CYAN + """
 |     guess compared to the easy mode                          |
 |                                                              |
 |     Hard mode:                                               |
-|     Consists of 100 words that are very rare in day          |
-|     to day conversation                                      |
+|     Consists of 100 words that are the same difficulty       |
+|     as the intermediate mode but are longer                  |
 |                                                              |
 |______________________________________________________________|
 

@@ -13,15 +13,9 @@ intermediate_mode = ["balance", "because",
     "electric", "elephant", "emergency", "enormous", "entertain", "environment", "everywhere", "excellent", "exercise", "experience",
     "explain", "familiar", "favorite", "February", "fireplace", "football", "forever", "forget"]
 
-hard_mode = [
-    "meticulous", "profound", "ubiquitous", "ephemeral", "serendipity", "quintessential", "ephemeral", "paradigm", "ineffable", "vernacular",
-    "effervescent", "obfuscate", "innuendo", "vicissitude", "labyrinthine", "sesquipedalian", "mellifluous", "antithesis", "esoteric", "recalcitrant",
-    "insidious", "disparate", "ostentatious", "nonchalant", "disparate", "perfidious", "pedantic", "perspicacious", "disparate", "disparate",
-    "disparate", "pernicious", "recalcitrant", "ubiquitous", "vexatious", "idiosyncrasy", "lackadaisical", "languid", "quizzical", "sycophant",
-    "zeitgeist", "alacrity", "quandary", "disparate", "inchoate", "indolent", "proclivity", "disparate", "paradoxical", "ephemeral",
-    "obfuscate", "disparate", "disparate", "plethora", "idiosyncrasy", "disparate", "disparate", "quizzical", "profound", "quandary",
-    "disparate", "quixotic", "disparate", "disparate", "quizzical", "profound", "quandary", "disparate", "quizzical", "profound"
-]
+word_list = ['elephant', 'computer', 'symphony', 'template', 'essential', 'permanent', 'knowledge', 'algorithm', 'beautiful', 'attention', 'magnificent', 'celebrate', 'challenge', 'experience', 'community', 'incredible', 'adventure', 'wonderful', 'existence', 'efficiency', 'definitely', 'discipline', 'restaurant', 'boulevard', 'expensive', 'enthusiasm', 'principle', 'frustrate', 'investment', 'integrate', 'recognize', 'individual', 'curriculum', 'throughout', 'technology', 'productive', 'happiness', 'restaurant', 'opportunity', 'education', 'contribute', 'celebration', 'achievement', 'consequence', 'creativity', 'innovation', 'tremendous', 'adaptation', 'imagination', 'experiment', 'perseverance', 'courageous', 'enthusiastic', 'exploration', 'revolution', 'extraordinary', 'spectacular', 'fascinating', 'evolution', 'interaction', 'remarkable', 'congratulate', 'organization', 'experience', 'understand', 'communication', 'preference', 'implement', 'motivation', 'technology', 'communication', 'appearance', 'celebration', 'considerate', 'temperature', 'recognition', 'engineering', 'sophisticated', 'particularly', 'investment', 'opportunity', 'intelligence', 'entertainment', 'contribution', 'achievement', 'encouragement', 'relationship', 'architecture', 'significant', 'information', 'enthusiastically', 'relationship', 'communication', 'architecture', 'congratulation', 'celebration', 'exaggeration', 'understanding', 'extraordinary', 'communication']
+
+
 
 def random_word(mode):
     """

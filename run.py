@@ -102,7 +102,7 @@ class HangmanGame(PlayerInfo):
         # Gives the user the option of starting the game and also going back, it will repeat that question until the user 
         # provides the correct input, this is done using a while loop
         while True:
-            player_option = input(Fore.BLUE + "A - Choose game mode\nB - Go back\n>>> ")
+            player_option = input(Fore.BLUE + "A - Choose game mode\nB - Go back\nType 'a' or 'b' below\n>>> ")
             if player_option.lower() == "a":
                 self.choose_game_mode()
                 break
@@ -115,7 +115,7 @@ class HangmanGame(PlayerInfo):
     def choose_game_mode(self):
         print(self.game_modes_display)
         while True:
-            player_mode_option = input(Fore.BLUE + "A - Easy mode\nB - Intermediate mode\nC - Hard mode\n>>> ")
+            player_mode_option = input(Fore.BLUE + "A - Easy mode\nB - Intermediate mode\nC - Hard mode\nType 'a', 'b' or 'c' below\n>>> ")
             if player_mode_option.lower() == "a":
                 self.hangman_word = random_word("easy mode")
                 self.display_word = "_" * len(random_word("easy mode"))
@@ -153,7 +153,7 @@ class HangmanGame(PlayerInfo):
         while self.score > 0:
             print(self.hangman_stage[self.stages])
             print(f"{self.game_hint_message}\n")
-            print(Fore.RED + f"Guessed wrong letters:\n{self.guessed_letters}\n")
+            print(Fore.RED + f"Wrong guesses:\n{self.guessed_letters + self.guessed_words}\n")
             print(f"Word: {' '.join(self.display_word)}\n")
             if self.points >= 25:
                 print(Fore.GREEN + f"Points: {self.points}\n")
@@ -169,7 +169,7 @@ class HangmanGame(PlayerInfo):
             # the returned data, if not handle the error.
             if self.hints_remaining == 1 and self.score < 4:
                 while True:
-                    user_hint_option = input(Fore.CYAN + "Do you want to use your hint token?\nA - Yes i want to use my hint token\nB - No i got this\n>>> "+ Fore.RESET)
+                    user_hint_option = input(Fore.CYAN + "Do you want to use your hint token?\nA - Yes i want to use my hint token\nB - No i got this\nType 'a' or 'b' below\n>>> "+ Fore.RESET)
                     if user_hint_option.lower() == "a":
                         print(Fore.YELLOW + "Grabbing definition...")
                         self.hints_remaining -= 1
@@ -240,66 +240,68 @@ class HangmanGame(PlayerInfo):
         # If the user has guessed a word, and the word was already guessed, display message
         if user_input in self.guessed_words:
             self.game_hint_message = Fore.YELLOW + f"You have guessed the word '{user_input}' already."
-        # If the user_input is equal to the hangman_word, check if the user guessed the word before or after half the letters were found
-        # already, if they guessed before they revealed the first half of letters then reward them with 750 points, otherwise reward them with 100
-        elif user_input == self.hangman_word:
-            if len(self.guessed_correct_letters) < round(len(self.hangman_word) / 2):
-                self.points += 750
-                print(f"You have won! the word was {self.hangman_word}")
-                self.player_won = True
-            else:
-                self.points += 100
-                print(f"You have won! the word was {self.hangman_word}")
-                self.player_won = True
-        # If the word the user guessed is not equal to the hangman word then take away all their points, and decrement the attempts by 1
         else:
-            self.points = 0
-            self.score -= 1
-            self.guessed_letters.append(user_input)
-            self.game_hint_message = Fore.RED + f"Wrong! {user_input} is not the word"
-            # If the attempts left is not 0 then increment the stages attribute to get the next ASCII art from the hangman_stages list
-            if self.score != 0:
-                self.stages += 1
-                print(self.hangman_stage[self.stages])
+            # If the user_input is equal to the hangman_word, check if the user guessed the word before or after half the letters were found
+            # already, if they guessed before they revealed the first half of letters then reward them with 750 points, otherwise reward them with 100
+            if user_input == self.hangman_word:
+                if len(self.guessed_correct_letters) < round(len(self.hangman_word) / 2):
+                    self.points += 750
+                    print(f"You have won! the word was {self.hangman_word}")
+                    self.player_won = True
+                else:
+                    self.points += 100
+                    print(f"You have won! the word was {self.hangman_word}")
+                    self.player_won = True
+            # If the word the user guessed is not equal to the hangman word then take away all their points, and decrement the attempts by 1
             else:
-                pass
+                self.points = 0
+                self.score -= 1
+                self.guessed_words.append(user_input)
+                self.game_hint_message = Fore.RED + f"Wrong! {user_input} is not the word"
+                # If the attempts left is not 0 then increment the stages attribute to get the next ASCII art from the hangman_stages list
+                if self.score != 0:
+                    self.stages += 1
+                    print(self.hangman_stage[self.stages])
+                else:
+                    pass
     
     def guess_letter(self, user_input):
         """
         Checks if user letter input is correct or not, increments or decrements points accordingly
         """
-        # If the letter the user guessed is in the hangman word do the following..
-        if user_input in self.hangman_word:
-            print(self.hangman_stage[self.stages])
-            # If the user input letter was already guessed, ask the user to re-enter a letter
-            if user_input in self.guessed_letters or user_input in self.guessed_correct_letters:
-                self.game_hint_message = Fore.YELLOW + f"You have guessed the letter '{user_input}' already"
-            # If the user input letter is in the hangman word then add 25 points and congratulate the user
-            elif user_input in self.hangman_word:
-                self.guessed_correct_letters.append(user_input)
-                self.update_display_word(user_input)
-                self.game_hint_message = Fore.GREEN + f"Correct! the letter '{user_input}' is in the word!"
-                self.points += 25
-            # If there is no more underscores left in the display_word string, then let the user know they won
-            if "_" not in self.display_word:
-                print(f"You have won! the word is {self.hangman_word}")
-                self.player_won = True 
+        # If the user input letter was already guessed, ask the user to re-enter a letter
+        if user_input in self.guessed_letters or user_input in self.guessed_correct_letters:
+            self.game_hint_message = Fore.YELLOW + f"You have guessed the letter '{user_input}' already"
         else:
-            # If the user input letter is not in the hangman word then check if the points is under 10, if it is not then
-            # decrement by 10 and decrement the attempts left.
-            if self.points < 10:
-                pass
-            else:
-                self.points -= 10
-            self.score -= 1
-            self.guessed_letters.append(user_input)
-            self.game_hint_message = Fore.RED + f"Wrong! the letter {user_input} is not in the word"
-            # If the attempts left is not 0 then increment the stages attribute to get the next ASCII art from the hangman_stages list
-            if self.score != 0:
-                self.stages += 1
+            # If the letter the user guessed is in the hangman word do the following..
+            if user_input in self.hangman_word:
                 print(self.hangman_stage[self.stages])
+                # If the user input letter is in the hangman word then add 25 points and congratulate the user
+                if user_input in self.hangman_word:
+                    self.guessed_correct_letters.append(user_input)
+                    self.update_display_word(user_input)
+                    self.game_hint_message = Fore.GREEN + f"Correct! the letter '{user_input}' is in the word!"
+                    self.points += 25
+                # If there is no more underscores left in the display_word string, then let the user know they won
+                if "_" not in self.display_word:
+                    print(f"You have won! the word is {self.hangman_word}")
+                    self.player_won = True 
             else:
-                pass
+                # If the user input letter is not in the hangman word then check if the points is under 10, if it is not then
+                # decrement by 10 and decrement the attempts left.
+                if self.points < 10:
+                    pass
+                else:
+                    self.points -= 10
+                self.score -= 1
+                self.guessed_letters.append(user_input)
+                self.game_hint_message = Fore.RED + f"Wrong! the letter {user_input} is not in the word"
+                # If the attempts left is not 0 then increment the stages attribute to get the next ASCII art from the hangman_stages list
+                if self.score != 0:
+                    self.stages += 1
+                    print(self.hangman_stage[self.stages])
+                else:
+                    pass
 
     def update_display_word(self, user_input):
         """
@@ -348,8 +350,7 @@ class HangmanGame(PlayerInfo):
         print(f"Points: {self.points}\n")
         # While the user does not select an invalid option (anything other than a, b or c) then keep asking them for a valid input
         while True: 
-            print(Fore.BLUE + "A - Play again\nB - Exit game\nC - Leaderboard")
-            user_choice = input(">>> ")
+            user_choice = input(Fore.BLUE + "A - Play again\nB - Exit game\nC - Leaderboard\nType 'a', 'b' or 'c' below\n>>>")
             if user_choice.lower() == "a":
                 self.reset_game()
                 self.choose_game_mode()
@@ -399,7 +400,7 @@ class HangmanGame(PlayerInfo):
         # While the user does not select an invalid option (anything other than a or b) then keep asking them for a valid input
         while True: 
             print("")
-            user_choice = input(Fore.BLUE + "A - Play again\nB - See other mode leaderboard's\nC - Exit game\n>>> ")
+            user_choice = input(Fore.BLUE + "A - Play again\nB - See other mode leaderboard's\nC - Exit game\nType 'a', 'b' or 'c' below\n>>> ")
             if user_choice.lower() == "a":
                 self.reset_game()
                 self.choose_game_mode()
@@ -417,7 +418,7 @@ class HangmanGame(PlayerInfo):
     def leaderboard_mode_choice(self):
         while True: 
             print("")
-            user_choice = input(Fore.BLUE + "A - Easy mode leaderboard\nB - Intermediate mode leaderboard\nC - Hard mode leaderboard\n>>> ")
+            user_choice = input(Fore.BLUE + "A - Easy mode leaderboard\nB - Intermediate mode leaderboard\nC - Hard mode leaderboard\nType 'a', 'b' or 'c' below\n>>> ")
             if user_choice.lower() == "a":
                 self.selected_worksheet = "easy mode"
                 self.get_leaderboard_data()

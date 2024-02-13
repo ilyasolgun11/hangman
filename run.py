@@ -44,8 +44,8 @@ class PlayerInfo:
         """
         print(self.game_logo)
         print(Fore.YELLOW + "Welcome stranger! could you be the one to save this poor guy from a \ngruesome death? i hope so! fill in your name and location to\nsee the how to play guide.\n")
-        self.name_of_player = input(Fore.BLUE + "What is your first name?\n>>> ")
-        self.location_of_player = input(Fore.BLUE + "Which country/city are your from?\n>>> ")
+        self.name_of_player = input(Fore.CYAN + "What is your first name?\n>>> ")
+        self.location_of_player = input(Fore.CYAN + "Which country/city are your from?\n>>> ")
         self.how_to_play()
 
 class HangmanGame(PlayerInfo):
@@ -102,7 +102,7 @@ class HangmanGame(PlayerInfo):
         # Gives the user the option of starting the game and also going back, it will repeat that question until the user 
         # provides the correct input, this is done using a while loop
         while True:
-            player_option = input(Fore.BLUE + "A - Choose game mode\nB - Go back\nType 'a' or 'b' below\n>>> ")
+            player_option = input("A - Choose game mode\nB - Go back\nType 'a' or 'b' below\n>>> ")
             if player_option.lower() == "a":
                 self.choose_game_mode()
                 break
@@ -115,7 +115,7 @@ class HangmanGame(PlayerInfo):
     def choose_game_mode(self):
         print(self.game_modes_display)
         while True:
-            player_mode_option = input(Fore.BLUE + "A - Easy mode\nB - Intermediate mode\nC - Hard mode\nType 'a', 'b' or 'c' below\n>>> ")
+            player_mode_option = input("A - Easy mode\nB - Intermediate mode\nC - Hard mode\nType 'a', 'b' or 'c' below\n>>> ")
             if player_mode_option.lower() == "a":
                 self.hangman_word = random_word("easy mode")
                 self.display_word = "_" * len(random_word("easy mode"))
@@ -169,7 +169,8 @@ class HangmanGame(PlayerInfo):
             # the returned data, if not handle the error.
             if self.hints_remaining == 1 and self.score < 4:
                 while True:
-                    user_hint_option = input(Fore.CYAN + "Do you want to use your hint token?\nA - Yes i want to use my hint token\nB - No i got this\nType 'a' or 'b' below\n>>> "+ Fore.RESET)
+                    print("\nDo you want to use your hint token?")
+                    user_hint_option = input(Fore.CYAN + "A - Yes i want to use my hint token\nB - No i got this\nType 'a' or 'b' below\n>>> "+ Fore.RESET)
                     if user_hint_option.lower() == "a":
                         print(Fore.YELLOW + "Grabbing definition...")
                         self.hints_remaining -= 1
@@ -350,7 +351,7 @@ class HangmanGame(PlayerInfo):
         print(f"Points: {self.points}\n")
         # While the user does not select an invalid option (anything other than a, b or c) then keep asking them for a valid input
         while True: 
-            user_choice = input(Fore.BLUE + "A - Play again\nB - Exit game\nC - Leaderboard\nType 'a', 'b' or 'c' below\n>>>")
+            user_choice = input("A - Play again\nB - Exit game\nC - Leaderboard\nType 'a', 'b' or 'c' below\n>>>")
             if user_choice.lower() == "a":
                 self.reset_game()
                 self.choose_game_mode()
@@ -400,7 +401,7 @@ class HangmanGame(PlayerInfo):
         # While the user does not select an invalid option (anything other than a or b) then keep asking them for a valid input
         while True: 
             print("")
-            user_choice = input(Fore.BLUE + "A - Play again\nB - See other mode leaderboard's\nC - Exit game\nType 'a', 'b' or 'c' below\n>>> ")
+            user_choice = input("A - Play again\nB - See other mode leaderboard's\nC - Exit game\nType 'a', 'b' or 'c' below\n>>> ")
             if user_choice.lower() == "a":
                 self.reset_game()
                 self.choose_game_mode()
@@ -418,7 +419,7 @@ class HangmanGame(PlayerInfo):
     def leaderboard_mode_choice(self):
         while True: 
             print("")
-            user_choice = input(Fore.BLUE + "A - Easy mode leaderboard\nB - Intermediate mode leaderboard\nC - Hard mode leaderboard\nType 'a', 'b' or 'c' below\n>>> ")
+            user_choice = input("A - Easy mode leaderboard\nB - Intermediate mode leaderboard\nC - Hard mode leaderboard\nType 'a', 'b' or 'c' below\n>>> ")
             if user_choice.lower() == "a":
                 self.selected_worksheet = "easy mode"
                 self.get_leaderboard_data()

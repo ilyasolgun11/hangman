@@ -151,7 +151,7 @@ class HangmanGame(PlayerInfo):
         url = f"https://dictionary-data-api.p.rapidapi.com/definition/{self.hangman_word}"
         # While user score is more than 0 (the game is still going on) display the game screen
         while self.score > 0:
-            print(f"Line 154 {self.hangman_stage[self.stages]}")
+            print(self.hangman_stage[self.stages])
             print(f"{self.game_hint_message}\n")
             print(Fore.RED + f"Wrong guesses:\n{self.guessed_letters + self.guessed_words}\n")
             print(f"Word: {' '.join(self.display_word)}\n")
@@ -187,7 +187,7 @@ class HangmanGame(PlayerInfo):
                             meanings = data.get('meaning', [])
                             if meanings:
                                 definition = meanings[0]["values"][0]
-                                print(Fore.BLUE + f"Definition of word: {definition.replace(self.hangman_word, '(hidden winning word)')}")
+                                print(Fore.BLUE + f"Definition of word: {definition.replace(self.hangman_word, '(hidden correct word)')}")
                             else:
                                 print("No meanings found.")
                         else:
@@ -247,11 +247,9 @@ class HangmanGame(PlayerInfo):
             if user_input == self.hangman_word:
                 if len(self.guessed_correct_letters) < round(len(self.hangman_word) / 2):
                     self.points += 750
-                    print(f"You have won! the word was {self.hangman_word}")
                     self.player_won = True
                 else:
                     self.points += 100
-                    print(f"You have won! the word was {self.hangman_word}")
                     self.player_won = True
             # If the word the user guessed is not equal to the hangman word then take away all their points, and decrement the attempts by 1
             else:

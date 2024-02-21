@@ -16,6 +16,9 @@ ________________________________
   |/\/|
   |/\/|
   |/\/|
+  |/\/|
+  |/\/|
+  |/\/|
 __|/\/|______________
 |/\/\/\/\/\/\/\/\/\/\|
 """,
@@ -24,6 +27,9 @@ ________________________________
 |/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/|
   |/\/|                        |
   |/\/|                        |
+  |/\/|
+  |/\/|
+  |/\/|
   |/\/|
   |/\/|
   |/\/|
@@ -48,6 +54,9 @@ ________________________________
   |/\/|
   |/\/|
   |/\/|
+  |/\/|
+  |/\/|
+  |/\/|
 __|/\/|______________
 |/\/\/\/\/\/\/\/\/\/\|
 """,
@@ -60,6 +69,9 @@ ________________________________
   |/\/|                       |||
   |/\/|                       |||
   |/\/|                       |||
+  |/\/|
+  |/\/|
+  |/\/|
   |/\/|
   |/\/|
   |/\/|
@@ -80,6 +92,9 @@ ________________________________
   |/\/|
   |/\/|
   |/\/|
+  |/\/|
+  |/\/|
+  |/\/|
 __|/\/|______________
 |/\/\/\/\/\/\/\/\/\/\|
 """,
@@ -96,6 +111,9 @@ ________________________________
   |/\/|
   |/\/|
   |/\/|             TOO CLOSE FOR COMFORT
+  |/\/|
+  |/\/|
+  |/\/|
 __|/\/|______________
 |/\/\/\/\/\/\/\/\/\/\|
 """,
@@ -112,6 +130,9 @@ ________________________________
   |/\/|                    _/     
   |/\/|
   |/\/|             1 MORE AND HE'S A GONER
+  |/\/|
+  |/\/|
+  |/\/|
 __|/\/|______________
 |/\/\/\/\/\/\/\/\/\/\|
 """
@@ -127,7 +148,7 @@ hangman_logo = Fore.GREEN + """
         |/\/|                   |||
         |/\/|                 ./   \.
         |/\/|                _/     \_
-   _____|/\/|____________________  ___________      
+   _____|/\/|____________________  ____________      
   / / / / / /_  __/  _/  |/  /   |/_  __/ ____/       
  / / / / /   / /  / // /|_/ / /| | / / / __/     
 / /_/ / /___/ / _/ // /  / / ___ |/ / / /___        
@@ -221,16 +242,16 @@ game_modes_display = """
 |                     """ + Fore.CYAN + """G A M E   M O D E S :""" + Fore.WHITE + """                    |
 |                                                              |
 |     """ + Fore.GREEN + """Easy mode:""" + Fore.WHITE + """                                               |
-|     """ + Fore.GREEN + """Consists of 50 words that are very common in normal""" + Fore.WHITE + """      | 
-|     """ + Fore.GREEN + """day to day conversations.""" + Fore.WHITE + """                                |
+|     Consists of 50 words that are very common in normal      | 
+|     day to day conversations.                                |
 |                                                              |
 |     """ + Fore.YELLOW + """Intermediate mode:""" + Fore.WHITE + """                                       | 
-|     """ + Fore.YELLOW + """Consists of 70 words that are longer and harder to""" + Fore.WHITE + """       |
-|     """ + Fore.YELLOW + """guess compared to the easy mode""" + Fore.WHITE + """                          |
+|     Consists of 70 words that are longer and harder to       |
+|     guess compared to the easy mode                          |
 |                                                              |
 |     """ + Fore.RED + """Hard mode:""" + Fore.WHITE + """                                               |
-|     """ + Fore.RED + """Consists of 100 words that are the same difficulty""" + Fore.WHITE + """       |
-|     """ + Fore.RED + """as the intermediate mode but are longer""" + Fore.WHITE + """                  |
+|     Consists of 100 words that are the same difficulty       |
+|     as the intermediate mode but are longer                  |
 |                                                              |
 |______________________________________________________________|
 

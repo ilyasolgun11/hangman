@@ -115,7 +115,7 @@ class HangmanGame(PlayerInfo):
     def choose_game_mode(self):
         print(self.game_modes_display)
         while True:
-            player_mode_option = input("A - Easy mode\nB - Intermediate mode\nC - Hard mode\nType 'a', 'b' or 'c' below\n>>> ")
+            player_mode_option = input(Fore.GREEN + """A - Easy mode\n""" + Fore.YELLOW + """B - Intermediate mode\n""" + Fore.RED + """C - Hard mode\n""" + Fore.WHITE + """Type 'a', 'b' or 'c' below\n>>> """)
             if player_mode_option.lower() == "a":
                 self.hangman_word = random_word("easy mode")
                 self.display_word = "_" * len(random_word("easy mode"))
@@ -151,7 +151,7 @@ class HangmanGame(PlayerInfo):
         url = f"https://dictionary-data-api.p.rapidapi.com/definition/{self.hangman_word}"
         # While user score is more than 0 (the game is still going on) display the game screen
         while self.score > 0:
-            print(self.hangman_stage[self.stages])
+            print(f"Line 154 {self.hangman_stage[self.stages]}")
             print(f"{self.game_hint_message}\n")
             print(Fore.RED + f"Wrong guesses:\n{self.guessed_letters + self.guessed_words}\n")
             print(f"Word: {' '.join(self.display_word)}\n")
@@ -169,8 +169,8 @@ class HangmanGame(PlayerInfo):
             # the returned data, if not handle the error.
             if self.hints_remaining == 1 and self.score < 4:
                 while True:
-                    print("\nDo you want to use your hint token?")
-                    user_hint_option = input(Fore.CYAN + "A - Yes i want to use my hint token\nB - No i got this\nType 'a' or 'b' below\n>>> "+ Fore.RESET)
+                    print(Fore.CYAN +"\nDo you want to use your hint token?")
+                    user_hint_option = input(Fore.GREEN + """A - Yes i want to use my hint token\n""" + Fore.RED + """B - No i got this\n""" + Fore.WHITE + """Type 'a' or 'b' below\n>>> """)
                     if user_hint_option.lower() == "a":
                         print(Fore.YELLOW + "Grabbing definition...")
                         self.hints_remaining -= 1
@@ -197,7 +197,7 @@ class HangmanGame(PlayerInfo):
                         pass
                         break
                     else:
-                        print(Fore.YELLOW + "Please enter either yes or no")
+                        print(Fore.YELLOW + "Please enter either 'a' or 'b'")
                 # Change input message from "attempts" to "attempt" based on the number of attempts remaining
                 if self.score > 2:
                     user_input = input("Guess a letter or a word: \n>>> ").lower()
@@ -262,7 +262,6 @@ class HangmanGame(PlayerInfo):
                 # If the attempts left is not 0 then increment the stages attribute to get the next ASCII art from the hangman_stages list
                 if self.score != 0:
                     self.stages += 1
-                    print(self.hangman_stage[self.stages])
                 else:
                     pass
     
@@ -276,7 +275,6 @@ class HangmanGame(PlayerInfo):
         else:
             # If the letter the user guessed is in the hangman word do the following..
             if user_input in self.hangman_word:
-                print(self.hangman_stage[self.stages])
                 # If the user input letter is in the hangman word then add 25 points and congratulate the user
                 if user_input in self.hangman_word:
                     self.guessed_correct_letters.append(user_input)
@@ -300,7 +298,6 @@ class HangmanGame(PlayerInfo):
                 # If the attempts left is not 0 then increment the stages attribute to get the next ASCII art from the hangman_stages list
                 if self.score != 0:
                     self.stages += 1
-                    print(self.hangman_stage[self.stages])
                 else:
                     pass
 

@@ -214,23 +214,23 @@ how_to_play_guide = Fore.BLUE +  """
 |______________________________________________________________|
 """
 
-game_modes_display = Fore.CYAN + """
+game_modes_display = """
  ______________________________________________________________
 |                                                              |
 |                                                              |
-|                     G A M E   M O D E S :                    |
+|                     """ + Fore.CYAN + """G A M E   M O D E S :""" + Fore.WHITE + """                    |
 |                                                              |
-|     Easy mode:                                               |
-|     Consists of 50 words that are very common in normal      | 
-|     day to day conversations.                                |
+|     """ + Fore.GREEN + """Easy mode:""" + Fore.WHITE + """                                               |
+|     """ + Fore.GREEN + """Consists of 50 words that are very common in normal""" + Fore.WHITE + """      | 
+|     """ + Fore.GREEN + """day to day conversations.""" + Fore.WHITE + """                                |
 |                                                              |
-|     Intermediate mode:                                       | 
-|     Consists of 70 words that are longer and harder to       |
-|     guess compared to the easy mode                          |
+|     """ + Fore.YELLOW + """Intermediate mode:""" + Fore.WHITE + """                                       | 
+|     """ + Fore.YELLOW + """Consists of 70 words that are longer and harder to""" + Fore.WHITE + """       |
+|     """ + Fore.YELLOW + """guess compared to the easy mode""" + Fore.WHITE + """                          |
 |                                                              |
-|     Hard mode:                                               |
-|     Consists of 100 words that are the same difficulty       |
-|     as the intermediate mode but are longer                  |
+|     """ + Fore.RED + """Hard mode:""" + Fore.WHITE + """                                               |
+|     """ + Fore.RED + """Consists of 100 words that are the same difficulty""" + Fore.WHITE + """       |
+|     """ + Fore.RED + """as the intermediate mode but are longer""" + Fore.WHITE + """                  |
 |                                                              |
 |______________________________________________________________|
 

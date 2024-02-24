@@ -146,7 +146,7 @@ class HangmanGame(PlayerInfo):
         """
         # Timer starts and it runs till the game_end function is called
         self.start_time = time.time()
-        self.game_hint_message = Fore.GREEN + f"You have to guess a word with {len(self.hangman_word)} letters"
+        self.game_hint_message = Fore.GREEN + "Good luck!"
         # URL changes based on the random hangman word
         url = f"https://dictionary-data-api.p.rapidapi.com/definition/{self.hangman_word}"
         # While user score is more than 0 (the game is still going on) display the game screen
@@ -379,7 +379,7 @@ class HangmanGame(PlayerInfo):
         print(Fore.YELLOW + "--------------------------------------------------------------------------------")
         print(Fore.YELLOW + f"  T O P   1 5   L E A D E R B O A R D  |  {leaderboard_header_mode}")
         print(Fore.YELLOW + "--------------------------------------------------------------------------------\n")
-        print(Fore.BLUE + "POSITION  NAME      POINTS LOCATION    DATE        TIME TO WIN    WORD     HINT USED?")
+        print(Fore.BLUE + "POSITION  NAME      POINTS LOCATION    DATE        TIME TO WIN    WORD        HINT USED?")
         # Using the data from worksheet.get_all_records(), the data is displayed with designated column widths to separate 
         # columns evenly without overflow
         for position, player_data in enumerate(sorted_leaderboard[:15], start=1):

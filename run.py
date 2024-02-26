@@ -26,7 +26,7 @@ SPREADSHEET_NAME = 'ultimate-hangman-leaderboard'
 SHEET = GSPREAD_CLIENT.open(SPREADSHEET_NAME)
 
 class PlayerInfo:
-    """Class collecting using name and location.
+    """Class collecting using name and location of user.
 
         Attributes:
         - name_of_player (str) grabs the name of player and stores it
@@ -49,7 +49,7 @@ class PlayerInfo:
         self.how_to_play()
 
 class HangmanGame(PlayerInfo):
-    """Class representing a Hangman game.
+    """Class representing the Hangman game.
 
         Attributes:
         - start_time (float): Timestamp representing the start time of the game.
@@ -364,8 +364,8 @@ class HangmanGame(PlayerInfo):
 
     def get_leaderboard_data(self):
         """
-        Gets leaderboard data from google sheets and displays the top 20 highest scores, also gives user the option
-        to play again or exit the game
+        Gets leaderboard data from google sheets and displays the top 15 highest scores, also gives user the option
+        to play again, choose a different modes leaderboard or exit the game
         """
         leaderboard_sheet = SHEET.worksheet(self.selected_worksheet)
         leaderboard_data = leaderboard_sheet.get_all_records()

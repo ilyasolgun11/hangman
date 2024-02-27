@@ -210,8 +210,8 @@ class HangmanGame(PlayerInfo, ClearConsole):
             # If the user has not spent their hint token (the value of self.hints_remaining is till 1) and user score is less than 4, as the
             # user if they want to user their hint token, if they do send a call to the dictionary API, and if the status code is 200 then display
             # the returned data, if not handle the error.
-            url = f"https://dictionary-data-api.p.rapidapi.com/definition/{
-            self.hangman_word}"
+            url = f"""https://dictionary-data-api.p.rapidapi.com/definition/{
+            self.hangman_word}"""
             headers = {'X-RapidAPI-Key': api_key}
             if self.hints_remaining == 1 and self.score < 4:
                 while True:

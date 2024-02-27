@@ -73,7 +73,7 @@ class PlayerInfo(ClearConsole):
                 break
 
 
-class HangmanGame(PlayerInfo, ClearConsole):
+class HangmanGame(PlayerInfo, ClearConsole, RandomWord):
     """Class representing the Hangman game.
 
         Attributes:
@@ -102,9 +102,8 @@ class HangmanGame(PlayerInfo, ClearConsole):
         self.start_time = None
         self.player_won = False
         self.selected_worksheet = "easy mode"
-        self.random_word_generator = RandomWord()
-        self.hangman_word = self.random_word_generator.game_modes("easy mode")
-        self.display_word = "_" * len(self.random_word_generator.game_modes("easy mode"))
+        self.hangman_word = self.game_modes("easy mode")
+        self.display_word = "_" * len(self.game_modes("easy mode"))
         self.hangman_stage = hangman_stages
         self.stages = 0
         self.game_logo = hangman_logo
@@ -158,20 +157,20 @@ class HangmanGame(PlayerInfo, ClearConsole):
                 Fore.WHITE +
                 """Type 'a', 'b' or 'c' below\n>>> """)
             if player_mode_option.lower() == "a":
-                self.hangman_word = self.random_word_generator.game_modes("easy mode")
-                self.display_word = "_" * len(self.random_word_generator.game_modes("easy mode"))
+                self.hangman_word = self.game_modes("easy mode")
+                self.display_word = "_" * len(self.game_modes("easy mode"))
                 self.selected_worksheet = "easy mode"
                 self.play()
                 break
             elif player_mode_option.lower() == "b":
-                self.hangman_word = self.random_word_generator.game_modes("intermediate mode")
-                self.display_word = "_" * len(self.random_word_generator.game_modes("intermediate mode"))
+                self.hangman_word = self.game_modes("intermediate mode")
+                self.display_word = "_" * len(self.game_modes("intermediate mode"))
                 self.selected_worksheet = "intermediate mode"
                 self.play()
                 break
             elif player_mode_option.lower() == "c":
-                self.hangman_word = self.random_word_generator.game_modes("hard mode")
-                self.display_word = "_" * len(self.random_word_generator.game_modes("hard mode"))
+                self.hangman_word = self.game_modes("hard mode")
+                self.display_word = "_" * len(self.game_modes("hard mode"))
                 self.selected_worksheet = "hard mode"
                 self.play()
                 break
@@ -405,8 +404,8 @@ class HangmanGame(PlayerInfo, ClearConsole):
         Resets only the class attributes that need to be reset, leaves the user name and location the same
         """
         self.player_won = False
-        self.hangman_word = self.random_word_generator.game_modes(self.selected_worksheet)
-        self.display_word = "_" * len(self.hangman_word)
+        self.hangman_word = self.game_modes("easy mode")
+        self.display_word = "_" * len(self.game_modes("easy mode"))
         self.stages = 0
         self.score = 7
         self.points = 0

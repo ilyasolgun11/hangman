@@ -127,8 +127,8 @@ class HangmanGame(PlayerInfo, ClearConsole):
         print(self.how_to_play_guide)
         print(
             Fore.YELLOW +
-            f"Hello {
-                self.name_of_player}! We suggest you to read the how to play\nguide above before you begin.\n")
+            f"""Hello {
+                self.name_of_player}! We suggest you to read the how to play\nguide above before you begin.\n""")
         # Gives the user the option of starting the game and also going back, it will repeat that question until the user
         # provides the correct input, this is done using a while loop
         while True:

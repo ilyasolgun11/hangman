@@ -19,7 +19,7 @@ hard_mode = ['elephant', 'computer', 'symphony', 'template', 'essential', 'perma
 
 def random_word(mode):
     """
-    Gets a random word within the words list
+    Gets a random word from the following lists depending on what the user goes with
     """
     if mode == "easy mode":
         return random.choice(easy_mode)

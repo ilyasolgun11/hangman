@@ -25,6 +25,10 @@ options.port = parseInt(process.env.PORT);
 // options.threads = '/api/';
 // options.logs = 'isolated';
 
-var type = process.argv.indexOf('--release', 1) !== -1 || process.argv.indexOf('release', 1) !== -1 ? 'release' : 'debug';
+var type =
+  process.argv.indexOf("--release", 1) !== -1 ||
+  process.argv.indexOf("release", 1) !== -1
+    ? "release"
+    : "debug";
 // require('total4/' + type)(options);
-require('total4').http('release', options);
+require("total4").http("release", options);

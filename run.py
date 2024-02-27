@@ -10,7 +10,10 @@ from hangman import *
 import colorama
 from colorama import Fore
 colorama.init(autoreset=True)
+from dotenv import load_dotenv
 import os
+load_dotenv(dotenv_path='env.py')
+api_key = os.getenv('API_KEY')
 
 
 SCOPE = [
@@ -184,12 +187,9 @@ class HangmanGame(PlayerInfo, ClearConsole):
         self.start_time = time.time()
         self.game_hint_message = Fore.GREEN + "Good luck!"
         # URL changes based on the random hangman word
-        url = f"https://dictionary-data-api.p.rapidapi.com/definition/{
-            self.hangman_word}"
         # While user score is more than 0 (the game is still going on) display
         # the game screen
         while self.score > 0:
-            self.clear_console()
             print(self.hangman_stage[self.stages])
             print(f"{self.game_hint_message}\n")
             print(
@@ -210,6 +210,9 @@ class HangmanGame(PlayerInfo, ClearConsole):
             # If the user has not spent their hint token (the value of self.hints_remaining is till 1) and user score is less than 4, as the
             # user if they want to user their hint token, if they do send a call to the dictionary API, and if the status code is 200 then display
             # the returned data, if not handle the error.
+            url = f"https://dictionary-data-api.p.rapidapi.com/definition/{
+            self.hangman_word}"
+            headers = {'X-RapidAPI-Key': api_key}
             if self.hints_remaining == 1 and self.score < 4:
                 while True:
                     print(Fore.CYAN + "\nDo you want to use your hint token?")
@@ -227,9 +230,6 @@ class HangmanGame(PlayerInfo, ClearConsole):
                             pass
                         else:
                             self.points -= 25
-                        with open('dictionary.json') as f:
-                            data = json.load(f)
-                            headers = data.get('headers', {})
                         response = requests.get(url, headers=headers)
                         if response.status_code == 200:
                             data = response.json()

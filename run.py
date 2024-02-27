@@ -194,9 +194,9 @@ class HangmanGame(PlayerInfo, ClearConsole):
             print(f"{self.game_hint_message}\n")
             print(
                 Fore.RED +
-                f"Wrong guesses:\n{
+                f"""Wrong guesses:\n{
                     self.guessed_letters +
-                    self.guessed_words}\n")
+                    self.guessed_words}\n""")
             print(f"Word: {' '.join(self.display_word)}\n")
             if self.points >= 25:
                 print(Fore.GREEN + f"Points: {self.points}\n")
@@ -238,10 +238,10 @@ class HangmanGame(PlayerInfo, ClearConsole):
                                 definition = meanings[0]["values"][0]
                                 print(
                                     Fore.BLUE +
-                                    f"Definition of word: {
+                                    f"""Definition of word: {
                                         definition.replace(
                                             self.hangman_word,
-                                            '(hidden correct word)')}")
+                                            '(hidden correct word)')}""")
                             else:
                                 print("No meanings found.")
                         else:
@@ -491,8 +491,8 @@ class HangmanGame(PlayerInfo, ClearConsole):
             time_to_win_str = player_data['Time to win'].ljust(15)
             winning_word = player_data['Winning word'].ljust(12).capitalize()
             hint_used = player_data['Hint used?'].ljust(12).capitalize()
-            print(Fore.GREEN + f"{position_str}{name_str}{points_str}{location_str}{
-                  date_str}{time_to_win_str}{winning_word}{hint_used}")
+            print(Fore.GREEN + f"""{position_str}{name_str}{points_str}{location_str}{
+                  date_str}{time_to_win_str}{winning_word}{hint_used}""")
 
         # While the user does not select an invalid option (anything other than
         # a or b) then keep asking them for a valid input

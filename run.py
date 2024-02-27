@@ -10,6 +10,7 @@ from hangman import *
 import colorama
 from colorama import Fore
 colorama.init(autoreset=True)
+import os
 
 
 SCOPE = [
@@ -24,8 +25,11 @@ GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SPREADSHEET_NAME = 'ultimate-hangman-leaderboard'
 SHEET = GSPREAD_CLIENT.open(SPREADSHEET_NAME)
 
+class ClearConsole:
+    def clear_console(self):
+        return os.system("cls" if os.name in ("nt", "dos") else "clear")
 
-class PlayerInfo:
+class PlayerInfo(ClearConsole):
     """Class collecting using name and location of user.
 
         Attributes:
@@ -37,6 +41,7 @@ class PlayerInfo:
         """
         Initializes player info attributes
         """
+        super().__init__()
         self.name_of_player = ""
         self.location_of_player = ""
 
@@ -44,6 +49,7 @@ class PlayerInfo:
         """
         Collect player information before starting the game.
         """
+        self.clear_console()
         print(self.game_logo)
         print(Fore.YELLOW + "Welcome stranger! could you be the one to save this poor guy from a \ngruesome death? i hope so! fill in your name and location to\nsee the how to play guide.\n")
         while True:
@@ -64,7 +70,7 @@ class PlayerInfo:
                 break
 
 
-class HangmanGame(PlayerInfo):
+class HangmanGame(PlayerInfo, ClearConsole):
     """Class representing the Hangman game.
 
         Attributes:
@@ -114,6 +120,7 @@ class HangmanGame(PlayerInfo):
         """
         Provide instructions on how to play the game.
         """
+        self.clear_console()
         print(self.how_to_play_guide)
         print(
             Fore.YELLOW +
@@ -134,6 +141,7 @@ class HangmanGame(PlayerInfo):
                 print(Fore.YELLOW + "Please enter a valid option.")
 
     def choose_game_mode(self):
+        self.clear_console()
         print(self.game_modes_display)
         while True:
             player_mode_option = input(
@@ -181,6 +189,7 @@ class HangmanGame(PlayerInfo):
         # While user score is more than 0 (the game is still going on) display
         # the game screen
         while self.score > 0:
+            self.clear_console()
             print(self.hangman_stage[self.stages])
             print(f"{self.game_hint_message}\n")
             print(
@@ -383,8 +392,7 @@ class HangmanGame(PlayerInfo):
         updated_display = ""
         # Hide the hangman word with underscores, if the user guesses a letter
         # right then reveal the letters in the correct index
-        for winning_word, displayed_word in zip(
-                self.hangman_word, self.display_word):
+        for winning_word, displayed_word in zip(self.hangman_word, self.display_word):
             if winning_word == user_input or displayed_word != "_":
                 updated_display += winning_word
             else:

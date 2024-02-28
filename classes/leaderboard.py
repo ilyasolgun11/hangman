@@ -3,7 +3,6 @@ from google.oauth2.service_account import Credentials
 import colorama
 from colorama import Fore
 colorama.init(autoreset=True)
-from .hangman import *
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -17,7 +16,7 @@ GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SPREADSHEET_NAME = 'ultimate-hangman-leaderboard'
 SHEET = GSPREAD_CLIENT.open(SPREADSHEET_NAME)
 
-class Leaderboard:
+class Leaderboard():
 
     @staticmethod
     def append_to_worksheet(sheet, data):

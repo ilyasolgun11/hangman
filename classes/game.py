@@ -1,7 +1,7 @@
 from .player import Player
 from .leaderboard import Leaderboard
 from .words import RandomWord
-from .hangman import AsciiArt
+from .gameasciiart import AsciiArt
 import colorama
 from colorama import Fore
 colorama.init(autoreset=True)

@@ -5,7 +5,6 @@ import requests
 from google.oauth2.service_account import Credentials
 from datetime import datetime
 import time
-import json
 from classes.hangman import *
 import colorama
 from colorama import Fore

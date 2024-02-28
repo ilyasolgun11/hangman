@@ -109,7 +109,10 @@ class Game(Player, Leaderboard, RandomWord):
                 f"""Wrong guesses:\n{
                     self.guessed_letters +
                     self.guessed_words}\n""")
-            print(f"Word: {' '.join(self.display_word)}\n")
+            print("Word:", end=" ")
+            for letter in self.display_word:
+                print(letter, end=" ")
+            print("\n")
             if self.points >= 25:
                 print(Fore.GREEN + f"Points: {self.points}\n")
             else:
@@ -211,7 +214,7 @@ class Game(Player, Leaderboard, RandomWord):
         else:
             if user_input == self.hangman_word:
                 if len(self.guessed_correct_letters) < round(
-                        len(self.hangman_word) / 2):
+                        (len(self.hangman_word) / 2) - 1):
                     self.points += 750
                     self.player_won = True
                 else:
@@ -244,7 +247,6 @@ class Game(Player, Leaderboard, RandomWord):
                         f"Correct! the letter '{user_input}' is in the word!"
                     self.points += 25
                 if "_" not in self.display_word:
-                    print(f"You have won! the word is {self.hangman_word}")
                     self.player_won = True
             else:
                 if self.points < 10:
@@ -294,7 +296,7 @@ class Game(Player, Leaderboard, RandomWord):
     def leaderboard_mode_options(self):
         while True:
             user_choice = input(
-                "A - Easy mode leaderboard\nB - Intermediate mode leaderboard\nC - Hard mode leaderboard\nType 'a', 'b' or 'c' below\n>>> ")
+                Fore.CYAN + "A - Easy mode leaderboard\nB - Intermediate mode leaderboard\nC - Hard mode leaderboard\nType 'a', 'b' or 'c' below\n>>> " + Fore.RESET)
             if user_choice.lower() == "a":
                 self.selected_worksheet = "easy mode"
                 self.get_leaderboard_data("easy mode")
@@ -315,6 +317,7 @@ class Game(Player, Leaderboard, RandomWord):
 
     def game_end_options(self):
         while True:
+            print("")
             user_choice = input(
                 "A - Play again\nB - Leaderboard's\nC - Exit game\nType 'a', 'b' or 'c' below\n>>>")
             if user_choice.lower() == "a":

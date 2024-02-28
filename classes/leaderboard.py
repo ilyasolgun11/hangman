@@ -19,28 +19,25 @@ SPREADSHEET_NAME = 'ultimate-hangman-leaderboard'
 SHEET = GSPREAD_CLIENT.open(SPREADSHEET_NAME)
 
 class Leaderboard:
-    def __init__(self):
-        self.selected_worksheet = "easy mode"
-
     def append_to_worksheet(self, sheet, data):
         return SHEET.worksheet(sheet).append_row(data)
     
-    def get_leaderboard_data(self):
+    def get_leaderboard_data(self, mode):
         """
         Gets leaderboard data from google sheets and displays the top 15 highest scores, also gives user the option
         to play again, choose a different modes leaderboard or exit the game
         """
-        leaderboard_sheet = SHEET.worksheet(self.selected_worksheet)
+        leaderboard_sheet = SHEET.worksheet(mode)
         leaderboard_data = leaderboard_sheet.get_all_records()
         sorted_leaderboard = sorted(
             leaderboard_data,
             key=lambda x: x['Points'],
             reverse=True)
-        if self.selected_worksheet == "easy mode":
+        if mode == "easy mode":
             leaderboard_header_mode = "E A S Y   M O D E"
-        elif self.selected_worksheet == "intermediate mode":
+        elif mode == "intermediate mode":
             leaderboard_header_mode = "I N T E R M E D I A T E    M O D E"
-        elif self.selected_worksheet == "hard mode":
+        elif mode == "hard mode":
             leaderboard_header_mode = "H A R D    M O D E"
         print(
             Fore.YELLOW +

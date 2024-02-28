@@ -3,6 +3,7 @@ from google.oauth2.service_account import Credentials
 import colorama
 from colorama import Fore
 colorama.init(autoreset=True)
+from .clearterminal import ClearTerminal
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -16,14 +17,16 @@ GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SPREADSHEET_NAME = 'ultimate-hangman-leaderboard'
 SHEET = GSPREAD_CLIENT.open(SPREADSHEET_NAME)
 
-class Leaderboard():
+class Leaderboard(ClearTerminal):
+    def __init__(self):
+        super().__init__()
 
     @staticmethod
     def append_to_worksheet(sheet, data):
         return SHEET.worksheet(sheet).append_row(data)
     
-    @staticmethod
-    def get_leaderboard_data(mode):
+    
+    def get_leaderboard_data(self, mode):
         """
         Gets leaderboard data from google sheets and displays the top 15 highest scores, also gives user the option
         to play again, choose a different modes leaderboard or exit the game
@@ -40,6 +43,7 @@ class Leaderboard():
             leaderboard_header_mode = "I N T E R M E D I A T E    M O D E"
         elif mode == "hard mode":
             leaderboard_header_mode = "H A R D    M O D E"
+        self.clear_terminal.clear_terminal()
         print(
             Fore.YELLOW +
             "--------------------------------------------------------------------------------")

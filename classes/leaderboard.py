@@ -3,8 +3,7 @@ from google.oauth2.service_account import Credentials
 import colorama
 from colorama import Fore
 colorama.init(autoreset=True)
-from hangman import *
-import sys
+from .hangman import *
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -19,10 +18,13 @@ SPREADSHEET_NAME = 'ultimate-hangman-leaderboard'
 SHEET = GSPREAD_CLIENT.open(SPREADSHEET_NAME)
 
 class Leaderboard:
-    def append_to_worksheet(self, sheet, data):
+
+    @staticmethod
+    def append_to_worksheet(sheet, data):
         return SHEET.worksheet(sheet).append_row(data)
     
-    def get_leaderboard_data(self, mode):
+    @staticmethod
+    def get_leaderboard_data(mode):
         """
         Gets leaderboard data from google sheets and displays the top 15 highest scores, also gives user the option
         to play again, choose a different modes leaderboard or exit the game

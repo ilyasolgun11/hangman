@@ -1,19 +1,20 @@
 import colorama
 from colorama import Fore
 colorama.init(autoreset=True)
-from hangman import *
+from .gameasciiart import AsciiArt
 
-class Player:
+class Player(AsciiArt):
     def __init__(self):
+        super().__init__()
+        self.ascii_art = AsciiArt()
         self.name_of_player = ""
         self.location_of_player = ""
-        self.game_logo = hangman_logo
 
     def collect_info(self):
         """
         Collect player information before starting the game.
         """
-        print(self.game_logo)
+        print(self.ascii_art.hangman_logo)
         print(Fore.YELLOW + "Welcome! could you be the one to save this poor guy from a \ngruesome death? i hope so! fill in your name and location to\nsee the how to play guide.\n")
         while True:
             self.name_of_player = input(

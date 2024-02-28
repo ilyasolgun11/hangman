@@ -1,36 +1,29 @@
-from player import Player
-from leaderboard import Leaderboard
-from words import RandomWord
+from .player import Player
+from .leaderboard import Leaderboard
+from .words import RandomWord
+from .hangman import AsciiArt
 import colorama
 from colorama import Fore
 colorama.init(autoreset=True)
-from hangman import *
 import requests
 from datetime import datetime
 import time
 from dotenv import load_dotenv
-import sys
 import os
 load_dotenv(dotenv_path='env.py')
 api_key = os.getenv('API_KEY')
 
-class Game(Player, Leaderboard, RandomWord):
-
+class Game(Player, Leaderboard, RandomWord, AsciiArt):
     def __init__(self):
         super().__init__()
         self.start_time = None
         self.player_won = False
         self.selected_worksheet = "easy mode"
         self.random_word_instance = RandomWord()
+        self.ascii_art = AsciiArt()
         self.hangman_word = self.random_word_instance.game_modes("easy mode")
         self.display_word = "_" * len(self.random_word_instance.game_modes("easy mode"))
-        self.hangman_stage = hangman_stages
         self.stages = 0
-        self.game_logo = hangman_logo
-        self.lose_logo = lose_logo_hangman
-        self.win_logo = win_logo_hangman
-        self.how_to_play_guide = how_to_play_guide
-        self.game_modes_display = game_modes_display
         self.hints_remaining = 1
         self.score = 7
         self.points = 0
@@ -43,7 +36,7 @@ class Game(Player, Leaderboard, RandomWord):
         """
         Provide instructions on how to play the game.
         """
-        print(self.how_to_play_guide)
+        print(self.ascii_art.how_to_play_guide)
         print(
             Fore.YELLOW +
             f"""Hello {
@@ -61,7 +54,7 @@ class Game(Player, Leaderboard, RandomWord):
                 print(Fore.YELLOW + "Please enter a valid option.")
 
     def choose_game_mode(self):
-        print(self.game_modes_display)
+        print(self.ascii_art.game_modes_display)
         while True:
             player_mode_option = input(
                 Fore.GREEN +
@@ -102,7 +95,7 @@ class Game(Player, Leaderboard, RandomWord):
         self.start_time = time.time()
         self.game_hint_message = Fore.GREEN + "Good luck!"
         while self.score > 0:
-            print(self.hangman_stage[self.stages])
+            print(self.ascii_art.hangman_stages[self.stages])
             print(f"{self.game_hint_message}\n")
             print(
                 Fore.RED +
@@ -329,9 +322,7 @@ class Game(Player, Leaderboard, RandomWord):
                 self.reset_game()
                 break
             elif user_choice.lower() == "c":
-                print(f"Thanks for playing {self.name_of_player}!")
-                print("Hangman awaits your return!")
-                sys.exit()
+                self.collect_info()
             else:
                 print(Fore.YELLOW + "Please enter a valid option.")                
 
@@ -341,20 +332,13 @@ class Game(Player, Leaderboard, RandomWord):
         want to play again, check leaderboard or exit the game
         """
         if self.player_won:
-            print(self.win_logo)
+            print(self.ascii_art.win_logo_hangman)
             print(Fore.GREEN + f"Amazing job! you saved him!\n")
             print(Fore.YELLOW + "Leaderboard's updated.\n")
         else:
-            print(self.lose_logo)
+            print(self.ascii_art.lose_logo_hangman)
             print(Fore.RED + "Better luck next time, my dude is dead!\n")
 
         print(f"The word was " + Fore.CYAN + f"{self.hangman_word}\n")
         print(f"Points: {self.points}\n")
         self.game_end_options()
-
-
-   
-if __name__ == "__main__":
-    game = Game()
-    game.collect_info()
-    

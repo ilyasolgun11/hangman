@@ -2,7 +2,9 @@ import colorama
 from colorama import Fore
 colorama.init(autoreset=True)
 
-hangman_stages = [
+class AsciiArt:
+    def __init__(self):
+        self.hangman_stages = [
 Fore.GREEN + """\n\n\n
 ________________________________
 |/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/|
@@ -136,9 +138,8 @@ ________________________________
 __|/\/|______________
 |/\/\/\/\/\/\/\/\/\/\|
 """
-]
-
-hangman_logo = Fore.GREEN + """\n\n\n 
+]     
+        self.hangman_logo = Fore.GREEN + """\n\n\n 
     ______________________________                                    
     |/\/\/\/\/\/\/\/\/\/\/\/\/\/\|                                    
         |/\/|                  __|__
@@ -158,9 +159,7 @@ hangman_logo = Fore.GREEN + """\n\n\n
               / __  / ___ |/ /|  / /_/ / /  / / ___ |/ /|  /  
              /_/ /_/_/  |_/_/ |_/\____/_/  /_/_/  |_/_/ |_/   
 """
-
-    
-lose_logo_hangman = Fore.RED + """\n\n\n 
+        self.lose_logo_hangman = Fore.RED + """\n\n\n 
     ______________________________                                    
     |/\/\/\/\/\/\/\/\/\/\/\/\/\/\|                                    
         |/\/|                  __|__
@@ -180,8 +179,7 @@ lose_logo_hangman = Fore.RED + """\n\n\n
               / __  / ___ |/ /|  / /_/ / /  / / ___ |/ /|  /  
              /_/ /_/_/  |_/_/ |_/\____/_/  /_/_/  |_/_/ |_/  
 """
-
-win_logo_hangman = Fore.GREEN + """\n\n\n 
+        self.win_logo_hangman = Fore.GREEN + """\n\n\n 
     ______________________________                                    
     |/\/\/\/\/\/\/\/\/\/\/\/\/\/\|                                    
         |/\/|                   ✂
@@ -201,8 +199,7 @@ win_logo_hangman = Fore.GREEN + """\n\n\n
               / __  / ___ |/ /|  / /_/ / /  / / ___ |/ /|  /  
              /_/ /_/_/  |_/_/ |_/\____/_/  /_/_/  |_/_/ |_/   
 """
-
-how_to_play_guide = Fore.BLUE +  """
+        self.how_to_play_guide = Fore.BLUE +  """
  ______________________________________________________________
 |                                                              |
 |                                                              |
@@ -234,8 +231,7 @@ how_to_play_guide = Fore.BLUE +  """
 |                                                              |
 |______________________________________________________________|
 """
-
-game_modes_display = """
+        self.game_modes_display = """
  ______________________________________________________________
 |                                                              |
 |                                                              |

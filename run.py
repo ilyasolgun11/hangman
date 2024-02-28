@@ -1,4 +1,4 @@
-from words import RandomWord
+from classes.words import RandomWord
 import sys
 import gspread
 import requests
@@ -6,7 +6,7 @@ from google.oauth2.service_account import Credentials
 from datetime import datetime
 import time
 import json
-from hangman import *
+from classes.hangman import *
 import colorama
 from colorama import Fore
 colorama.init(autoreset=True)

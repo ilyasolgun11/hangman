@@ -61,6 +61,13 @@ class Game(Player, Leaderboard, RandomWord, AsciiArt, ClearTerminal):
     def choose_game_mode(self):
         self.clear_terminal.clear_terminal()
         print(self.ascii_art.game_modes_display)
+        def handle_game_mode(mode, worksheet):
+            self.hangman_word = self.random_word_instance.game_modes(
+                    mode)
+            self.display_word = "_" * \
+                    len(self.hangman_word)
+            self.selected_worksheet = worksheet
+            self.play()
         while True:
             player_mode_option = input(
                 Fore.GREEN +
@@ -72,28 +79,13 @@ class Game(Player, Leaderboard, RandomWord, AsciiArt, ClearTerminal):
                 Fore.WHITE +
                 """Type 'a', 'b' or 'c' below\n>>> """)
             if player_mode_option.lower() == "a":
-                self.hangman_word = self.random_word_instance.game_modes(
-                    "easy mode")
-                self.display_word = "_" * \
-                    len(self.hangman_word)
-                self.selected_worksheet = "easy mode"
-                self.play()
+                handle_game_mode("easy mode", "easy mode")
                 break
             elif player_mode_option.lower() == "b":
-                self.hangman_word = self.random_word_instance.game_modes(
-                    "intermediate mode")
-                self.display_word = "_" * \
-                    len(self.hangman_word)
-                self.selected_worksheet = "intermediate mode"
-                self.play()
+                handle_game_mode("intermediate mode", "intermediate mode")
                 break
             elif player_mode_option.lower() == "c":
-                self.hangman_word = self.random_word_instance.game_modes(
-                    "hard mode")
-                self.display_word = "_" * \
-                    len(self.hangman_word)
-                self.selected_worksheet = "hard mode"
-                self.play()
+                handle_game_mode("hard mode", "hard mode")
                 break
             else:
                 print(Fore.YELLOW + "Please enter a valid option.")

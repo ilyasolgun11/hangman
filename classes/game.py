@@ -241,8 +241,13 @@ class Game(Player, Leaderboard, RandomWord, AsciiArt, ClearTerminal):
                 user_input = input(
                     "Guess a letter or a word: \n>>> ").lower() if self.score > 2 else input(
                     Fore.RED + "Guess a letter or a word, Hurry!: \n>>> ").lower()
-            # Depending if the player either entered a letter or a word, pass that input to
-            # the corresponding function
+            else:
+                if self.score > 2:
+                    user_input = input(
+                        "Guess a letter or a word: \n>>> ").lower()
+                else:
+                    user_input = input(
+                        Fore.RED + "Guess a letter or a word, Hurry!: \n>>> ").lower()
             if user_input.isalpha():
                 if len(user_input) == 1:
                     self.guess_letter(user_input)
@@ -251,11 +256,8 @@ class Game(Player, Leaderboard, RandomWord, AsciiArt, ClearTerminal):
             else:
                 self.game_hint_message = Fore.RED + \
                     "Your input is neither a letter or a word, try again."
-            # If the score is 0, end the game
             if self.score == 0:
                 self.game_end()
-            # If plater_won boolean is true, send player data to google sheets, then end 
-            # the game 
             if self.player_won:
                 if self.hints_remaining == 1:
                     hints_used = "No"
@@ -277,14 +279,10 @@ class Game(Player, Leaderboard, RandomWord, AsciiArt, ClearTerminal):
         """
         Checks if the user word input is correct or not, increments or decrements points accordingly
         """
-        # If the players word guess has already been guessed, display message
         if user_input in self.guessed_words:
             self.game_hint_message = Fore.YELLOW + \
                 f"You have guessed the word '{user_input}' already."
         else:
-            # If the player word guess is correct, make player_won boolean true, 
-            # also if the player guessed correctly without revealing half the word,
-            # increment points accordingly
             if user_input == self.hangman_word:
                 if len(self.guessed_correct_letters) < round(
                         (len(self.hangman_word) / 2)):
@@ -294,9 +292,6 @@ class Game(Player, Leaderboard, RandomWord, AsciiArt, ClearTerminal):
                     self.points += 100
                     self.player_won = True
             else:
-                # If the player word guess is not correct, remove all points,
-                # display message, append guessed word to guessed_words and
-                # if the game is not over increment the self.stages
                 self.points = 0
                 self.score -= 1
                 self.guessed_words.append(user_input)
@@ -311,25 +306,23 @@ class Game(Player, Leaderboard, RandomWord, AsciiArt, ClearTerminal):
         """
         Checks if user letter input is correct or not, increments or decrements points accordingly
         """
-        # If the players letter guess is guessed already display message
         if user_input in self.guessed_letters or user_input in self.guessed_correct_letters:
             self.game_hint_message = Fore.YELLOW + \
                 f"You have guessed the letter '{user_input}' already"
         else:
-            # If the players letter guess is in hangman_word do the following
             if user_input in self.hangman_word:
-                self.guessed_correct_letters.append(user_input)
-                self.update_display_word(user_input)
-                self.game_hint_message = Fore.GREEN + \
-                    f"Correct! the letter '{user_input}' is in the word!"
-                self.points += 25
-                # If there is no more underscores in display word 
-                # (user has guessed all the letters) turn player_won boolean to true
+                if user_input in self.hangman_word:
+                    self.guessed_correct_letters.append(user_input)
+                    self.update_display_word(user_input)
+                    self.game_hint_message = Fore.GREEN + \
+                        f"Correct! the letter '{user_input}' is in the word!"
+                    self.points += 25
                 if "_" not in self.display_word:
                     self.player_won = True
             else:
-                # If the player guessed the letter wrong do the following
-                if self.points > 10:
+                if self.points < 10:
+                    pass
+                else:
                     self.points -= 10
                 self.score -= 1
                 self.guessed_letters.append(user_input)
@@ -346,7 +339,7 @@ class Game(Player, Leaderboard, RandomWord, AsciiArt, ClearTerminal):
         the letter in the correct place
         """
         updated_display = ""
-        # Hide the hangman word with underscores. If the user guesses a letter
+        # Hide the hangman word with underscores, if the user guesses a letter
         # right then reveal the letters in the correct index
         for winning_word, displayed_word in zip(
                 self.hangman_word, self.display_word):
@@ -374,9 +367,6 @@ class Game(Player, Leaderboard, RandomWord, AsciiArt, ClearTerminal):
         self.hints_remaining = 1
 
     def leaderboard_mode_options(self):
-        """
-        Depending on player input, navigate player to selected leaderboard
-        """
         def handle_leaderboard_mode_options(worksheet):
             self.selected_worksheet = worksheet
             self.get_leaderboard_data(worksheet)
@@ -399,9 +389,6 @@ class Game(Player, Leaderboard, RandomWord, AsciiArt, ClearTerminal):
                 print(Fore.YELLOW + "Please enter a valid option.")
 
     def game_end_options(self):
-        """
-        Display following options to user, play again, leaderboard's and exit game
-        """
         while True:
             print("")
             user_choice = input(

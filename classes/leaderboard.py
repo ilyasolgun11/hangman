@@ -21,7 +21,7 @@ SHEET = GSPREAD_CLIENT.open(SPREADSHEET_NAME)
 class Leaderboard(ClearTerminal):
     def __init__(self):
         super().__init__()
-
+        
     @staticmethod
     def append_to_worksheet(sheet, data):
         return SHEET.worksheet(sheet).append_row(data)

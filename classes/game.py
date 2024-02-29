@@ -24,9 +24,9 @@ class Game(Player, Leaderboard, RandomWord, AsciiArt, ClearTerminal):
         self.random_word_instance = RandomWord()
         self.ascii_art = AsciiArt()
         self.clear_terminal = ClearTerminal()
-        self.hangman_word = self.random_word_instance.game_modes("easy mode")
+        self.hangman_word = self.random_word_instance.game_modes("hard mode")
         self.display_word = "_" * \
-            len(self.random_word_instance.game_modes("easy mode"))
+            len(self.hangman_word)
         self.stages = 0
         self.hints_remaining = 1
         self.score = 7
@@ -75,7 +75,7 @@ class Game(Player, Leaderboard, RandomWord, AsciiArt, ClearTerminal):
                 self.hangman_word = self.random_word_instance.game_modes(
                     "easy mode")
                 self.display_word = "_" * \
-                    len(self.random_word_instance.game_modes("easy mode"))
+                    len(self.hangman_word)
                 self.selected_worksheet = "easy mode"
                 self.play()
                 break
@@ -83,7 +83,7 @@ class Game(Player, Leaderboard, RandomWord, AsciiArt, ClearTerminal):
                 self.hangman_word = self.random_word_instance.game_modes(
                     "intermediate mode")
                 self.display_word = "_" * \
-                    len(self.random_word_instance.game_modes("intermediate mode"))
+                    len(self.hangman_word)
                 self.selected_worksheet = "intermediate mode"
                 self.play()
                 break
@@ -91,7 +91,7 @@ class Game(Player, Leaderboard, RandomWord, AsciiArt, ClearTerminal):
                 self.hangman_word = self.random_word_instance.game_modes(
                     "hard mode")
                 self.display_word = "_" * \
-                    len(self.random_word_instance.game_modes("hard mode"))
+                    len(self.hangman_word)
                 self.selected_worksheet = "hard mode"
                 self.play()
                 break
@@ -110,15 +110,13 @@ class Game(Player, Leaderboard, RandomWord, AsciiArt, ClearTerminal):
             self.clear_terminal.clear_terminal()
             print(self.ascii_art.hangman_stages[self.stages])
             print(f"{self.game_hint_message}\n")
+            print(self.hangman_word)
             print(
                 Fore.RED +
                 f"""Wrong guesses:\n{
                     self.guessed_letters +
                     self.guessed_words}\n""")
-            print("Word:", end=" ")
-            for letter in self.display_word:
-                print(letter, end=" ")
-            print("\n")
+            print(" ".join(self.display_word))
             if self.points >= 25:
                 print(Fore.GREEN + f"Points: {self.points}\n")
             else:
@@ -220,7 +218,7 @@ class Game(Player, Leaderboard, RandomWord, AsciiArt, ClearTerminal):
         else:
             if user_input == self.hangman_word:
                 if len(self.guessed_correct_letters) < round(
-                        (len(self.hangman_word) / 2) - 1):
+                        (len(self.hangman_word) / 2)):
                     self.points += 750
                     self.player_won = True
                 else:
@@ -282,7 +280,7 @@ class Game(Player, Leaderboard, RandomWord, AsciiArt, ClearTerminal):
                 updated_display += winning_word if winning_word == user_input else displayed_word
             else:
                 updated_display += "_"
-        self.display_word = list(updated_display)
+        self.display_word = updated_display
 
     def reset_game(self):
         """

@@ -16,7 +16,43 @@ api_key = os.getenv('API_KEY')
 
 
 class Game(Player, Leaderboard, RandomWord, AsciiArt, ClearTerminal):
+    """
+    The Game class represents the main Hangman game.
+
+    Attributes:
+    - start_time (float): The start time of the game.
+    - player_won (bool): Indicates whether the player won the game.
+    - selected_worksheet (str): The selected game mode worksheet.
+    - random_word_instance (RandomWord): An instance of the RandomWord class for generating hangman words.
+    - ascii_art (AsciiArt): An instance of the AsciiArt class for displaying ASCII art.
+    - clear_terminal (ClearTerminal): An instance of the ClearTerminal class for clearing the terminal.
+    - hangman_word (str): The current hangman word to be guessed.
+    - display_word (str): The partially revealed word based on user guesses.
+    - stages (int): The number of stages of the hangman (visual representation).
+    - hints_remaining (int): The number of hint tokens remaining.
+    - score (int): The player's score.
+    - points (int): The points earned during the game.
+    - guessed_letters (list): List of guessed letters.
+    - guessed_words (list): List of guessed words.
+    - guessed_correct_letters (list): List of correctly guessed letters.
+    - game_hint_message (str): Message related to hints during the game.
+
+    Methods:
+    - how_to_play(): Provides instructions on how to play the game.
+    - choose_game_mode(): Allows the player to choose the game mode.
+    - play(): Starts the game and manages user input.
+    - guess_word(user_input): Handles the user's attempt to guess a word.
+    - guess_letter(user_input): Handles the user's attempt to guess a letter.
+    - update_display_word(user_input): Updates the displayed word based on correct letter guesses.
+    - reset_game(): Resets relevant game attributes for a new round.
+    - leaderboard_mode_options(): Allows the player to view leaderboard's for different game modes.
+    - game_end_options(): Displays options after the game ends (play again, view leaderboard, or exit).
+    - game_end(): Displays the win/lose screen and handles post-game options.
+    """
     def __init__(self):
+        """
+        Initializes a new instance of the Hangman game.
+        """
         super().__init__()
         self.start_time = None
         self.player_won = False
@@ -38,8 +74,9 @@ class Game(Player, Leaderboard, RandomWord, AsciiArt, ClearTerminal):
 
     def how_to_play(self):
         """
-        Provide instructions on how to play the game.
+        Provide instructions on how to play the game and informs player of the points system.
         """
+        # Clears the terminal 
         self.clear_terminal.clear_terminal()
         print(self.ascii_art.how_to_play_guide)
         print(
@@ -50,17 +87,27 @@ class Game(Player, Leaderboard, RandomWord, AsciiArt, ClearTerminal):
             player_option = input(
                 "A - Choose game mode\nB - Go back\nType 'a' or 'b' below\n>>> ")
             if player_option.lower() == "a":
+                # Navigates player to game mode screen
                 self.choose_game_mode()
                 break
             elif player_option.lower() == "b":
+                # Navigates player back to welcome screen
                 self.collect_info()
                 break
             else:
                 print(Fore.YELLOW + "Please enter a valid option.")
 
     def choose_game_mode(self):
+        """
+        Gives the option to choose game mode, once the game mode is chosen and depending on which one
+        they choose, we use the game_modes function within the RandomWord class to select words and 
+        also pick one randomly
+        """
+        # Clears the terminal 
         self.clear_terminal.clear_terminal()
         print(self.ascii_art.game_modes_display)
+        # Sets self.hangman_word to a randomised word gathered from the RandomWord class 
+        # Also sets the display word, but multiplying "_" with the letters in self.hangman_word 
         def handle_game_mode(mode, worksheet):
             self.hangman_word = self.random_word_instance.game_modes(
                     mode)
@@ -96,31 +143,51 @@ class Game(Player, Leaderboard, RandomWord, AsciiArt, ClearTerminal):
         the corresponding functions guess_word() or guess_letter(). Also if user selects the hint option
         it calls the api to get the definition of the hangman word.
         """
+        # Starts timer, this timer ends when player either wins or loses, this is later used 
+        # to display the time it took for the player to win in the Leaderboard section 
         self.start_time = time.time()
+        # This message changes depending on what the user does during the game 
         self.game_hint_message = Fore.GREEN + "Good luck!"
+        # While the game is still going on, do the following
         while self.score > 0:
+            # Clear the terminal
             self.clear_terminal.clear_terminal()
+            # Display which stage the player is on
             print(self.ascii_art.hangman_stages[self.stages])
+            # Display hint message to inform player
             print(f"{self.game_hint_message}\n")
-            print(self.hangman_word)
+            # Displays the wrongly guessed letters and words
             print(
                 Fore.RED +
                 f"""Wrong guesses:\n{
                     self.guessed_letters +
                     self.guessed_words}\n""")
+            # Displays the self.hangman_word in underscores, till user reveals them by
+            # guessing correctly 
             print(f"{" ".join(self.display_word)}\n")
+            # Depending on how many points the user has, display them in either red or green
             if self.points >= 25:
                 print(Fore.GREEN + f"Points: {self.points}\n")
             else:
                 print(Fore.RED + f"Points: {self.points}\n")
+            # Use line for separation
             print("---------------------------------------------------")
-            if self.score == 1:
+            # Display the amount of attempts the user has, and if they have less than 3, display
+            # it in yellow 
+            if self.score < 3:
                 print(Fore.YELLOW + f"You have {self.score} attempt left")
             else:
-                print(Fore.YELLOW + f"You have {self.score} attempts left")
+                print(Fore.GREEN + f"You have {self.score} attempts left")
+            # URL in which would be used to gather the definition data for the self.hangman_word
+            # if the user decides to use the hint token 
             url = f"""https://dictionary-data-api.p.rapidapi.com/definition/{
                 self.hangman_word}"""
+            # Header that would be used alongside with the url to gather definition data of
+            # the self.hangman_word, and holds the secret api key which is being held 
+            # in the env.py file
             headers = {'X-RapidAPI-Key': api_key}
+            # If the players score is less than 4 and they have not used the hint token
+            # then do the following  
             if self.hints_remaining == 1 and self.score < 4:
                 while True:
                     print(Fore.CYAN + "\nDo you want to use your hint token?")
@@ -132,6 +199,8 @@ class Game(Player, Leaderboard, RandomWord, AsciiArt, ClearTerminal):
                         Fore.WHITE +
                         """Type 'a' or 'b' below\n>>> """)
                     if user_hint_option.lower() == "a":
+                        # Display to player that the definition is being grabbed, also if the points
+                        # of the player is more than 30, deduct 25 points 
                         print(Fore.YELLOW + "Grabbing definition...")
                         self.hints_remaining -= 1
                         if self.points > 30:
@@ -139,33 +208,39 @@ class Game(Player, Leaderboard, RandomWord, AsciiArt, ClearTerminal):
                         else:
                             self.points -= 25
                         response = requests.get(url, headers=headers)
-                        if response.status_code == 200:
-                            data = response.json()
-                            meanings = data.get('meaning', [])
-                            if meanings:
-                                definition = meanings[0]["values"][0]
-                                print(
-                                    Fore.BLUE +
-                                    f"""Definition of word: {
-                                        definition.replace(
-                                            self.hangman_word,
-                                            '(hidden correct word)')}""")
+                        # If the data is grabbed successfully, do the following
+                        try:
+                            if response.status_code == 200:
+                                data = response.json()
+                                meanings = data.get('meaning', [])
+                                if meanings:
+                                    definition = meanings[0]["values"][0]
+                                    # Display definition to player
+                                    print(
+                                        Fore.BLUE +
+                                        f"""Definition of word: {
+                                            definition.replace(
+                                                self.hangman_word,
+                                                '(hidden correct word)')}""")
+                                else:
+                                    # If no definition is found, let the player know
+                                    print("No meanings found.")
                             else:
-                                print("No meanings found.")
-                        else:
-                            print(f"Error: Sorry, no definitions found...")
+                                # If no data has been grabbed, let the player know
+                                print(f"Error: Sorry, no definitions found...")
+                        except Exception as e:
+                            # Handle any exception that may occur
+                            print(f"An error occurred: {e}")
                         break
                     elif user_hint_option.lower() == "b":
                         pass
                         break
                     else:
+                        # If the user player is neither a or b, display that to player
                         print(Fore.YELLOW + "Please enter either 'a' or 'b'")
-                if self.score > 2:
-                    user_input = input(
-                        "Guess a letter or a word: \n>>> ").lower()
-                else:
-                    user_input = input(
-                        Fore.RED + "Guess a letter or a word, Hurry!: \n>>> ").lower()
+                user_input = input(
+                    "Guess a letter or a word: \n>>> ").lower() if self.score > 2 else input(
+                    Fore.RED + "Guess a letter or a word, Hurry!: \n>>> ").lower()
             else:
                 if self.score > 2:
                     user_input = input(

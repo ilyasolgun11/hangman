@@ -6,10 +6,10 @@ class RandomWord:
     """
     def __init__(self):
         self.words = ["about", "after", "again", "apple", "arrive", "asking", "athlete", "before", "being", "below",
-              "blank", "blend", "bread", "brief", "bring", "build", "bunch", "burst", "cake", "cause",
-              "chair", "child", "climb", "close", "color", "could", "cover", "cream", "dance", "design",
-              "doing", "early", "earth", "enjoy", "event", "every", "explore", "fence", "field", "first",
-              "flame", "floor", "flower", "fresh", "fruit", "funny", "gather", "gift", "glide", "going", "balance", "because",
+            "blank", "blend", "bread", "brief", "bring", "build", "bunch", "burst", "cake", "cause",
+            "chair", "child", "climb", "close", "color", "could", "cover", "cream", "dance", "design",
+            "doing", "early", "earth", "enjoy", "event", "every", "explore", "fence", "field", "first",
+            "flame", "floor", "flower", "fresh", "fruit", "funny", "gather", "gift", "glide", "going", "balance", "because",
             "before", "believe", "beneath", "between", "beyond", "bicycle", "birthday", "blanket", "building", "butterfly",
             "camera", "capital", "careful", "certain", "champion", "children", "chocolate", "clothing", "colorful", "comfortable", "complete", "continue", "contribute", "convention", "courageous", "curious", "dangerous",
             "daughter", "decide", "delicious", "describe", "design", "different", "direction", "discover", "discussion", "education",

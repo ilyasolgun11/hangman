@@ -236,16 +236,14 @@ __|/\\/|______________
 |                     """ + Fore.CYAN + """G A M E   M O D E S :""" + Fore.WHITE + """                    |
 |                                                              |
 |     """ + Fore.GREEN + """Easy mode:""" + Fore.WHITE + """                                               |
-|     Consists of 50 words that are very common in normal      |
-|     day to day conversations.                                |
+|     Consists of words less than 5 letters in length          |
 |                                                              |
 |     """ + Fore.YELLOW + """Intermediate mode:""" + Fore.WHITE + """                                       |
-|     Consists of 70 words that are longer and harder to       |
-|     guess compared to the easy mode                          |
+|     Consists of words with more than 5 or less than          |
+|     8 letters                                                |
 |                                                              |
 |     """ + Fore.RED + """Hard mode:""" + Fore.WHITE + """                                               |
-|     Consists of 100 words that are the same difficulty       |
-|     as the intermediate mode but are longer                  |
+|     Consists of words more than 8 letters in length          |
 |                                                              |
 |______________________________________________________________|
 

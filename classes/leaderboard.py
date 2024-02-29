@@ -19,11 +19,18 @@ SHEET = GSPREAD_CLIENT.open(SPREADSHEET_NAME)
 
 
 class Leaderboard(ClearTerminal):
+    """
+    The Leaderboard class represents the leaderboard feature.
+    """
     def __init__(self):
         super().__init__()
         
     @staticmethod
     def append_to_worksheet(sheet, data):
+        """
+        Accepts 2 arguments, first is the worksheet we want to add to. Second is the data
+        passed to the worksheet
+        """
         return SHEET.worksheet(sheet).append_row(data)
 
     def get_leaderboard_data(self, mode):

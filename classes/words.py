@@ -17,9 +17,13 @@ class RandomWord:
             "explain", "familiar", "favorite", "February", "fireplace", "football", "forever", "forget", 'elephant', 'computer', 'symphony', 'template', 'essential', 'permanent', 'knowledge', 'algorithm', 'beautiful', 'attention', 'magnificent', 'celebrate', 'challenge', 'experience', 'community', 'incredible', 'adventure', 'wonderful', 'existence', 'efficiency', 'definitely', 'discipline', 'restaurant', 'boulevard', 'expensive', 'enthusiasm', 'principle', 'frustrate', 'investment', 'integrate', 'recognize', 'individual', 'curriculum', 'throughout', 'technology', 'productive', 'happiness', 'restaurant', 'opportunity', 'education', 'contribute', 'celebration', 'achievement', 'consequence', 'creativity', 'innovation', 'tremendous', 'adaptation', 'imagination', 'experiment', 'perseverance', 'courageous', 'enthusiastic', 'exploration', 'revolution', 'extraordinary', 'spectacular', 'fascinating', 'evolution', 'interaction', 'remarkable', 'congratulate', 'organization', 'experience', 'understand', 'communication', 'preference', 'implement', 'motivation', 'technology', 'communication', 'appearance', 'celebration', 'considerate', 'temperature', 'recognition', 'engineering', 'sophisticated', 'particularly', 'investment', 'opportunity', 'intelligence', 'entertainment', 'contribution', 'achievement', 'encouragement', 'relationship', 'architecture', 'significant', 'information', 'enthusiastically', 'relationship', 'communication', 'architecture', 'congratulation', 'celebration', 'exaggeration', 'understanding', 'extraordinary', 'communication']
 
     def game_modes(self, mode):
+        """
+        Using list comprehension, gathering all words in self.words and splitting them up
+        into modes by checking their length
+        """
         easy_mode = [word for word in self.words if len(word) < 5]
-        intermediate_mode = [word for word in self.words if 5 < len(word) < 7]
-        hard_mode = [word for word in self.words if len(word) > 7]
+        intermediate_mode = [word for word in self.words if 5 < len(word) < 8]
+        hard_mode = [word for word in self.words if len(word) > 8]
         if mode == "easy mode":
             return random.choice(easy_mode)
         elif mode == "intermediate mode":

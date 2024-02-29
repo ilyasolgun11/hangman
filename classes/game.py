@@ -1,21 +1,18 @@
-import os
-from dotenv import load_dotenv
 import time
 from datetime import datetime
-import requests
 from .player import Player
 from .leaderboard import Leaderboard
 from .words import RandomWord
 from .gameasciiart import AsciiArt
 from .clearterminal import ClearTerminal
+from .definition import GrabDefinition
 import colorama
 from colorama import Fore
 colorama.init(autoreset=True)
-load_dotenv(dotenv_path='env.py')
-api_key = os.getenv('API_KEY')
 
 
-class Game(Player, Leaderboard, RandomWord, AsciiArt, ClearTerminal):
+
+class Game(Player, Leaderboard, RandomWord, AsciiArt, ClearTerminal, GrabDefinition):
     """
     The Game class represents the main Hangman game.
 
@@ -23,9 +20,11 @@ class Game(Player, Leaderboard, RandomWord, AsciiArt, ClearTerminal):
     - start_time (float): The start time of the game.
     - player_won (bool): Indicates whether the player won the game.
     - selected_worksheet (str): The selected game mode worksheet.
-    - random_word_instance (RandomWord): An instance of the RandomWord class for generating hangman words.
+    - random_word_instance (RandomWord): An instance of the RandomWord class 
+      for generating hangman words.
     - ascii_art (AsciiArt): An instance of the AsciiArt class for displaying ASCII art.
-    - clear_terminal (ClearTerminal): An instance of the ClearTerminal class for clearing the terminal.
+    - clear_terminal (ClearTerminal): An instance of the ClearTerminal 
+      class for clearing the terminal.
     - hangman_word (str): The current hangman word to be guessed.
     - display_word (str): The partially revealed word based on user guesses.
     - stages (int): The number of stages of the hangman (visual representation).
@@ -46,7 +45,8 @@ class Game(Player, Leaderboard, RandomWord, AsciiArt, ClearTerminal):
     - update_display_word(user_input): Updates the displayed word based on correct letter guesses.
     - reset_game(): Resets relevant game attributes for a new round.
     - leaderboard_mode_options(): Allows the player to view leaderboard's for different game modes.
-    - game_end_options(): Displays options after the game ends (play again, view leaderboard, or exit).
+    - game_end_options(): Displays options after the game ends (play again, 
+      view leaderboard, or exit).
     - game_end(): Displays the win/lose screen and handles post-game options.
     """
     def __init__(self):
@@ -99,14 +99,15 @@ class Game(Player, Leaderboard, RandomWord, AsciiArt, ClearTerminal):
 
     def choose_game_mode(self):
         """
-        Gives the option to choose game mode, once the game mode is chosen and depending on which one
-        they choose, we use the game_modes function within the RandomWord class to select words and 
-        also pick one randomly
+        Gives the option to choose game mode, once the game mode is chosen and 
+        depending on which one they choose, we use the game_modes 
+        function within the RandomWord class to select words 
+        and also pick one randomly
         """
         # Clears the terminal 
         self.clear_terminal.clear_terminal()
         print(self.ascii_art.game_modes_display)
-        # Sets self.hangman_word to a randomised word gathered from the RandomWord class 
+        # Sets self.hangman_word to a randomized word gathered from the RandomWord class 
         # Also sets the display word, but multiplying "_" with the letters in self.hangman_word 
         def handle_game_mode(mode, worksheet):
             self.hangman_word = self.random_word_instance.game_modes(
@@ -178,14 +179,6 @@ class Game(Player, Leaderboard, RandomWord, AsciiArt, ClearTerminal):
                 print(Fore.YELLOW + f"You have {self.score} attempt left")
             else:
                 print(Fore.GREEN + f"You have {self.score} attempts left")
-            # URL in which would be used to gather the definition data for the self.hangman_word
-            # if the user decides to use the hint token 
-            url = f"""https://dictionary-data-api.p.rapidapi.com/definition/{
-                self.hangman_word}"""
-            # Header that would be used alongside with the url to gather definition data of
-            # the self.hangman_word, and holds the secret api key which is being held 
-            # in the env.py file
-            headers = {'X-RapidAPI-Key': api_key}
             # If the players score is less than 4 and they have not used the hint token
             # then do the following  
             if self.hints_remaining == 1 and self.score < 4:
@@ -207,30 +200,7 @@ class Game(Player, Leaderboard, RandomWord, AsciiArt, ClearTerminal):
                             pass
                         else:
                             self.points -= 25
-                        response = requests.get(url, headers=headers)
-                        # If the data is grabbed successfully, do the following
-                        try:
-                            if response.status_code == 200:
-                                data = response.json()
-                                meanings = data.get('meaning', [])
-                                if meanings:
-                                    definition = meanings[0]["values"][0]
-                                    # Display definition to player
-                                    print(
-                                        Fore.BLUE +
-                                        f"""Definition of word: {
-                                            definition.replace(
-                                                self.hangman_word,
-                                                '(hidden correct word)')}""")
-                                else:
-                                    # If no definition is found, let the player know
-                                    print("No meanings found.")
-                            else:
-                                # If no data has been grabbed, let the player know
-                                print(f"Error: Sorry, no definitions found...")
-                        except Exception as e:
-                            # Handle any exception that may occur
-                            print(f"An error occurred: {e}")
+                        self.grab_word_definition(self.hangman_word)
                         break
                     elif user_hint_option.lower() == "b":
                         pass
@@ -444,5 +414,5 @@ class Game(Player, Leaderboard, RandomWord, AsciiArt, ClearTerminal):
             print(Fore.RED + "Better luck next time, my dude is dead!\n")
 
         print(f"The word was " + Fore.CYAN + f"{self.hangman_word}\n")
-        print(f"Points: {self.points}\n")
+        print("""Points:""" + Fore.GREEN + f""" {self.points}\n""" + Fore.RESET)
         self.game_end_options()

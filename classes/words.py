@@ -21,8 +21,8 @@ class RandomWord:
         Using list comprehension, gathering all words in self.words and splitting them up
         into modes by checking their length
         """
-        easy_mode = [word for word in self.words if len(word) < 5]
-        intermediate_mode = [word for word in self.words if 5 < len(word) < 8]
+        easy_mode = [word for word in self.words if len(word) < 6]
+        intermediate_mode = [word for word in self.words if 6 < len(word) < 8]
         hard_mode = [word for word in self.words if len(word) > 8]
         if mode == "easy mode":
             return random.choice(easy_mode)

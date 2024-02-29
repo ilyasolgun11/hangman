@@ -1,3 +1,8 @@
+import os
+from dotenv import load_dotenv
+import time
+from datetime import datetime
+import requests
 from .player import Player
 from .leaderboard import Leaderboard
 from .words import RandomWord
@@ -6,13 +11,9 @@ from .clearterminal import ClearTerminal
 import colorama
 from colorama import Fore
 colorama.init(autoreset=True)
-import requests
-from datetime import datetime
-import time
-from dotenv import load_dotenv
-import os
 load_dotenv(dotenv_path='env.py')
 api_key = os.getenv('API_KEY')
+
 
 class Game(Player, Leaderboard, RandomWord, AsciiArt, ClearTerminal):
     def __init__(self):
@@ -24,7 +25,8 @@ class Game(Player, Leaderboard, RandomWord, AsciiArt, ClearTerminal):
         self.ascii_art = AsciiArt()
         self.clear_terminal = ClearTerminal()
         self.hangman_word = self.random_word_instance.game_modes("easy mode")
-        self.display_word = "_" * len(self.random_word_instance.game_modes("easy mode"))
+        self.display_word = "_" * \
+            len(self.random_word_instance.game_modes("easy mode"))
         self.stages = 0
         self.hints_remaining = 1
         self.score = 7
@@ -70,20 +72,26 @@ class Game(Player, Leaderboard, RandomWord, AsciiArt, ClearTerminal):
                 Fore.WHITE +
                 """Type 'a', 'b' or 'c' below\n>>> """)
             if player_mode_option.lower() == "a":
-                self.hangman_word = self.random_word_instance.game_modes("easy mode")
-                self.display_word = "_" * len(self.random_word_instance.game_modes("easy mode"))
+                self.hangman_word = self.random_word_instance.game_modes(
+                    "easy mode")
+                self.display_word = "_" * \
+                    len(self.random_word_instance.game_modes("easy mode"))
                 self.selected_worksheet = "easy mode"
                 self.play()
                 break
             elif player_mode_option.lower() == "b":
-                self.hangman_word = self.random_word_instance.game_modes("intermediate mode")
-                self.display_word = "_" * len(self.random_word_instance.game_modes("intermediate mode"))
+                self.hangman_word = self.random_word_instance.game_modes(
+                    "intermediate mode")
+                self.display_word = "_" * \
+                    len(self.random_word_instance.game_modes("intermediate mode"))
                 self.selected_worksheet = "intermediate mode"
                 self.play()
                 break
             elif player_mode_option.lower() == "c":
-                self.hangman_word = self.random_word_instance.game_modes("hard mode")
-                self.display_word = "_" * len(self.random_word_instance.game_modes("hard mode"))
+                self.hangman_word = self.random_word_instance.game_modes(
+                    "hard mode")
+                self.display_word = "_" * \
+                    len(self.random_word_instance.game_modes("hard mode"))
                 self.selected_worksheet = "hard mode"
                 self.play()
                 break
@@ -121,7 +129,7 @@ class Game(Player, Leaderboard, RandomWord, AsciiArt, ClearTerminal):
             else:
                 print(Fore.YELLOW + f"You have {self.score} attempts left")
             url = f"""https://dictionary-data-api.p.rapidapi.com/definition/{
-            self.hangman_word}"""
+                self.hangman_word}"""
             headers = {'X-RapidAPI-Key': api_key}
             if self.hints_remaining == 1 and self.score < 4:
                 while True:
@@ -201,7 +209,7 @@ class Game(Player, Leaderboard, RandomWord, AsciiArt, ClearTerminal):
                                hints_used]
                 self.append_to_worksheet(self.selected_worksheet, data_to_add)
                 self.game_end()
-                
+
     def guess_word(self, user_input):
         """
         Checks if the user word input is correct or not, increments or decrements points accordingly
@@ -268,7 +276,8 @@ class Game(Player, Leaderboard, RandomWord, AsciiArt, ClearTerminal):
         updated_display = ""
         # Hide the hangman word with underscores, if the user guesses a letter
         # right then reveal the letters in the correct index
-        for winning_word, displayed_word in zip(self.hangman_word, self.display_word):
+        for winning_word, displayed_word in zip(
+                self.hangman_word, self.display_word):
             if winning_word == user_input or displayed_word != "_":
                 updated_display += winning_word if winning_word == user_input else displayed_word
             else:
@@ -281,7 +290,8 @@ class Game(Player, Leaderboard, RandomWord, AsciiArt, ClearTerminal):
         """
         self.player_won = False
         self.hangman_word = self.random_word_instance.game_modes("easy mode")
-        self.display_word = "_" * len(self.random_word_instance.game_modes("easy mode"))
+        self.display_word = "_" * \
+            len(self.random_word_instance.game_modes("easy mode"))
         self.stages = 0
         self.score = 7
         self.points = 0
@@ -294,7 +304,9 @@ class Game(Player, Leaderboard, RandomWord, AsciiArt, ClearTerminal):
     def leaderboard_mode_options(self):
         while True:
             user_choice = input(
-                Fore.CYAN + "A - Easy mode leaderboard\nB - Intermediate mode leaderboard\nC - Hard mode leaderboard\nType 'a', 'b' or 'c' below\n>>> " + Fore.RESET)
+                Fore.CYAN +
+                "A - Easy mode leaderboard\nB - Intermediate mode leaderboard\nC - Hard mode leaderboard\nType 'a', 'b' or 'c' below\n>>> " +
+                Fore.RESET)
             if user_choice.lower() == "a":
                 self.selected_worksheet = "easy mode"
                 self.get_leaderboard_data("easy mode")
@@ -331,7 +343,7 @@ class Game(Player, Leaderboard, RandomWord, AsciiArt, ClearTerminal):
                 print(f"Thank you so much for playing {self.name_of_player}!")
                 self.collect_info()
             else:
-                print(Fore.YELLOW + "Please enter a valid option.")                
+                print(Fore.YELLOW + "Please enter a valid option.")
 
     def game_end(self):
         """

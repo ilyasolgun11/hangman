@@ -1,7 +1,8 @@
+from .gameasciiart import AsciiArt
 import colorama
 from colorama import Fore
 colorama.init(autoreset=True)
-from .gameasciiart import AsciiArt
+
 
 class Player(AsciiArt):
     def __init__(self):

@@ -1,9 +1,9 @@
+from .clearterminal import ClearTerminal
 import gspread
 from google.oauth2.service_account import Credentials
 import colorama
 from colorama import Fore
 colorama.init(autoreset=True)
-from .clearterminal import ClearTerminal
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -17,6 +17,7 @@ GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SPREADSHEET_NAME = 'ultimate-hangman-leaderboard'
 SHEET = GSPREAD_CLIENT.open(SPREADSHEET_NAME)
 
+
 class Leaderboard(ClearTerminal):
     def __init__(self):
         super().__init__()
@@ -24,8 +25,7 @@ class Leaderboard(ClearTerminal):
     @staticmethod
     def append_to_worksheet(sheet, data):
         return SHEET.worksheet(sheet).append_row(data)
-    
-    
+
     def get_leaderboard_data(self, mode):
         """
         Gets leaderboard data from google sheets and displays the top 15 highest scores, also gives user the option

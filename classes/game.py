@@ -108,7 +108,7 @@ class Game(Player, Leaderboard, RandomWord, AsciiArt, ClearTerminal):
                 f"""Wrong guesses:\n{
                     self.guessed_letters +
                     self.guessed_words}\n""")
-            print(" ".join(self.display_word))
+            print(f"{" ".join(self.display_word)}\n")
             if self.points >= 25:
                 print(Fore.GREEN + f"Points: {self.points}\n")
             else:
@@ -292,25 +292,23 @@ class Game(Player, Leaderboard, RandomWord, AsciiArt, ClearTerminal):
         self.hints_remaining = 1
 
     def leaderboard_mode_options(self):
+        def handle_leaderboard_mode_options(worksheet):
+            self.selected_worksheet = worksheet
+            self.get_leaderboard_data(worksheet)
+            self.game_end_options()
         while True:
             user_choice = input(
                 Fore.CYAN +
                 "A - Easy mode leaderboard\nB - Intermediate mode leaderboard\nC - Hard mode leaderboard\nType 'a', 'b' or 'c' below\n>>> " +
                 Fore.RESET)
             if user_choice.lower() == "a":
-                self.selected_worksheet = "easy mode"
-                self.get_leaderboard_data("easy mode")
-                self.game_end_options()
+                handle_leaderboard_mode_options("easy mode")
                 break
             elif user_choice.lower() == "b":
-                self.selected_worksheet = "intermediate mode"
-                self.get_leaderboard_data("intermediate mode")
-                self.game_end_options()
+                handle_leaderboard_mode_options("intermediate mode")
                 break
             elif user_choice.lower() == "c":
-                self.selected_worksheet = "hard mode"
-                self.get_leaderboard_data("hard mode")
-                self.game_end_options()
+                handle_leaderboard_mode_options("hard mode")
                 break
             else:
                 print(Fore.YELLOW + "Please enter a valid option.")

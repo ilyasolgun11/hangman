@@ -5,7 +5,19 @@ colorama.init(autoreset=True)
 
 
 class Player(AsciiArt):
+    """
+    The Player class represents the players in the hangman game.
+
+    Attributes:
+    - ascii_art (AsciiArt): An instance of the AsciiArt class for displaying ASCII art.
+    - name_of_player (str): Stores the name of the player.
+    - location_of_player (str): Stores the location of the player.
+    """
+
     def __init__(self):
+        """
+        Initializes a new instance of the Player class.
+        """
         super().__init__()
         self.ascii_art = AsciiArt()
         self.name_of_player = ""

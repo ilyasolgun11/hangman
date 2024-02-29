@@ -25,3 +25,4 @@ class RandomWord:
             return random.choice(self.intermediate_mode)
         elif mode == "hard mode":
             return random.choice(self.hard_mode)
+

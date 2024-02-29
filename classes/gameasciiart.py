@@ -203,9 +203,7 @@ __|/\\/|______________
         self.how_to_play_guide = Fore.BLUE + """
  ______________________________________________________________
 |                                                              |
-|                                                              |
 |                    H O W   T O   P L A Y :                   |
-|                                                              |
 |    Game Rules:                                               |
 |    1 - You will have 7 attempts to guess the right word      |
 |    by guessing the word outright or guessing with letters.   |
@@ -229,7 +227,6 @@ __|/\\/|______________
 |    your points are more than 15 already.                     |
 |   - 100% points, you will lose all your points if you        |
 |    guess the word wrong.                                     |
-|                                                              |
 |______________________________________________________________|
 """
         self.game_modes_display = """

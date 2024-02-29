@@ -164,7 +164,7 @@ class Game(Player, Leaderboard, RandomWord, AsciiArt, ClearTerminal):
                     self.guessed_words}\n""")
             # Displays the self.hangman_word in underscores, till user reveals them by
             # guessing correctly 
-            print(f"{" ".join(self.display_word)}\n")
+            print(f"""{" ".join(self.display_word)}\n""")
             # Depending on how many points the user has, display them in either red or green
             if self.points >= 25:
                 print(Fore.GREEN + f"Points: {self.points}\n")

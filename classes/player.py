@@ -30,6 +30,7 @@ class Player(AsciiArt):
         print(self.ascii_art.hangman_logo)
         print(Fore.YELLOW + "Welcome! could you be the one to save this poor guy from a \ngruesome death? i hope so! fill in your name and location to\nsee the how to play guide.\n")
         while True:
+            # Try statement to avoid quitting game when player attempts keyboard interruption (ctrl + c) 
             try: 
                 self.name_of_player = input(
                     Fore.CYAN + "What is your first name?\n>>> ")
@@ -38,9 +39,10 @@ class Player(AsciiArt):
                 else:
                     break
             except KeyboardInterrupt:
-                print(Fore.YELLOW + "KeyboardInterrupt (ctrl + c) is not allowed during input. Please try again.\n")
+                print(Fore.YELLOW + "KeyboardInterrupt (ctrl + c) is not allowed during input. Please try again.")
 
         while True:
+            # Try statement to avoid quitting game when player attempts keyboard interruption (ctrl + c) 
             try:
                 self.location_of_player = input(
                     Fore.CYAN + "Which country/city are your from?\n>>> ")
@@ -50,4 +52,4 @@ class Player(AsciiArt):
                     self.how_to_play()
                     break
             except KeyboardInterrupt:
-                print(Fore.YELLOW + "KeyboardInterrupt (ctrl + c) is not allowed during input. Please try again.\n")
+                print(Fore.YELLOW + "KeyboardInterrupt (ctrl + c) is not allowed during input. Please try again.")

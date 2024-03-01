@@ -84,6 +84,7 @@ class Game(Player, Leaderboard, RandomWord, AsciiArt, ClearTerminal, GrabDefinit
             f"""Hello {
                 self.name_of_player}! We suggest you to read the how to play\nguide above before you begin.\n""")
         while True:
+            # Try statement to avoid quitting game when player attempts keyboard interruption (ctrl + c) 
             try:
                 player_option = input(
                     "A - Choose game mode\nB - Go back\nType 'a' or 'b' below\n>>> ")
@@ -98,7 +99,7 @@ class Game(Player, Leaderboard, RandomWord, AsciiArt, ClearTerminal, GrabDefinit
                 else:
                     print(Fore.YELLOW + "Please enter a valid option.")
             except KeyboardInterrupt:
-                print(Fore.YELLOW + "KeyboardInterrupt (ctrl + c) is not allowed during input. Please try again.\n")
+                print(Fore.YELLOW + "KeyboardInterrupt (ctrl + c) is not allowed during input. Please try again.")
 
     def choose_game_mode(self):
         """
@@ -120,6 +121,7 @@ class Game(Player, Leaderboard, RandomWord, AsciiArt, ClearTerminal, GrabDefinit
             self.selected_worksheet = worksheet
             self.play()
         while True:
+            # Try statement to avoid quitting game when player attempts keyboard interruption (ctrl + c) 
             try:
                 player_mode_option = input(
                     Fore.GREEN +
@@ -157,6 +159,7 @@ class Game(Player, Leaderboard, RandomWord, AsciiArt, ClearTerminal, GrabDefinit
         self.game_hint_message = Fore.GREEN + "Good luck!"
         # While the game is still going on, do the following
         while self.score > 0:
+            # Try statement to avoid quitting game when player attempts keyboard interruption (ctrl + c) 
             try:
                 # Clear the terminal
                 self.clear_terminal.clear_terminal()
@@ -369,44 +372,52 @@ class Game(Player, Leaderboard, RandomWord, AsciiArt, ClearTerminal, GrabDefinit
             self.get_leaderboard_data(worksheet)
             self.game_end_options()
         while True:
-            user_choice = input(
-                Fore.CYAN +
-                "A - Easy mode leaderboard\nB - Intermediate mode leaderboard\nC - Hard mode leaderboard\nType 'a', 'b' or 'c' below\n>>> " +
-                Fore.RESET)
-            if user_choice.lower() == "a":
-                handle_leaderboard_mode_options("easy mode")
-                break
-            elif user_choice.lower() == "b":
-                handle_leaderboard_mode_options("intermediate mode")
-                break
-            elif user_choice.lower() == "c":
-                handle_leaderboard_mode_options("hard mode")
-                break
-            else:
-                print(Fore.YELLOW + "Please enter a valid option.")
+            # Try statement to avoid quitting game when player attempts keyboard interruption (ctrl + c) 
+            try:
+                user_choice = input(
+                    Fore.CYAN +
+                    "A - Easy mode leaderboard\nB - Intermediate mode leaderboard\nC - Hard mode leaderboard\nType 'a', 'b' or 'c' below\n>>> " +
+                    Fore.RESET)
+                if user_choice.lower() == "a":
+                    handle_leaderboard_mode_options("easy mode")
+                    break
+                elif user_choice.lower() == "b":
+                    handle_leaderboard_mode_options("intermediate mode")
+                    break
+                elif user_choice.lower() == "c":
+                    handle_leaderboard_mode_options("hard mode")
+                    break
+                else:
+                    print(Fore.YELLOW + "Please enter a valid option.")
+            except KeyboardInterrupt:
+                print(Fore.YELLOW + "KeyboardInterrupt (ctrl + c) is not allowed during input. Please try again.")
 
     def game_end_options(self):
         """
         Gives player options on either play again, leaderboard's or exit game
         """
         while True:
-            print("")
-            user_choice = input(
-                "A - Play again\nB - Leaderboard's\nC - Exit game\nType 'a', 'b' or 'c' below\n>>>")
-            if user_choice.lower() == "a":
-                self.reset_game()
-                self.choose_game_mode()
-                break
-            elif user_choice.lower() == "b":
-                self.leaderboard_mode_options()
-                self.reset_game()
-                break
-            elif user_choice.lower() == "c":
-                self.clear_terminal.clear_terminal()
-                print(f"Thank you so much for playing {self.name_of_player}!")
-                self.collect_info()
-            else:
-                print(Fore.YELLOW + "Please enter a valid option.")
+            # Try statement to avoid quitting game when player attempts keyboard interruption (ctrl + c) 
+            try:
+                print("")
+                user_choice = input(
+                    "A - Play again\nB - Leaderboard's\nC - Exit game\nType 'a', 'b' or 'c' below\n>>>")
+                if user_choice.lower() == "a":
+                    self.reset_game()
+                    self.choose_game_mode()
+                    break
+                elif user_choice.lower() == "b":
+                    self.leaderboard_mode_options()
+                    self.reset_game()
+                    break
+                elif user_choice.lower() == "c":
+                    self.clear_terminal.clear_terminal()
+                    print(f"Thank you so much for playing {self.name_of_player}!")
+                    self.collect_info()
+                else:
+                    print(Fore.YELLOW + "Please enter a valid option.")
+            except KeyboardInterrupt:
+                print(Fore.YELLOW + "KeyboardInterrupt (ctrl + c) is not allowed during input. Please try again.")
 
     def game_end(self):
         """

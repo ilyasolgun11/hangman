@@ -246,3 +246,18 @@ When the player wins, they see the following:
 - A message saying the leaderboard has been updated
 - Displaying the hangman word
 - The points they accumulated during the game
+- Options to Play again, see leaderboards or exit the game
+
+![Game win screen](screenshots/ultimate-hangman-win-screen.png)
+
+### **_Game Lose Screen:_**
+
+When the player wins, they see the following:
+
+- ASCII art of the hangman being hanged with a message saying "YOU LOST!"
+- A message of "Better luck next time, my dude is dead!" appears
+- Displaying the hangman word
+- The points they accumulated during the game
+- Options to Play again, see leaderboards or exit the game
+
+![Game lose screen](screenshots/ultimate-hangman-lose-screen.png)

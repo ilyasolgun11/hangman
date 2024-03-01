@@ -107,14 +107,142 @@ From the welcome screen, the user sees:
 
 ![Welcome screen](screenshots/ultimate-hangman-welcome-screen.png)
 
-## **How to Play Guide**
+## **How to Play Guide:**
 
 From the how-to-play guide screen, the user sees:
 
 - ASCII art displaying the game rules and points system
 - A message suggesting the player read the how-to-play guide before playing
-- The following options
+- The following options:
   - Type A to choose the game mode
   - Type B to go back to the welcome screen to re-enter their name and location
 
 ![How to play guide screen](screenshots/ultimate-hangman-how-to-play-guide.png)
+
+## **Game Modes:**
+
+From the game modes screen, the user sees:
+
+- ASCII art displaying the game modes
+- The following options:
+  - Type A for Easy mode
+  - Type B for Intermediate mode
+  - Type C for Hard mode
+
+![Game modes screen](screenshots/ultimate-hangman-game-modes-screen.png)
+
+## **Game Screen**
+
+From the game screen, the user sees:
+
+- ASCII art displaying the build stage of the hangman
+- Game hint message section, this section's text displays various messages based on what the user does, for example:
+  - When the player first starts the game they see a "Good luck" message
+  - If the player does not enter either a letter or a word (for example: numbers or symbols..) they see "Your input is neither a letter nor a word, try again."
+  - If the player has guessed a word, but it is guessed already they see "You have guessed the word {user_input} already."
+  - If they guess a word but it's not the correct word they see "Wrong! {user_input} is not the word"
+  - If they guessed a letter, but it's guessed already they see "You have guessed the letter '{user_input}' already"
+  - If they guessed a letter and it's in the correct word they see "Correct! the letter '{user_input}' is in the word!"
+  - If they guessed a letter, but it's wrong they see "Wrong! the letter {user_input} is not in the word"
+- Wrong guesses section, this section displays a list of wrong guesses, by combining wrongly guessed letters and words
+- The hangman word but its hidden with underscores, once the player starts guessing correctly they will have visual conformation of their correct guess because it will be displayed
+- The amount of attempts the player has left, the number starts from 7
+- An input field prompting the player to either input a letter or a word
+
+![Game screen](screenshots/ultimate-hangman-game-screen.png)
+
+### **_Game screen 6 attempts left_**
+
+When the player has 6 attempts left, the following happens:
+
+- The hangman stage builds showing the rope
+- Wrong guesses get appended to the wrong guesses section
+- If the player had more than 15 points, guessed a letter and it was a wrong guess then 10 points will be deducted
+- If the player had any points, guessed a word and it was incorrect then 100% of the points will be deducted
+- The player will see that they have 6 attempts left
+
+![Game screen 6 attempts left](screenshots/ultimate-hangman-game-screen-6-attempts.png)
+
+### **_Game screen 5 attempts left_**
+
+When the player has 5 attempts left, the following happens:
+
+- The hangman stage builds revealing the head
+- Wrong guesses get appended to the wrong guesses section
+- If the player had more than 15 points, guessed a letter and it was a wrong guess then 10 points will be deducted
+- If the player had any points, guessed a word and it was incorrect then 100% of the points will be deducted
+- The player will see that they have 5 attempts left
+
+![Game screen 5 attempts left](screenshots/ultimate-hangman-game-screen-5-attempts.png)
+
+### **_Game screen 4 attempts left_**
+
+When the player has 4 attempts left, the following happens:
+
+- The hangman stage builds by opening one eye and revealing the body
+- The ASCII art will turn yellow
+- Wrong guesses get appended to the wrong guesses section
+- If the player had more than 15 points, guessed a letter and it was a wrong guess then 10 points will be deducted
+- If the player had any points, guessed a word and it was incorrect then 100% of the points will be deducted
+- The player will see that they have 4 attempts left
+
+![Game screen 4 attempts left](screenshots/ultimate-hangman-game-screen-4-attempts-left.png)
+
+### **_Game screen 3 attempts left_**
+
+When the player has 3 attempts left, the following happens:
+
+- The hangman stage builds by opening both eyes and revealing his right arm
+- Wrong guesses get appended to the wrong guesses section
+- If the player had more than 15 points, guessed a letter and it was a wrong guess then 10 points will be deducted
+- If the player had any points, guessed a word and it was incorrect then 100% of the points will be deducted
+- The player will see that they have 3 attempts left
+- The player gets to choose if they want to use the hint token, in doing so they will lose 25 points if they have more than 25 already, but they get to see the definition of the word, which gives them a great advantage. If they choose no they will be asked to use the hint token again till the game is lost
+
+![Game screen 3 attempts left](screenshots/ultimate-hangman-game-screen-3-attempts-left.png)
+
+#### **_The Player uses the hint token_**
+
+When the player has 3 or fewer attempts remaining and they use their hint token, the following happens:
+
+- They get a message saying the definition is being grabbed
+- The definition of the word is displayed. If the definition of the word requires the use of the word then it's replaced with (hidden correct word)
+- The player is then prompted to enter a guess
+
+![Game screen Hint token](screenshots/ultimate-hangman-game-screen-hint-token.png)
+
+### **_Game screen 2 attempts left_**
+
+When the player has 2 attempts left, the following happens:
+
+- The hangman stage builds further and reveals the left arm. Underneath the hangman, the text "TOO CLOSE FOR COMFORT" appears
+- Wrong guesses get appended to the wrong guesses section
+- If the player had more than 15 points, guessed a letter and it was a wrong guess then 10 points will be deducted
+- If the player had any points, guessed a word and it was incorrect then 100% of the points will be deducted
+- The player will see that they have 2 attempts left
+- The input prompting the user to input a letter or a word turns red and "Hurry!" is added
+
+![Game screen 2 attempts left](screenshots/ultimate-hangman-game-screen-2-attempts-left.png)
+
+### **_Game screen 1 attempt left_**
+
+When the player has 1 attempt left, the following happens:
+
+- The hangman stage builds further and reveals the right leg. Underneath the hangman, the text changes to "1 MORE AND HE'S A GONER"
+- Wrong guesses get appended to the wrong guesses section
+- If the player had more than 15 points, guessed a letter and it was a wrong guess then 10 points will be deducted
+- The player will see that they have 1 attempt left
+
+![Game screen 1 attempt left](screenshots/ultimate-hangman-game-screen-1-attempt-left.png)
+
+## **Game End Screens:**
+
+### **_Game Win Screen:_**
+
+When the player wins, they see the following:
+
+- ASCII art of the hangman getting freed from the rope and a "YOU WON !" message appears
+- Congratulations message of "Amazing job! You saved him!" appears
+- A message saying the leaderboard has been updated
+- Displaying the hangman word
+- The points they accumulated during the game

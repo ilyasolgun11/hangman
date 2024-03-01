@@ -8,6 +8,9 @@ load_dotenv(dotenv_path='env.py')
 api_key = os.getenv('API_KEY')
 
 class GrabDefinition:
+       """
+       Class representing the definition functionality of the hangman game
+       """
        
        @staticmethod
        def grab_word_definition(word):

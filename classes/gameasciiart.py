@@ -240,7 +240,7 @@ __|/\\/|______________
 |                                                              |
 |     """ + Fore.YELLOW + """Intermediate mode:""" + Fore.WHITE + """                                       |
 |     Consists of words with more than 5 or less than          |
-|     8 letters                                                |
+|     8 letters in length                                      |
 |                                                              |
 |     """ + Fore.RED + """Hard mode:""" + Fore.WHITE + """                                               |
 |     Consists of words more than 8 letters in length          |

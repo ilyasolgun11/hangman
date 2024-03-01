@@ -84,18 +84,21 @@ class Game(Player, Leaderboard, RandomWord, AsciiArt, ClearTerminal, GrabDefinit
             f"""Hello {
                 self.name_of_player}! We suggest you to read the how to play\nguide above before you begin.\n""")
         while True:
-            player_option = input(
-                "A - Choose game mode\nB - Go back\nType 'a' or 'b' below\n>>> ")
-            if player_option.lower() == "a":
-                # Navigates player to game mode screen
-                self.choose_game_mode()
-                break
-            elif player_option.lower() == "b":
-                # Navigates player back to welcome screen
-                self.collect_info()
-                break
-            else:
-                print(Fore.YELLOW + "Please enter a valid option.")
+            try:
+                player_option = input(
+                    "A - Choose game mode\nB - Go back\nType 'a' or 'b' below\n>>> ")
+                if player_option.lower() == "a":
+                    # Navigates player to game mode screen
+                    self.choose_game_mode()
+                    break
+                elif player_option.lower() == "b":
+                    # Navigates player back to welcome screen
+                    self.collect_info()
+                    break
+                else:
+                    print(Fore.YELLOW + "Please enter a valid option.")
+            except KeyboardInterrupt:
+                print(Fore.YELLOW + "KeyboardInterrupt (ctrl + c) is not allowed during input. Please try again.\n")
 
     def choose_game_mode(self):
         """
@@ -117,26 +120,29 @@ class Game(Player, Leaderboard, RandomWord, AsciiArt, ClearTerminal, GrabDefinit
             self.selected_worksheet = worksheet
             self.play()
         while True:
-            player_mode_option = input(
-                Fore.GREEN +
-                """A - Easy mode\n""" +
-                Fore.YELLOW +
-                """B - Intermediate mode\n""" +
-                Fore.RED +
-                """C - Hard mode\n""" +
-                Fore.WHITE +
-                """Type 'a', 'b' or 'c' below\n>>> """)
-            if player_mode_option.lower() == "a":
-                handle_game_mode("easy mode", "easy mode")
-                break
-            elif player_mode_option.lower() == "b":
-                handle_game_mode("intermediate mode", "intermediate mode")
-                break
-            elif player_mode_option.lower() == "c":
-                handle_game_mode("hard mode", "hard mode")
-                break
-            else:
-                print(Fore.YELLOW + "Please enter a valid option.")
+            try:
+                player_mode_option = input(
+                    Fore.GREEN +
+                    """A - Easy mode\n""" +
+                    Fore.YELLOW +
+                    """B - Intermediate mode\n""" +
+                    Fore.RED +
+                    """C - Hard mode\n""" +
+                    Fore.WHITE +
+                    """Type 'a', 'b' or 'c' below\n>>> """)
+                if player_mode_option.lower() == "a":
+                    handle_game_mode("easy mode", "easy mode")
+                    break
+                elif player_mode_option.lower() == "b":
+                    handle_game_mode("intermediate mode", "intermediate mode")
+                    break
+                elif player_mode_option.lower() == "c":
+                    handle_game_mode("hard mode", "hard mode")
+                    break
+                else:
+                    print(Fore.YELLOW + "Please enter a valid option.")
+            except KeyboardInterrupt:
+                print(Fore.YELLOW + "KeyboardInterrupt (ctrl + c) is not allowed during input. Please try again.")
 
     def play(self):
         """
@@ -151,105 +157,108 @@ class Game(Player, Leaderboard, RandomWord, AsciiArt, ClearTerminal, GrabDefinit
         self.game_hint_message = Fore.GREEN + "Good luck!"
         # While the game is still going on, do the following
         while self.score > 0:
-            # Clear the terminal
-            self.clear_terminal.clear_terminal()
-            # Display which stage the player is on
-            print(self.ascii_art.hangman_stages[self.stages])
-            # Display hint message to inform player
-            print(f"{self.game_hint_message}\n")
-            # Displays the wrongly guessed letters and words
-            print(
-                Fore.RED +
-                f"""Wrong guesses:\n{
-                    self.guessed_letters +
-                    self.guessed_words}\n""")
-            # Displays the self.hangman_word in underscores, till user reveals them by
-            # guessing correctly 
-            print(f"""{" ".join(self.display_word)}\n""")
-            # Depending on how many points the user has, display them in either red or green
-            if self.points >= 25:
-                print(Fore.GREEN + f"Points: {self.points}\n")
-            else:
-                print(Fore.RED + f"Points: {self.points}\n")
-            # Use line for separation
-            print("---------------------------------------------------")
-            # Display the amount of attempts the user has, and if they have less than 3, display
-            # it in yellow 
-            if self.score < 3:
-                print(Fore.YELLOW + f"You have {self.score} attempt left")
-            else:
-                print(Fore.GREEN + f"You have {self.score} attempts left")
-            # If the players score is less than 4 and they have not used the hint token
-            # then do the following  
-            if self.hints_remaining == 1 and self.score < 4:
-                while True:
-                    print(Fore.CYAN + "\nDo you want to use your hint token?")
-                    user_hint_option = input(
-                        Fore.GREEN +
-                        """A - Yes i want to use my hint token\n""" +
-                        Fore.RED +
-                        """B - No i got this\n""" +
-                        Fore.WHITE +
-                        """Type 'a' or 'b' below\n>>> """)
-                    if user_hint_option.lower() == "a":
-                        # Display to player that the definition is being grabbed, also if the points
-                        # of the player is more than 30, deduct 25 points 
-                        print(Fore.YELLOW + "Grabbing definition...")
-                        self.hints_remaining -= 1
-                        if self.points > 30:
+            try:
+                # Clear the terminal
+                self.clear_terminal.clear_terminal()
+                # Display which stage the player is on
+                print(self.ascii_art.hangman_stages[self.stages])
+                # Display hint message to inform player
+                print(f"{self.game_hint_message}\n")
+                # Displays the wrongly guessed letters and words
+                print(
+                    Fore.RED +
+                    f"""Wrong guesses:\n{
+                        self.guessed_letters +
+                        self.guessed_words}\n""")
+                # Displays the self.hangman_word in underscores, till user reveals them by
+                # guessing correctly 
+                print(f"""{" ".join(self.display_word)}\n""")
+                # Depending on how many points the user has, display them in either red or green
+                if self.points >= 25:
+                    print(Fore.GREEN + f"Points: {self.points}\n")
+                else:
+                    print(Fore.RED + f"Points: {self.points}\n")
+                # Use line for separation
+                print("---------------------------------------------------")
+                # Display the amount of attempts the user has, and if they have less than 3, display
+                # it in yellow 
+                if self.score < 3:
+                    print(Fore.YELLOW + f"You have {self.score} attempt left")
+                else:
+                    print(Fore.GREEN + f"You have {self.score} attempts left")
+                # If the players score is less than 4 and they have not used the hint token
+                # then do the following  
+                if self.hints_remaining == 1 and self.score < 4:
+                    while True:
+                        print(Fore.CYAN + "\nDo you want to use your hint token?")
+                        user_hint_option = input(
+                            Fore.GREEN +
+                            """A - Yes i want to use my hint token\n""" +
+                            Fore.RED +
+                            """B - No i got this\n""" +
+                            Fore.WHITE +
+                            """Type 'a' or 'b' below\n>>> """)
+                        if user_hint_option.lower() == "a":
+                            # Display to player that the definition is being grabbed, also if the points
+                            # of the player is more than 30, deduct 25 points 
+                            print(Fore.YELLOW + "Grabbing definition...")
+                            self.hints_remaining -= 1
+                            if self.points > 30:
+                                pass
+                            else:
+                                self.points -= 25
+                            self.grab_word_definition(self.hangman_word)
+                            break
+                        elif user_hint_option.lower() == "b":
                             pass
+                            break
                         else:
-                            self.points -= 25
-                        self.grab_word_definition(self.hangman_word)
-                        break
-                    elif user_hint_option.lower() == "b":
-                        pass
-                        break
+                            # If the player is neither a or b, display that to player
+                            print(Fore.YELLOW + "Please enter either 'a' or 'b'")
+                    # Display different input message depending on the player score in the case of
+                    # player not having used their hint token yet
+                    user_input = input(
+                        "Guess a letter or a word: \n>>> ").lower() if self.score > 2 else input(
+                        Fore.RED + "Guess a letter or a word, Hurry!: \n>>> ").lower()
+                else:
+                    # Display different input message depending on the player score in the case of
+                    # player having used their hint token already
+                    user_input = input(
+                        "Guess a letter or a word: \n>>> ").lower() if self.score > 2 else input(
+                        Fore.RED + "Guess a letter or a word, Hurry!: \n>>> ").lower()
+                # If the players input is a letter, pass that input to the guess_letter() otherwise
+                # pass to guess_word()
+                if user_input.isalpha():
+                    if len(user_input) == 1:
+                        self.guess_letter(user_input)
                     else:
-                        # If the player is neither a or b, display that to player
-                        print(Fore.YELLOW + "Please enter either 'a' or 'b'")
-                # Display different input message depending on the player score in the case of
-                # player not having used their hint token yet
-                user_input = input(
-                    "Guess a letter or a word: \n>>> ").lower() if self.score > 2 else input(
-                    Fore.RED + "Guess a letter or a word, Hurry!: \n>>> ").lower()
-            else:
-                # Display different input message depending on the player score in the case of
-                # player having used their hint token already
-                user_input = input(
-                    "Guess a letter or a word: \n>>> ").lower() if self.score > 2 else input(
-                    Fore.RED + "Guess a letter or a word, Hurry!: \n>>> ").lower()
-            # If the players input is a letter, pass that input to the guess_letter() otherwise
-            # pass to guess_word()
-            if user_input.isalpha():
-                if len(user_input) == 1:
-                    self.guess_letter(user_input)
+                        self.guess_word(user_input)
                 else:
-                    self.guess_word(user_input)
-            else:
-                # If player input is neither a letter or a word, display message
-                self.game_hint_message = Fore.RED + \
-                    "Your input is neither a letter or a word, try again."
-            # If player score is 0, end the game
-            if self.score == 0:
-                self.game_end()
-            # If the player wins, pass player data to google sheets
-            if self.player_won:
-                if self.hints_remaining == 1:
-                    hints_used = "No"
-                else:
-                    hints_used = "Yes"
-                end_time = time.time()
-                elapsed_time = end_time - self.start_time
-                data_to_add = [self.name_of_player,
-                               self.points,
-                               datetime.now().strftime('%d/%m/%Y'),
-                               self.location_of_player,
-                               f"{elapsed_time:.2f} seconds",
-                               self.hangman_word,
-                               hints_used]
-                self.append_to_worksheet(self.selected_worksheet, data_to_add)
-                self.game_end()
+                    # If player input is neither a letter or a word, display message
+                    self.game_hint_message = Fore.RED + \
+                        "Your input is neither a letter or a word, try again."
+                # If player score is 0, end the game
+                if self.score == 0:
+                    self.game_end()
+                # If the player wins, pass player data to google sheets
+                if self.player_won:
+                    if self.hints_remaining == 1:
+                        hints_used = "No"
+                    else:
+                        hints_used = "Yes"
+                    end_time = time.time()
+                    elapsed_time = end_time - self.start_time
+                    data_to_add = [self.name_of_player,
+                                self.points,
+                                datetime.now().strftime('%d/%m/%Y'),
+                                self.location_of_player,
+                                f"{elapsed_time:.2f} seconds",
+                                self.hangman_word,
+                                hints_used]
+                    self.append_to_worksheet(self.selected_worksheet, data_to_add)
+                    self.game_end()
+            except KeyboardInterrupt:
+                continue
 
     def guess_word(self, user_input):
         """

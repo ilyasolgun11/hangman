@@ -38,7 +38,7 @@ class Player(AsciiArt):
                 else:
                     break
             except KeyboardInterrupt:
-                print(Fore.YELLOW + "KeyboardInterrupt (ctrl + c) is not allowed during input. Please try again.")
+                print(Fore.YELLOW + "KeyboardInterrupt (ctrl + c) is not allowed during input. Please try again.\n")
 
         while True:
             try:
@@ -50,4 +50,4 @@ class Player(AsciiArt):
                     self.how_to_play()
                     break
             except KeyboardInterrupt:
-                print(Fore.YELLOW + "KeyboardInterrupt (ctrl + c) is not allowed during input. Please try again.")
+                print(Fore.YELLOW + "KeyboardInterrupt (ctrl + c) is not allowed during input. Please try again.\n")

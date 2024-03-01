@@ -8,7 +8,7 @@ The game's challenging nature alongside with the leaderboard system creates a co
 
 [Click here to go to the deployed project](https://ultimate-hangman-063344ed324f.herokuapp.com/)
 
-![Screenshot of the games welcome screen](docs/screenshots/ultimate-hangman-deployed.png)
+![Screenshot of the game welcome screen](docs/screenshots/ultimate-hangman-welcome-screen.png)
 
 ## **Table of Contents**
 
@@ -92,3 +92,29 @@ To achieve the above, the site will:
 To understand the steps required to program the game, I created the below flowchart using [lucid charts](https://www.lucidchart.com/).
 
 ![Game Logic Flowchart](docs/screenshots/hangman-logic-flowchart.png)
+
+# **Features**
+
+## **Welcome Screen:**
+
+From the welcome screen, the user sees:
+
+- The logo of the ultimate hangman game
+- The welcome message
+- The following inputs:
+  - First name
+  - Location (Country or City)
+
+![Welcome screen](docs/screenshots/ultimate-hangman-welcome-screen.png)
+
+## **How to Play Guide**
+
+From the how-to-play guide screen, the user sees:
+
+- ASCII art displaying the game rules and points system
+- A message suggesting the player read the how-to-play guide before playing
+- The following options
+  - Type A to choose the game mode
+  - Type B to go back to the welcome screen to re-enter their name and location
+
+![How to play guide screen](docs/screenshots/ultimate-hangman-how-to-play-guide.png)

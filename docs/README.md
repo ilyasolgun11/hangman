@@ -173,7 +173,7 @@ When the player has 5 attempts left, the following happens:
 - If the player had any points, guessed a word and it was incorrect then 100% of the points will be deducted
 - The player will see that they have 5 attempts left
 
-![Game screen 5 attempts left](screenshots/ultimate-hangman-game-screen-5-attempts.png)
+![Game screen 5 attempts left](screenshots/ultimate-hangman-game-screen-5-attempts-left.png)
 
 ### **_Game screen 4 attempts left_**
 

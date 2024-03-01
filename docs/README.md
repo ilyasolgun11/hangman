@@ -252,7 +252,7 @@ When the player wins, they see the following:
 
 ### **_Game Lose Screen:_**
 
-When the player wins, they see the following:
+When the player loses, they see the following:
 
 - ASCII art of the hangman being hanged with a message saying "YOU LOST!"
 - A message of "Better luck next time, my dude is dead!" appears

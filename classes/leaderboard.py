@@ -52,7 +52,7 @@ class Leaderboard(ClearTerminal):
             leaderboard_header_mode = "H A R D    M O D E"
         elif mode == "country mode":
             leaderboard_header_mode = "C O U N T R Y   M O D E"
-        self.clear_terminal.clear_terminal()
+        self.clear_terminal()
         print(
             Fore.YELLOW +
             "--------------------------------------------------------------------------------")

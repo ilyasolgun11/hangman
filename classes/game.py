@@ -1,4 +1,5 @@
 import time
+import sys
 from datetime import datetime
 from .player import Player
 from .leaderboard import Leaderboard
@@ -21,11 +22,7 @@ class Game(Player, Leaderboard, RandomWord, AsciiArt, ClearTerminal, HintToken):
     - start_time (float): The start time of the game.
     - player_won (bool): Indicates whether the player won the game.
     - selected_worksheet (str): The selected game mode worksheet.
-    - random_word_instance (RandomWord): An instance of the RandomWord class 
-      for generating hangman words.
     - ascii_art (AsciiArt): An instance of the AsciiArt class for displaying ASCII art.
-    - clear_terminal (ClearTerminal): An instance of the ClearTerminal 
-      class for clearing the terminal.
     - hangman_word (str): The current hangman word to be guessed.
     - display_word (str): The partially revealed word based on user guesses.
     - stages (int): The number of stages of the hangman (visual representation).
@@ -58,9 +55,8 @@ class Game(Player, Leaderboard, RandomWord, AsciiArt, ClearTerminal, HintToken):
         self.start_time = None
         self.player_won = False
         self.selected_worksheet = "easy mode"
-        self.random_word_instance = RandomWord()
         self.ascii_art = AsciiArt()
-        self.hangman_word = self.random_word_instance.game_modes("hard mode")
+        self.hangman_word = self.game_modes("hard mode")
         self.display_word = "_" * \
             len(self.hangman_word)
         self.stages = 0
@@ -114,7 +110,7 @@ class Game(Player, Leaderboard, RandomWord, AsciiArt, ClearTerminal, HintToken):
         # Sets self.hangman_word to a randomized word gathered from the RandomWord class 
         # Also sets the display word, but multiplying "_" with the letters in self.hangman_word 
         def handle_game_mode(mode, worksheet):
-            self.hangman_word = self.random_word_instance.game_modes(
+            self.hangman_word = self.game_modes(
                     mode)
             self.display_word = "_" * \
                     len(self.hangman_word)
@@ -157,7 +153,6 @@ class Game(Player, Leaderboard, RandomWord, AsciiArt, ClearTerminal, HintToken):
         the corresponding functions guess_word() or guess_letter(). Also if user selects the hint option
         it calls the api to get the definition of the hangman word.
         """
-        self.clear_terminal()
         # Starts timer, this timer ends when player either wins or loses, this is later used 
         # to display the time it took for the player to win in the Leaderboard section 
         self.start_time = time.time()
@@ -165,6 +160,7 @@ class Game(Player, Leaderboard, RandomWord, AsciiArt, ClearTerminal, HintToken):
         self.game_hint_message = Fore.GREEN + "Good luck!"
         # While the game is still going on, do the following
         while self.score > 0:
+            self.clear_terminal()
             # Try statement to avoid quitting game when player attempts keyboard interruption (ctrl + c) 
             try:
                 # Display which stage the player is on
@@ -342,9 +338,9 @@ class Game(Player, Leaderboard, RandomWord, AsciiArt, ClearTerminal, HintToken):
         Resets only the class attributes that need to be reset, leaves the user name and location the same
         """
         self.player_won = False
-        self.hangman_word = self.random_word_instance.game_modes("easy mode")
+        self.hangman_word = self.game_modes("easy mode")
         self.display_word = "_" * \
-            len(self.random_word_instance.game_modes("easy mode"))
+            len(self.game_modes("easy mode"))
         self.stages = 0
         self.score = 7
         self.points = 0
@@ -404,9 +400,9 @@ class Game(Player, Leaderboard, RandomWord, AsciiArt, ClearTerminal, HintToken):
                     self.reset_game()
                     break
                 elif user_choice.lower() == "c":
-                    self.clear_terminal.clear_terminal()
+                    self.clear_terminal()
                     print(f"Thank you so much for playing {self.name_of_player}!")
-                    self.collect_info()
+                    sys.exit()
                 else:
                     print(Fore.YELLOW + "Please enter a valid option.")
             except KeyboardInterrupt:

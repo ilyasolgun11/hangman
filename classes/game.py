@@ -157,7 +157,7 @@ class Game(Player, Leaderboard, RandomWord, AsciiArt, ClearTerminal, HintToken):
         # to display the time it took for the player to win in the Leaderboard section 
         self.start_time = time.time()
         # This message changes depending on what the user does during the game 
-        self.game_hint_message = Fore.GREEN + "Good luck!"
+        self.game_hint_message = Fore.GREEN + f"This word is {len(self.hangman_word)} letters in length, good luck!"
         # While the game is still going on, do the following
         while self.score > 0:
             self.clear_terminal()
@@ -191,9 +191,9 @@ class Game(Player, Leaderboard, RandomWord, AsciiArt, ClearTerminal, HintToken):
                     print(Fore.GREEN + f"You have {self.score} attempts left") 
                 # Display a call to action, if the user wants to use their hint they have to type 'hint'
                 if self.hints_remaining != 0 and self.selected_worksheet != "country mode":
-                    print(Fore.MAGENTA + "Hint token" + Fore.RESET + ": type 'hint' to get the words definition")
+                    print(Fore.CYAN + "Hint token" + Fore.RESET + ": type 'hint' to get the words definition")
                 elif self.hints_remaining != 0 and self.selected_worksheet == "country mode":
-                   print(Fore.MAGENTA + "Hint token" + Fore.RESET + ": type 'hint' to get country information")
+                   print(Fore.CYAN + "Hint token" + Fore.RESET + ": type 'hint' to get country information")
                 else:
                     pass
                 user_input = input(

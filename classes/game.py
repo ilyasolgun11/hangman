@@ -60,7 +60,6 @@ class Game(Player, Leaderboard, RandomWord, AsciiArt, ClearTerminal, HintToken):
         self.selected_worksheet = "easy mode"
         self.random_word_instance = RandomWord()
         self.ascii_art = AsciiArt()
-        self.clear_terminal = ClearTerminal()
         self.hangman_word = self.random_word_instance.game_modes("hard mode")
         self.display_word = "_" * \
             len(self.hangman_word)
@@ -78,7 +77,7 @@ class Game(Player, Leaderboard, RandomWord, AsciiArt, ClearTerminal, HintToken):
         Provide instructions on how to play the game and informs player of the points system.
         """
         # Clears the terminal 
-        self.clear_terminal.clear_terminal()
+        self.clear_terminal()
         print(self.ascii_art.how_to_play_guide)
         print(
             Fore.YELLOW +
@@ -110,7 +109,7 @@ class Game(Player, Leaderboard, RandomWord, AsciiArt, ClearTerminal, HintToken):
         and also pick one randomly
         """
         # Clears the terminal 
-        self.clear_terminal.clear_terminal()
+        self.clear_terminal()
         print(self.ascii_art.game_modes_display)
         # Sets self.hangman_word to a randomized word gathered from the RandomWord class 
         # Also sets the display word, but multiplying "_" with the letters in self.hangman_word 
@@ -158,6 +157,7 @@ class Game(Player, Leaderboard, RandomWord, AsciiArt, ClearTerminal, HintToken):
         the corresponding functions guess_word() or guess_letter(). Also if user selects the hint option
         it calls the api to get the definition of the hangman word.
         """
+        self.clear_terminal()
         # Starts timer, this timer ends when player either wins or loses, this is later used 
         # to display the time it took for the player to win in the Leaderboard section 
         self.start_time = time.time()
@@ -417,7 +417,7 @@ class Game(Player, Leaderboard, RandomWord, AsciiArt, ClearTerminal, HintToken):
         Displays win or lose screen depending if the user won or not, also asks the user if they
         want to play again, check leaderboard or exit the game
         """
-        self.clear_terminal.clear_terminal()
+        self.clear_terminal()
         if self.player_won:
             print(self.ascii_art.win_logo_hangman)
             print(Fore.GREEN + f"Amazing job! you saved him!\n")

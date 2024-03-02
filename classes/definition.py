@@ -11,7 +11,27 @@ class GrabDefinition:
        """
        Class representing the definition functionality of the hangman game
        """
-       
+       @staticmethod
+       def break_lines(text, max_length=90):
+        # Logic to limit the length of passed text, when the limit is passed then break
+        # to a new line
+        words = text.split()
+        lines = []
+        current_line = []
+
+        for word in words:
+            if len(' '.join(current_line + [word])) <= max_length or not current_line:
+                current_line.append(word)
+            else:
+                lines.append(' '.join(current_line))
+                current_line = [word]
+
+        if current_line:
+            lines.append(' '.join(current_line))
+
+        for line in lines:
+            print(Fore.CYAN + line + Fore.RESET)
+
        @staticmethod
        def grab_word_definition(word):
             print(Fore.YELLOW + "Grabbing definition...")
@@ -33,12 +53,8 @@ class GrabDefinition:
                         definition = meanings[0]["values"][0]
                         # Display definition to player and hide the word by replacing 
                         # it with "(hidden correct word)"
-                        print(
-                            Fore.CYAN +
-                            f"""Definition of word: {
-                                definition.replace(
-                                    word,
-                                    '(hidden correct word)')}""" + Fore.RESET)
+                        print(Fore.CYAN + "Definition of word:")
+                        GrabDefinition.break_lines(definition.replace(word, '(hidden correct word)') + Fore.RESET)
                     else:
                         # If no definition is found, let the player know
                         print("No meanings found.")

@@ -36,6 +36,8 @@ class Player(AsciiArt):
                     Fore.CYAN + "What is your first name?\n>>> ")
                 if len(self.name_of_player) == 0:
                     print(Fore.YELLOW + "Please enter your name..")
+                elif self.name_of_player.isdigit():
+                    print(Fore.YELLOW + "Your name does not have numbers in it... right??")
                 else:
                     break
             except KeyboardInterrupt:
@@ -47,7 +49,9 @@ class Player(AsciiArt):
                 self.location_of_player = input(
                     Fore.CYAN + "Which country/city are your from?\n>>> ")
                 if len(self.location_of_player) == 0:
-                    print(Fore.YELLOW + "Please enter your name..")
+                    print(Fore.YELLOW + "Please enter your location..")
+                elif self.location_of_player.isdigit():
+                    print(Fore.YELLOW + "Please do not use numbers..")
                 else:
                     self.how_to_play()
                     break

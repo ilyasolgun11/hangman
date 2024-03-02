@@ -58,7 +58,7 @@ class Leaderboard(ClearTerminal):
             "--------------------------------------------------------------------------------")
         print(
             Fore.YELLOW +
-            f"  T O P   1 5   L E A D E R B O A R D  |  {leaderboard_header_mode}")
+            f"  T O P   2 0   L E A D E R B O A R D  |  {leaderboard_header_mode}")
         print(
             Fore.YELLOW +
             "--------------------------------------------------------------------------------\n")
@@ -68,7 +68,7 @@ class Leaderboard(ClearTerminal):
         # Using the data from worksheet.get_all_records(), the data is displayed with designated column widths to separate
         # columns evenly without overflow
         for position, player_data in enumerate(
-                sorted_leaderboard[:15], start=1):
+                sorted_leaderboard[:20], start=1):
             position_str = str(position).ljust(10)
             name_str = player_data['Name'].ljust(10).capitalize()
             points_str = str(player_data['Points']).ljust(7)

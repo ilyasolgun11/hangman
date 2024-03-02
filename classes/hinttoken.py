@@ -1,0 +1,15 @@
+import colorama
+from colorama import Fore
+colorama.init(autoreset=True)
+from .definition import GrabDefinition
+
+class HintToken(GrabDefinition):
+    def __init__(self):
+        super().__init__()
+
+    def use_hint_token(self, word, worksheet):
+            if worksheet != "country mode":
+                self.grab_word_definition(word)
+            else:
+                self.grab_country_data(word)
+      

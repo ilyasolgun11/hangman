@@ -6,7 +6,6 @@ from .leaderboard import Leaderboard
 from .words import RandomWord
 from .gameasciiart import AsciiArt
 from .clearterminal import ClearTerminal
-from .definition import GrabDefinition
 from .hinttoken import HintToken
 import colorama
 from colorama import Fore
@@ -67,6 +66,7 @@ class Game(Player, Leaderboard, RandomWord, AsciiArt, ClearTerminal, HintToken):
         self.guessed_words = []
         self.guessed_correct_letters = []
         self.game_hint_message = ""
+        self.times_player_won = 0
 
     def how_to_play(self):
         """
@@ -401,7 +401,7 @@ class Game(Player, Leaderboard, RandomWord, AsciiArt, ClearTerminal, HintToken):
                     break
                 elif user_choice.lower() == "c":
                     self.clear_terminal()
-                    print(f"Thank you so much for playing {self.name_of_player}!")
+                    self.ascii_art.thank_user(self.name_of_player, self.times_player_won, self.location_of_player)
                     sys.exit()
                 else:
                     print(Fore.YELLOW + "Please enter a valid option.")
@@ -414,6 +414,7 @@ class Game(Player, Leaderboard, RandomWord, AsciiArt, ClearTerminal, HintToken):
         want to play again, check leaderboard or exit the game
         """
         self.clear_terminal()
+        self.times_player_won += 1
         if self.player_won:
             print(self.ascii_art.win_logo_hangman)
             print(Fore.GREEN + f"Amazing job! you saved him!\n")

@@ -264,7 +264,7 @@ class Game(Player, Leaderboard, RandomWord, AsciiArt, ClearTerminal, HintToken):
                 # If the player guessed correctly before revealing the
                 # first half of the word, award 750 points, otherwise 100 points
                 if len(self.guessed_correct_letters) < round(
-                        (len(self.hangman_word) / 2)):
+                        (len(self.hangman_word) / 2) + 1):
                     self.points += 750
                     self.player_won = True
                 else:

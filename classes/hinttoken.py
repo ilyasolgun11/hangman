@@ -4,6 +4,9 @@ colorama.init(autoreset=True)
 from .definition import GrabDefinition
 
 class HintToken(GrabDefinition):
+    """
+    Class representing the hint token functionality of the hangman game
+    """
     def __init__(self):
         super().__init__()
 

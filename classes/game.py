@@ -130,8 +130,10 @@ class Game(Player, Leaderboard, RandomWord, AsciiArt, ClearTerminal, GrabDefinit
                     """B - Intermediate mode\n""" +
                     Fore.RED +
                     """C - Hard mode\n""" +
+                    Fore.CYAN + 
+                    """D - Country mode\n""" +
                     Fore.WHITE +
-                    """Type 'a', 'b' or 'c' below\n>>> """)
+                    """Type 'a', 'b', 'c' or 'd' below\n>>> """)
                 if player_mode_option.lower() == "a":
                     handle_game_mode("easy mode", "easy mode")
                     break
@@ -140,6 +142,9 @@ class Game(Player, Leaderboard, RandomWord, AsciiArt, ClearTerminal, GrabDefinit
                     break
                 elif player_mode_option.lower() == "c":
                     handle_game_mode("hard mode", "hard mode")
+                    break
+                elif player_mode_option.lower() == "d":
+                    handle_game_mode("country mode", "country mode")
                     break
                 else:
                     print(Fore.YELLOW + "Please enter a valid option.")
@@ -202,15 +207,17 @@ class Game(Player, Leaderboard, RandomWord, AsciiArt, ClearTerminal, GrabDefinit
                             Fore.WHITE +
                             """Type 'a' or 'b' below\n>>> """)
                         if user_hint_option.lower() == "a":
-                            # Display to player that the definition is being grabbed, also if the points
-                            # of the player is more than 30, deduct 25 points 
-                            print(Fore.YELLOW + "Grabbing definition...")
+                            # If the points of the player is
+                            # more than 30, deduct 25 points 
                             self.hints_remaining -= 1
                             if self.points > 30:
                                 pass
                             else:
                                 self.points -= 25
-                            self.grab_word_definition(self.hangman_word)
+                            if self.selected_worksheet != "country mode":
+                                self.grab_word_definition(self.hangman_word)
+                            else:
+                                self.grab_country_data(self.hangman_word)
                             break
                         elif user_hint_option.lower() == "b":
                             pass
@@ -376,8 +383,7 @@ class Game(Player, Leaderboard, RandomWord, AsciiArt, ClearTerminal, GrabDefinit
             try:
                 user_choice = input(
                     Fore.CYAN +
-                    "A - Easy mode leaderboard\nB - Intermediate mode leaderboard\nC - Hard mode leaderboard\nType 'a', 'b' or 'c' below\n>>> " +
-                    Fore.RESET)
+                    "\nA - Easy mode leaderboard\nB - Intermediate mode leaderboard\nC - Hard mode leaderboard\nD - Country mode leaderboard\n" + Fore.RESET + "Type 'a', 'b' or 'c' below\n>>> ")
                 if user_choice.lower() == "a":
                     handle_leaderboard_mode_options("easy mode")
                     break
@@ -386,6 +392,9 @@ class Game(Player, Leaderboard, RandomWord, AsciiArt, ClearTerminal, GrabDefinit
                     break
                 elif user_choice.lower() == "c":
                     handle_leaderboard_mode_options("hard mode")
+                    break
+                elif user_choice.lower() == "d":
+                    handle_leaderboard_mode_options("country mode")
                     break
                 else:
                     print(Fore.YELLOW + "Please enter a valid option.")
@@ -399,9 +408,9 @@ class Game(Player, Leaderboard, RandomWord, AsciiArt, ClearTerminal, GrabDefinit
         while True:
             # Try statement to avoid quitting game when player attempts keyboard interruption (ctrl + c) 
             try:
-                print("")
+                
                 user_choice = input(
-                    "A - Play again\nB - Leaderboard's\nC - Exit game\nType 'a', 'b' or 'c' below\n>>>")
+                    "\nA - Play again\nB - Leaderboard's\nC - Exit game\nType 'a', 'b' or 'c' below\n>>>")
                 if user_choice.lower() == "a":
                     self.reset_game()
                     self.choose_game_mode()

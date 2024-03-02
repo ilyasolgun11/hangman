@@ -245,6 +245,9 @@ __|/\\/|______________
 |     """ + Fore.RED + """Hard mode:""" + Fore.WHITE + """                                               |
 |     Consists of words more than 8 letters in length          |
 |                                                              |
+|     """ + Fore.CYAN + """Country mode:""" + Fore.WHITE + """                                            |      
+|     Consists of 195 countries with diverse name lengths      |
+|                                                              |
 |______________________________________________________________|
 
 """

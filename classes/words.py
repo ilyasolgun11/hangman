@@ -14,7 +14,24 @@ class RandomWord:
             "camera", "capital", "careful", "certain", "champion", "children", "chocolate", "clothing", "colorful", "comfortable", "complete", "continue", "contribute", "convention", "courageous", "curious", "dangerous",
             "daughter", "decide", "delicious", "describe", "design", "different", "direction", "discover", "discussion", "education",
             "electric", "elephant", "emergency", "enormous", "entertain", "environment", "everywhere", "excellent", "exercise", "experience",
-            "explain", "familiar", "favorite", "February", "fireplace", "football", "forever", "forget", 'elephant', 'computer', 'symphony', 'template', 'essential', 'permanent', 'knowledge', 'algorithm', 'beautiful', 'attention', 'magnificent', 'celebrate', 'challenge', 'experience', 'community', 'incredible', 'adventure', 'wonderful', 'existence', 'efficiency', 'definitely', 'discipline', 'restaurant', 'boulevard', 'expensive', 'enthusiasm', 'principle', 'frustrate', 'investment', 'integrate', 'recognize', 'individual', 'curriculum', 'throughout', 'technology', 'productive', 'happiness', 'restaurant', 'opportunity', 'education', 'contribute', 'celebration', 'achievement', 'consequence', 'creativity', 'innovation', 'tremendous', 'adaptation', 'imagination', 'experiment', 'perseverance', 'courageous', 'enthusiastic', 'exploration', 'revolution', 'extraordinary', 'spectacular', 'fascinating', 'evolution', 'interaction', 'remarkable', 'congratulate', 'organization', 'experience', 'understand', 'communication', 'preference', 'implement', 'motivation', 'technology', 'communication', 'appearance', 'celebration', 'considerate', 'temperature', 'recognition', 'engineering', 'sophisticated', 'particularly', 'investment', 'opportunity', 'intelligence', 'entertainment', 'contribution', 'achievement', 'encouragement', 'relationship', 'architecture', 'significant', 'information', 'enthusiastically', 'relationship', 'communication', 'architecture', 'congratulation', 'celebration', 'exaggeration', 'understanding', 'extraordinary', 'communication']
+            "explain", "familiar", "favorite", "february", "fireplace", "football", "forever", "forget", "elephant", "computer", "symphony", "template", "essential", "permanent", "knowledge", "algorithm", "beautiful", "attention", "magnificent", "celebrate", "challenge", "experience", "community", "incredible", "adventure", "wonderful", "existence", "efficiency", "definitely", "discipline", "restaurant", "boulevard", "expensive", "enthusiasm", "principle", "frustrate", "investment", "integrate", "recognize", "individual", "curriculum", "throughout", "technology", "productive", "happiness", "restaurant", "opportunity", "education", "contribute", "celebration", "achievement", "consequence", "creativity", "innovation", "tremendous", "adaptation", "imagination", "experiment", "perseverance", "courageous", "enthusiastic", "exploration", "revolution", "extraordinary", "spectacular", "fascinating", "evolution", "interaction", "remarkable", "congratulate", "organization", "experience", "understand", "communication", "preference", "implement", "motivation", "technology", "communication", "appearance", "celebration", "considerate", "temperature", "recognition", "engineering", "sophisticated", "particularly", "investment", "opportunity", "intelligence", "entertainment", "contribution", "achievement", "encouragement", "relationship", "architecture", "significant", "information", "enthusiastically", "relationship", "communication", "architecture", "congratulation", "celebration", "exaggeration", "understanding", "extraordinary", "communication"]
+        self.countries = [
+            "Albania", "algeria", "andorra", "angola", "argentina", "armenia", "australia", "austria", "azerbaijan",
+            "bahrain", "bangladesh", "belarus", "belgium", "belize", "benin", "bhutan", "bolivia", "bosnia", "botswana",
+            "brazil", "brunei", "bulgaria", "burundi", "cambodia", "cameroon", "canada", "chad", "chile", "china",
+            "colombia", "comoros", "congo", "croatia", "cuba", "cyprus", "denmark", "djibouti", "ecuador", "egypt",
+            "estonia", "ethiopia", "finland", "france", "gabon", "gambia", "georgia", "germany", "ghana", "greece",
+            "guatemala", "guinea", "guyana", "haiti", "honduras", "hungary", "iceland", "india", "indonesia", "iran",
+            "iraq", "ireland", "israel", "italy", "jamaica", "japan", "jordan", "kazakhstan", "kenya", "kiribati",
+            "kuwait", "kyrgyzstan", "latvia", "lebanon", "lesotho", "liberia", "libya", "liechtenstein", "lithuania",
+            "luxembourg", "madagascar", "malawi", "malaysia", "mali", "malta", "mauritania", "mexico", "moldova",
+            "monaco", "mongolia", "montenegro", "morocco", "mozambique", "namibia", "nepal", "netherlands",
+            "nicaragua", "niger", "nigeria", "norway", "oman", "pakistan", "palau", "panama", "paraguay", "peru",
+            "philippines", "poland", "portugal", "qatar", "romania", "rwanda", "samoa", "senegal", "serbia", "seychelles",
+            "singapore", "slovakia", "slovenia", "somalia", "spain", "sudan", "suriname", "sweden", "switzerland",
+            "syria", "taiwan", "tajikistan", "tanzania", "thailand", "togo", "tonga", "trinidad", "tunisia", "turkey",
+            "turkmenistan", "uganda", "ukraine", "uruguay", "uzbekistan", "vanuatu", "venezuela", "vietnam", "yemen",
+            "zambia", "zimbabwe"]
 
     def game_modes(self, mode):
         """
@@ -30,4 +47,6 @@ class RandomWord:
             return random.choice(intermediate_mode)
         elif mode == "hard mode":
             return random.choice(hard_mode)
+        elif mode == "country mode":
+            return random.choice(self.countries)
 

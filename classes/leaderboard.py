@@ -50,6 +50,8 @@ class Leaderboard(ClearTerminal):
             leaderboard_header_mode = "I N T E R M E D I A T E    M O D E"
         elif mode == "hard mode":
             leaderboard_header_mode = "H A R D    M O D E"
+        elif mode == "country mode":
+            leaderboard_header_mode = "C O U N T R Y   M O D E"
         self.clear_terminal.clear_terminal()
         print(
             Fore.YELLOW +

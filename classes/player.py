@@ -36,7 +36,7 @@ class Player(AsciiArt):
                     Fore.CYAN + "What is your first name?\n>>> ")
                 if len(self.name_of_player) == 0:
                     print(Fore.YELLOW + "Please enter your name..")
-                elif self.name_of_player.isdigit():
+                elif any(char.isdigit() for char in self.name_of_player):
                     print(Fore.YELLOW + "Your name does not have numbers in it... right??")
                 else:
                     break
@@ -50,7 +50,7 @@ class Player(AsciiArt):
                     Fore.CYAN + "Which country/city are your from?\n>>> ")
                 if len(self.location_of_player) == 0:
                     print(Fore.YELLOW + "Please enter your location..")
-                elif self.location_of_player.isdigit():
+                elif any(char.isdigit() for char in self.location_of_player):
                     print(Fore.YELLOW + "Please do not use numbers..")
                 else:
                     self.how_to_play()

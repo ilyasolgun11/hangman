@@ -192,7 +192,7 @@ When the player is playing the following game modes: Easy mode, intermediate mod
 When the player is playing the country mode, they see the following:
 
 - A text saying the country data is being grabbed
-- The country data itself, the information given to the player when they use this hint is the region the country is in, the capital city and the countries currency alpha code.
+- The country data itself, the information given to the player when they use this hint is the region the country is in, the capital city and the country's currency alpha code.
 
 ![Country mode hint](screenshots//ultimate-hangman-country-mode-hint.png)
 

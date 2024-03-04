@@ -1,10 +1,11 @@
 from .gameasciiart import AsciiArt
+from .clearterminal import ClearTerminal
 import colorama
 from colorama import Fore
 colorama.init(autoreset=True)
 
 
-class Player(AsciiArt):
+class Player(AsciiArt, ClearTerminal):
     """
     The Player class represents the players in the hangman game.
 
@@ -27,6 +28,7 @@ class Player(AsciiArt):
         """
         Collect player information before starting the game.
         """
+        self.clear_terminal()
         print(self.ascii_art.hangman_logo)
         print(Fore.YELLOW + "Welcome! could you be the one to save this poor guy from a \ngruesome death? i hope so! fill in your name and location to\nsee the how to play guide.\n")
         while True:

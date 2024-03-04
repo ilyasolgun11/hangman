@@ -25,6 +25,20 @@ The game's challenging nature alongside the leaderboard system creates a competi
     - [**Site Aims**](#site-aims)
     - [**How This Will Be Achieved**](#how-will-this-be-achieved)
     - [**Game Flow Chart**](#game-flow-chart)
+  - [**Game modes**](#game-modes)
+  - [**Game screen**](#game-screen)
+    - [**When the player uses the hint token**](#when-the-player-uses-the-hint-token)
+      - [**Regular mode**](#regular-mode)
+      - [**Country mode**](#country-mode)
+    - [**Game screen 6 attempts left**](#game-screen-6-attempts-left)
+    - [**Game screen 5 attempts left**](#game-screen-5-attempts-left)
+    - [**Game screen 4 attempts left**](#game-screen-4-attempts-left)
+    - [**Game screen 3 attempts left**](#game-screen-3-attempts-left)
+    - [**Game screen 2 attempts left**](#game-screen-2-attempts-left)
+    - [**Game screen 1 attempts left**](#game-screen-1-attempts-left)
+    - [**Game end screen**](#game-end-screens)
+      - [**Game win screen**](#game-win-screen)
+      - [**Game lose screen**](#game-lose-screen)
 
 ## **How to Play:**
 
@@ -173,14 +187,14 @@ When the player is playing the following game modes: Easy mode, intermediate mod
 
 ![Regular mode hint](screenshots/ultimate-hangman-regular-hint.png)
 
+#### **_Country mode_**
+
 When the player is playing the country mode, they see the following:
 
 - A text saying the country data is being grabbed
 - The country data itself, the information given to the player when they use this hint is the region the country is in, the capital city and the countries currency alpha code.
 
 ![Country mode hint](screenshots//ultimate-hangman-country-mode-hint.png)
-
-#### **_Country mode_**
 
 ### **_Game screen 6 attempts left_**
 

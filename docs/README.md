@@ -93,6 +93,13 @@ To understand the steps required to program the game, I created the below flowch
 
 ![Game Logic Flowchart](screenshots/hangman-logic-flowchart.png)
 
+What the colors mean:
+
+- Green: Start something
+- Blue: Display to terminal
+- Yellow: Logical action
+- Red: User input required
+
 # **Features**
 
 ## **Welcome Screen:**

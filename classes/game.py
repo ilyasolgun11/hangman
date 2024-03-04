@@ -12,8 +12,8 @@ from colorama import Fore
 colorama.init(autoreset=True)
 
 
-
-class Game(Player, Leaderboard, RandomWord, AsciiArt, ClearTerminal, HintToken):
+class Game(Player, Leaderboard, RandomWord, AsciiArt, ClearTerminal,
+           HintToken):
     """
     The Game class represents the main Hangman game.
 
@@ -21,10 +21,12 @@ class Game(Player, Leaderboard, RandomWord, AsciiArt, ClearTerminal, HintToken):
     - start_time (float): The start time of the game.
     - player_won (bool): Indicates whether the player won the game.
     - selected_worksheet (str): The selected game mode worksheet.
-    - ascii_art (AsciiArt): An instance of the AsciiArt class for displaying ASCII art.
+    - ascii_art (AsciiArt): An instance of the AsciiArt class for
+      displaying ASCII art.
     - hangman_word (str): The current hangman word to be guessed.
     - display_word (str): The partially revealed word based on user guesses.
-    - stages (int): The number of stages of the hangman (visual representation).
+    - stages (int): The number of stages of the hangman
+      (visual representation).
     - hints_remaining (int): The number of hint tokens remaining.
     - score (int): The player's score.
     - points (int): The points earned during the game.
@@ -38,11 +40,14 @@ class Game(Player, Leaderboard, RandomWord, AsciiArt, ClearTerminal, HintToken):
     - choose_game_mode(): Allows the player to choose the game mode.
     - play(): Starts the game and manages user input.
     - guess_word(user_input): Handles the user's attempt to guess a word.
-    - guess_letter(user_input): Handles the user's attempt to guess a letter.
-    - update_display_word(user_input): Updates the displayed word based on correct letter guesses.
+    - guess_letter(user_input): Handles the user's attempt to guess
+      a letter.
+    - update_display_word(user_input): Updates the displayed word
+      based on correct letter guesses.
     - reset_game(): Resets relevant game attributes for a new round.
-    - leaderboard_mode_options(): Allows the player to view leaderboard's for different game modes.
-    - game_end_options(): Displays options after the game ends (play again, 
+    - leaderboard_mode_options(): Allows the player to view
+      leaderboard's for different game modes.
+    - game_end_options(): Displays options after the game ends (play again,
       view leaderboard, or exit).
     - game_end(): Displays the win/lose screen and handles post-game options.
     """
@@ -70,20 +75,24 @@ class Game(Player, Leaderboard, RandomWord, AsciiArt, ClearTerminal, HintToken):
 
     def how_to_play(self):
         """
-        Provide instructions on how to play the game and informs player of the points system.
+        Provide instructions on how to play the game and informs
+        player of the points system.
         """
-        # Clears the terminal 
+        # Clears the terminal
         self.clear_terminal()
         print(self.ascii_art.how_to_play_guide)
         print(
             Fore.YELLOW +
             f"""Hello {
-                self.name_of_player}! We suggest you to read the how to play\nguide above before you begin.\n""")
+                self.name_of_player}! We suggest you to read the how to play\n
+                guide above before you begin.\n""")
         while True:
-            # Try statement to avoid quitting game when player attempts keyboard interruption (ctrl + c) 
+            # Try statement to avoid quitting game when player attempts
+            # keyboard interruption (ctrl + c)
             try:
                 player_option = input(
-                    "A - Choose game mode\nB - Go back\nType 'a' or 'b' below\n>>> ")
+                    """A - Choose game mode\nB - Go back\n
+                    Type 'a' or 'b' below\n>>> """)
                 if player_option.lower() == "a":
                     # Navigates player to game mode screen
                     self.choose_game_mode()
@@ -95,29 +104,33 @@ class Game(Player, Leaderboard, RandomWord, AsciiArt, ClearTerminal, HintToken):
                 else:
                     print(Fore.YELLOW + "Please enter a valid option.")
             except KeyboardInterrupt:
-                print(Fore.YELLOW + "KeyboardInterrupt (ctrl + c) is not allowed during input. Please try again.")
+                print(Fore.YELLOW + """KeyboardInterrupt (ctrl + c) is not
+                      allowed during input. Please try again.""")
 
     def choose_game_mode(self):
         """
-        Gives the option to choose game mode, once the game mode is chosen and 
-        depending on which one they choose, we use the game_modes 
-        function within the RandomWord class to select words 
+        Gives the option to choose game mode, once the game mode is chosen and
+        depending on which one they choose, we use the game_modes
+        function within the RandomWord class to select words
         and also pick one randomly
         """
-        # Clears the terminal 
+        # Clears the terminal
         self.clear_terminal()
         print(self.ascii_art.game_modes_display)
-        # Sets self.hangman_word to a randomized word gathered from the RandomWord class 
-        # Also sets the display word, but multiplying "_" with the letters in self.hangman_word 
+        # Sets self.hangman_word to a randomized word gathered from the
+        # RandomWord class. Also sets the display word,
+        # but multiplying "_" with the letters in self.hangman_word
+
         def handle_game_mode(mode, worksheet):
             self.hangman_word = self.game_modes(
                     mode)
             self.display_word = "_" * \
-                    len(self.hangman_word)
+                len(self.hangman_word)
             self.selected_worksheet = worksheet
             self.play()
         while True:
-            # Try statement to avoid quitting game when player attempts keyboard interruption (ctrl + c) 
+            # Try statement to avoid quitting game when player
+            # attempts keyboard interruption (ctrl + c)
             try:
                 player_mode_option = input(
                     Fore.GREEN +
@@ -126,7 +139,7 @@ class Game(Player, Leaderboard, RandomWord, AsciiArt, ClearTerminal, HintToken):
                     """B - Intermediate mode\n""" +
                     Fore.RED +
                     """C - Hard mode\n""" +
-                    Fore.CYAN + 
+                    Fore.CYAN +
                     """D - Country mode\n""" +
                     Fore.WHITE +
                     """Type 'a', 'b', 'c' or 'd' below\n>>> """)
@@ -145,23 +158,29 @@ class Game(Player, Leaderboard, RandomWord, AsciiArt, ClearTerminal, HintToken):
                 else:
                     print(Fore.YELLOW + "Please enter a valid option.")
             except KeyboardInterrupt:
-                print(Fore.YELLOW + "KeyboardInterrupt (ctrl + c) is not allowed during input. Please try again.")
+                print(Fore.YELLOW + """KeyboardInterrupt (ctrl + c) is not
+                      allowed during input. Please try again.""")
 
     def play(self):
         """
-        Starts the game and depending on the user input "word", "letter", it calls
-        the corresponding functions guess_word() or guess_letter(). Also if user selects the hint option
+        Starts the game and depending on the user input "word",
+        "letter", it calls the corresponding functions guess_word()
+        or guess_letter(). Also if user selects the hint option
         it calls the api to get the definition of the hangman word.
         """
-        # Starts timer, this timer ends when player either wins or loses, this is later used 
-        # to display the time it took for the player to win in the Leaderboard section 
+        # Starts timer, this timer ends when player either wins or
+        # loses, this is later used to display the time it took
+        # for the player to win in the Leaderboard section
         self.start_time = time.time()
-        # This message changes depending on what the user does during the game 
-        self.game_hint_message = Fore.GREEN + f"This word is {len(self.hangman_word)} letters in length, good luck!"
+        # This message changes depending on what the user does
+        # during the game
+        self.game_hint_message = Fore.GREEN + f"""This word is
+        {len(self.hangman_word)} letters in length, good luck!"""
         # While the game is still going on, do the following
         while self.score > 0:
             self.clear_terminal()
-            # Try statement to avoid quitting game when player attempts keyboard interruption (ctrl + c) 
+            # Try statement to avoid quitting game when player
+            # attempts keyboard interruption (ctrl + c)
             try:
                 # Display which stage the player is on
                 print(self.ascii_art.hangman_stages[self.stages])
@@ -173,26 +192,31 @@ class Game(Player, Leaderboard, RandomWord, AsciiArt, ClearTerminal, HintToken):
                     f"""Wrong guesses:\n{
                         self.guessed_letters +
                         self.guessed_words}\n""")
-                # Displays the self.hangman_word in underscores, till user reveals them by
-                # guessing correctly 
+                # Displays the self.hangman_word in underscores,
+                # till user reveals them by guessing correctly
                 print(f"""{" ".join(self.display_word)}\n""")
-                # Depending on how many points the user has, display them in either red or green
+                # Depending on how many points the user has,
+                # display them in either red or green
                 if self.points >= 25:
                     print(Fore.GREEN + f"Points: {self.points}\n")
                 else:
                     print(Fore.RED + f"Points: {self.points}\n")
                 # Use line for separation
                 print("---------------------------------------------------")
-                # Display the amount of attempts the user has, and if they have less than 3, display
+                # Display the amount of attempts the user has, and if
+                # they have less than 3, display
                 # it in yellow
                 if self.score < 3:
                     print(Fore.YELLOW + f"You have {self.score} attempt left")
                 else:
-                    print(Fore.GREEN + f"You have {self.score} attempts left") 
-                # Display a call to action, if the user wants to use their hint they have to type 'hint'
+                    print(Fore.GREEN + f"You have {self.score} attempts left")
+                # Display a call to action, if the user wants to use their
+                # hint they have to type 'hint'
                 if self.hints_remaining != 0 and self.selected_worksheet != "country mode":
-                    print(Fore.CYAN + "Hint token" + Fore.RESET + ": type 'hint' to get the words definition")
-                elif self.hints_remaining != 0 and self.selected_worksheet == "country mode":
+                    print(Fore.CYAN + "Hint token" + Fore.RESET + \
+                          ": type 'hint' to get the words definition")
+                elif self.hints_remaining != 0 and \
+                self.selected_worksheet == "country mode":
                    print(Fore.CYAN + "Hint token" + Fore.RESET + ": type 'hint' to get country information")
                 else:
                     pass

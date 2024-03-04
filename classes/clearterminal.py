@@ -6,6 +6,7 @@ class ClearTerminal:
     """
 
     @staticmethod
+    # Taken from https://www.delftstack.com/howto/python/python-clear-console/
     def clear_terminal():
         command = 'clear'
         if os.name in (

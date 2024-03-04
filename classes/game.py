@@ -250,7 +250,7 @@ class Game(Player, Leaderboard, RandomWord, AsciiArt, ClearTerminal,
                         self.game_hint_message = Fore.RED + \
                             "Your input is neither a letter or a word, try again."
                 except KeyboardInterrupt:
-                    print(Fore.YELLOW + "KeyboardInterrupt (ctrl + c) is not allowed during input. Please try again.")
+                    pass
                 # If player score is 0, end the game
                 if self.score == 0:
                     self.game_end()

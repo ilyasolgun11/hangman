@@ -7,40 +7,20 @@ from dotenv import load_dotenv
 load_dotenv(dotenv_path='env.py')
 api_key = os.getenv('API_KEY')
 
+
 class GrabDefinition:
-       """
-       Class representing the definition functionality of the hangman game
-       """
-       @staticmethod
-       def break_lines(text, max_length=90):
-        # Logic to limit the length of passed text, when the limit is passed then break
-        # to a new line
-        words = text.split()
-        lines = []
-        current_line = []
-
-        for word in words:
-            if len(' '.join(current_line + [word])) <= max_length or not current_line:
-                current_line.append(word)
-            else:
-                lines.append(' '.join(current_line))
-                current_line = [word]
-
-        if current_line:
-            lines.append(' '.join(current_line))
-
-        for line in lines:
-            print(Fore.CYAN + line + Fore.RESET)
-
-       @staticmethod
-       def grab_word_definition(word):
+        """
+        Class representing the definition functionality of the hangman game
+        """
+        @staticmethod
+        def grab_word_definition(word):
             print(Fore.YELLOW + "Grabbing definition...")
             # URL in which would be used to gather the definition data for the self.hangman_word
-            # if the user decides to use the hint token 
+            # if the user decides to use the hint token
             url = f"""https://dictionary-data-api.p.rapidapi.com/definition/{
                 word}"""
             # Header that would be used alongside with the url to gather definition data of
-            # the self.hangman_word, and holds the secret api key which is being held 
+            # the self.hangman_word, and holds the secret api key which is being held
             # in the env.py file
             headers = {'X-RapidAPI-Key': api_key}
             response = requests.get(url, headers=headers)
@@ -51,10 +31,10 @@ class GrabDefinition:
                     meanings = data.get('meaning', [])
                     if meanings:
                         definition = meanings[0]["values"][0]
-                        # Display definition to player and hide the word by replacing 
+                        # Display definition to player and hide the word by replacing
                         # it with "(hidden correct word)"
-                        print(Fore.CYAN + "Definition of word:")
-                        GrabDefinition.break_lines(definition.replace(word, '(hidden correct word)') + Fore.RESET)
+                        print(Fore.CYAN + """Definition of word:""" \
+                        f"""{definition.replace(word, '(hidden correct word)')}""" + Fore.RESET)
                     else:
                         # If no definition is found, let the player know
                         print("No meanings found.")
@@ -64,8 +44,9 @@ class GrabDefinition:
             except Exception as e:
                 # Handle any exception that may occur
                 print(f"An error occurred: {e}")
-       @staticmethod
-       def grab_country_data(country):
+                
+        @staticmethod
+        def grab_country_data(country):
             print(Fore.YELLOW + "Grabbing country data...")
             # URL in which would be used to gather the definition data for the self.hangman_word
             # if the user decides to use the hint token 

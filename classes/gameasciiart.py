@@ -2,6 +2,7 @@ import colorama
 from colorama import Fore
 colorama.init(autoreset=True)
 
+
 class AsciiArt:
     def __init__(self):
         self.hangman_stages = [
@@ -232,19 +233,19 @@ __|/\\/|______________
  ______________________________________________________________
 |                                                              |
 |                                                              |
-|                     """ + Fore.CYAN + """G A M E   M O D E S :""" + Fore.WHITE + """                    |
+|                     G A M E   M O D E S                      |
 |                                                              |
-|     """ + Fore.GREEN + """Easy mode:""" + Fore.WHITE + """                                               |
+|     Easy mode:                                               |
 |     Consists of words less than 5 letters in length          |
 |                                                              |
-|     """ + Fore.YELLOW + """Intermediate mode:""" + Fore.WHITE + """                                       |
+|     Intermediate mode:                                       |
 |     Consists of words with more than 5 or less than          |
 |     8 letters in length                                      |
 |                                                              |
-|     """ + Fore.RED + """Hard mode:""" + Fore.WHITE + """                                               |
+|     Hard mode:                                               |
 |     Consists of words more than 8 letters in length          |
 |                                                              |
-|     """ + Fore.CYAN + """Country mode:""" + Fore.WHITE + """                                            |      
+|     Country mode:                                            |
 |     Consists of 195 countries with diverse name lengths      |
 |                                                              |
 |______________________________________________________________|
@@ -259,13 +260,13 @@ __|/\\/|______________
         print(Fore.GREEN + f"""\n\n\n
     ______________________________
     |/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\|
-        |/\\/|                 
-        |/\\/|    THANK YOU FOR PLAYING {name.upper()}            
-        |/\\/|                 
-        |/\\/|    YOU HAVE SAVED HANGMAN{times}             
-        |/\\/|                  
-        |/\\/|    {location.upper()} IS AN AWESOME PLACE!             
-        |/\\/|                
+        |/\\/|
+        |/\\/|    THANK YOU FOR PLAYING {name.upper()}
+        |/\\/|
+        |/\\/|    YOU HAVE SAVED HANGMAN{times}
+        |/\\/|
+        |/\\/|    {location.upper()} IS AN AWESOME PLACE!
+        |/\\/|
    _____|/\\/|____________________  ____________
   / / / / / /_  __/  _/  |/  /   |/_  __/ ____/
  / / / / /   / /  / // /|_/ / /| | / / / __/

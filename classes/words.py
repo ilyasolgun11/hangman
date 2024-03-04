@@ -11,7 +11,7 @@ class RandomWord:
             "athlete", "before", "being", "below"
             "blank", "blend", "bread", "brief", "bring", "build", "bunch",
             "burst", "cake", "cause", "chair", "child", "climb", "close",
-            "color", "could", "cover", "cream", "dance", "design", "doing",
+            "color", "could", "cover", "dance", "design", "doing",
             "early", "earth", "enjoy", "event", "every", "explore", "fence",
             "field", "first", "flame", "floor", "flower", "fresh", "fruit",
             "funny", "gather", "gift", "glide", "going"

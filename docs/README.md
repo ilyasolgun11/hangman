@@ -135,6 +135,7 @@ From the game modes screen, the user sees:
   - Type A for Easy mode
   - Type B for Intermediate mode
   - Type C for Hard mode
+  - Type D for country mode
 
 ![Game modes screen](screenshots/ultimate-hangman-game-modes-screen.png)
 
@@ -144,7 +145,7 @@ From the game screen, the user sees:
 
 - ASCII art displaying the build stage of the hangman
 - Game hint message section, this section's text displays various messages based on what the user does, for example:
-  - When the player first starts the game they see a "Good luck" message
+  - When the player first starts the game they see a message stating how many letters the word has "This word is (length of word) letters in length, good luck"
   - If the player does not enter either a letter or a word (for example: numbers or symbols..) they see "Your input is neither a letter nor a word, try again."
   - If the player has guessed a word, but it is guessed already they see "You have guessed the word {user_input} already."
   - If they guess a word but it's not the correct word they see "Wrong! {user_input} is not the word"
@@ -154,9 +155,32 @@ From the game screen, the user sees:
 - Wrong guesses section, this section displays a list of wrong guesses, by combining wrongly guessed letters and words
 - The hangman word but its hidden with underscores, once the player starts guessing correctly they will have visual conformation of their correct guess because it will be displayed
 - The amount of attempts the player has left, the number starts from 7
+- Optional hint token, when the player wants to use their hint token, all they have to do is type "hint" during the game, and they get the definition of the hangman word
 - An input field prompting the player to either input a letter or a word
 
 ![Game screen](screenshots/ultimate-hangman-game-screen.png)
+
+### **When the Player uses the hint token**
+
+When the player types "hint" the following happens:
+
+#### **_Regular mode_**
+
+When the player is playing the following game modes: Easy mode, intermediate mode or hard mode, they see the following:
+
+- A text saying the definition is being grabbed
+- The definition itself, without revealing the hangman word. Because to describe a word, some responses came back with the hangman word itself so to hide this I replaced the word in the definition with (hidden correct word)
+
+![Regular mode hint](screenshots/ultimate-hangman-regular-hint.png)
+
+When the player is playing the country mode, they see the following:
+
+- A text saying the country data is being grabbed
+- The country data itself, the information given to the player when they use this hint is the region the country is in, the capital city and the countries currency alpha code.
+
+![Country mode hint](screenshots//ultimate-hangman-country-mode-hint.png)
+
+#### **_Country mode_**
 
 ### **_Game screen 6 attempts left_**
 
@@ -207,16 +231,6 @@ When the player has 3 attempts left, the following happens:
 - The player gets to choose if they want to use the hint token, in doing so they will lose 25 points if they have more than 25 already, but they get to see the definition of the word, which gives them a great advantage. If they choose no they will be asked to use the hint token again till the game is lost
 
 ![Game screen 3 attempts left](screenshots/ultimate-hangman-game-screen-3-attempts-left.png)
-
-#### **_The Player uses the hint token_**
-
-When the player has 3 or fewer attempts remaining and they use their hint token, the following happens:
-
-- They get a message saying the definition is being grabbed
-- The definition of the word is displayed. If the definition of the word requires the use of the word then it's replaced with (hidden correct word)
-- The player is then prompted to enter a guess
-
-![Game screen Hint token](screenshots/ultimate-hangman-game-screen-hint-token.png)
 
 ### **_Game screen 2 attempts left_**
 

@@ -33,7 +33,7 @@ class GrabDefinition:
                         definition = meanings[0]["values"][0]
                         # Display definition to player and hide the word by replacing
                         # it with "(hidden correct word)"
-                        print(Fore.CYAN + """Definition of word:""" \
+                        print(Fore.CYAN + """Definition of word: """ \
                         f"""{definition.replace(word, '(hidden correct word)')}""" + Fore.RESET)
                     else:
                         # If no definition is found, let the player know
@@ -44,7 +44,7 @@ class GrabDefinition:
             except Exception as e:
                 # Handle any exception that may occur
                 print(f"An error occurred: {e}")
-                
+
         @staticmethod
         def grab_country_data(country):
             print(Fore.YELLOW + "Grabbing country data...")

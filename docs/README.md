@@ -39,6 +39,10 @@ The game's challenging nature alongside the leaderboard system creates a competi
     - [**Game end screen**](#game-end-screens)
       - [**Game win screen**](#game-win-screen)
       - [**Game lose screen**](#game-lose-screen)
+  - [**Future enhancements**](#future-enhancements)
+    - [**Ranked mode**](#ranked-mode)
+    - [**Custom modes**](#custom-modes)
+    - [**Audio**](#audio)
 
 ## **How to Play:**
 
@@ -296,3 +300,29 @@ When the player loses, they see the following:
 - Options to Play again, see leaderboards or exit the game
 
 ![Game lose screen](screenshots/ultimate-hangman-lose-screen.png)
+
+# **Future-Enhancements**
+
+### **_Ranked mode_**
+
+Like the idea I had for my last project, I believe a ranked system for this project would have taken it to the next level. This is how it could be implemented:
+
+- On the welcome screen, ranked modes could be mentioned to get the user's attention.
+- During the game modes screen, I could first give the player the option of either playing ranked or normal.
+- Once the player chooses the ranked mode, they will be shown each rank stage, for example: Bronze, Silver, Gold, Platinum and Diamond. Each of these stages rewards more than the previous one.
+- Reward ideas: Badges (a badge of the rank stage the player finished the season on), In-game currency, Custom themes or Physical rewards such as ultimate hangman themed merchandise or gift cards.
+
+### **_Custom modes_**
+
+The idea of custom game modes makes me excited and it is something I would come back to try out. This is how it could be implemented:
+
+- Add a section to the game modes screen that gives the player the additional options of either choosing custom game modes to play created by other players, or creating a game mode.
+- The data could be stored in a database and later accessed easily too, accessing the data through the words.py file which handles the current game mode words already.
+- Custom game mode leaderboards could also be created to see how players performed in those modes, and have the game mode creator something to be excited about to see each time they check it.
+
+### **_Audio_**
+
+Audio functionality would be great for this game and could be implemented in specific situations. This is how it could be implemented:
+
+- Import audio files such as: A high pitched 'ting' sound, A low pitched 'du-du-duuu' sound.
+- These sounds could be played in the following situations: When the player gets a letter correct or incorrect or when the player wins or loses.

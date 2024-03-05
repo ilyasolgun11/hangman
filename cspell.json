@@ -8,8 +8,13 @@
       "addWords": true
     }
   ],
-  "dictionaries": ["custom-dictionary"],
-  "words": ["leaderboards"],
+  "dictionaries": [
+    "custom-dictionary"
+  ],
+  "words": [
+    "duuu",
+    "leaderboards"
+  ],
   "ignoreWords": [],
   "import": []
 }

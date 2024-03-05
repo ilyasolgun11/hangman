@@ -8,13 +8,8 @@
       "addWords": true
     }
   ],
-  "dictionaries": [
-    "custom-dictionary"
-  ],
-  "words": [
-    "duuu",
-    "leaderboards"
-  ],
+  "dictionaries": ["custom-dictionary"],
+  "words": ["duuu", "leaderboards", "dotenv"],
   "ignoreWords": [],
   "import": []
 }

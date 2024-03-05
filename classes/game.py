@@ -264,7 +264,7 @@ Type 'a' or 'b' below\n>>> """)
                                 self.points,
                                 datetime.now().strftime('%d/%m/%Y'),
                                 self.location_of_player,
-                                f"{elapsed_time:.2f} seconds",
+                                f"{round(elapsed_time, 3)} seconds",
                                 self.hangman_word,
                                 hints_used]
                     self.append_to_worksheet(self.selected_worksheet, data_to_add)

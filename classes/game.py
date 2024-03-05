@@ -4,15 +4,14 @@ from datetime import datetime
 from .player import Player
 from .leaderboard import Leaderboard
 from .words import RandomWord
-from .gameasciiart import AsciiArt
-from .clearterminal import ClearTerminal
+from .mixins import AsciiArtMixin, ClearTerminalMixin
 from .hinttoken import HintToken
 import colorama
 from colorama import Fore
 colorama.init(autoreset=True)
 
 
-class Game(Player, Leaderboard, RandomWord, AsciiArt, ClearTerminal,
+class Game(Player, Leaderboard, RandomWord, AsciiArtMixin, ClearTerminalMixin,
            HintToken):
     """
     The Game class represents the main Hangman game.
@@ -59,7 +58,7 @@ class Game(Player, Leaderboard, RandomWord, AsciiArt, ClearTerminal,
         self.start_time = None
         self.player_won = False
         self.selected_worksheet = "easy mode"
-        self.ascii_art = AsciiArt()
+        self.ascii_art = AsciiArtMixin()
         self.hangman_word = self.game_modes("hard mode")
         self.display_word = "_" * \
             len(self.hangman_word)
@@ -413,7 +412,7 @@ Type 'a' or 'b' below\n>>> """)
             try:
                 
                 user_choice = input(
-                    "\nA - Play again\nB - Leaderboard's\nC - Exit game\nType 'a', 'b' or 'c' below\n>>>")
+                    "A - Play again\nB - Leaderboard's\nC - Exit game\nType 'a', 'b' or 'c' below\n>>>")
                 if user_choice.lower() == "a":
                     self.reset_game()
                     self.choose_game_mode()

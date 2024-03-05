@@ -1,9 +1,29 @@
 import colorama
 from colorama import Fore
 colorama.init(autoreset=True)
+import os
+
+class ClearTerminalMixin:
+    """
+    Clears the terminal above of where it is placed
+    """
+
+    @staticmethod
+    # Taken from https://www.delftstack.com/howto/python/python-clear-console/
+    def clear_terminal():
+        command = 'clear'
+        if os.name in (
+                'nt', 'dos'):  # If Machine is running on Windows, use cls
+            command = 'cls'
+        os.system(command)
+        print("\033c", end="") 
 
 
-class AsciiArt:
+
+class AsciiArtMixin:
+    """
+    Contains Ascii art to be used across the game classes
+    """
     def __init__(self):
         self.hangman_stages = [
             Fore.GREEN + """

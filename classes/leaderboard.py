@@ -1,4 +1,4 @@
-from .clearterminal import ClearTerminal
+from .mixins import ClearTerminalMixin
 import gspread
 from google.oauth2.service_account import Credentials
 import colorama
@@ -18,7 +18,7 @@ SPREADSHEET_NAME = 'ultimate-hangman-leaderboard'
 SHEET = GSPREAD_CLIENT.open(SPREADSHEET_NAME)
 
 
-class Leaderboard(ClearTerminal):
+class Leaderboard(ClearTerminalMixin):
     """
     The Leaderboard class represents the leaderboard feature.
     """

@@ -1,11 +1,10 @@
-from .gameasciiart import AsciiArt
-from .clearterminal import ClearTerminal
+from .mixins import AsciiArtMixin, ClearTerminalMixin
 import colorama
 from colorama import Fore
 colorama.init(autoreset=True)
 
 
-class Player(AsciiArt, ClearTerminal):
+class Player(AsciiArtMixin, ClearTerminalMixin):
     """
     The Player class represents the players in the hangman game.
 
@@ -20,7 +19,7 @@ class Player(AsciiArt, ClearTerminal):
         Initializes a new instance of the Player class.
         """
         super().__init__()
-        self.ascii_art = AsciiArt()
+        self.ascii_art = AsciiArtMixin()
         self.name_of_player = ""
         self.location_of_player = ""
 

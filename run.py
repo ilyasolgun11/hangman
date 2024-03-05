@@ -1,7 +1,7 @@
 from classes.game import Game
-from classes.clearterminal import ClearTerminal
+from classes.mixins import ClearTerminalMixin
 
 if __name__ == "__main__":
-    ClearTerminal.clear_terminal()
+    ClearTerminalMixin.clear_terminal()
     game = Game()
     game.collect_info()

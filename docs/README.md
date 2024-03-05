@@ -43,6 +43,8 @@ The game's challenging nature alongside the leaderboard system creates a competi
     - [**Ranked mode**](#ranked-mode)
     - [**Custom modes**](#custom-modes)
     - [**Audio**](#audio)
+  - [**Data model**](#data-model)
+    - [**Overview of classes**](#overview-of-classes)
 
 ## **How to Play:**
 
@@ -326,3 +328,20 @@ Audio functionality would be great for this game and could be implemented in spe
 
 - Import audio files such as: A high pitched 'ting' sound, A low pitched 'du-du-duuu' sound.
 - These sounds could be played in the following situations: When the player gets a letter correct or incorrect or when the player wins or loses.
+
+# **Data Model**
+
+### **Overview of classes**
+
+For this project, I have opted to use OOP(Object Oriented Programming). The game consists of 7 classes:
+
+1. Game
+2. Player
+3. HintToken
+4. Leaderboard
+5. RandomWord
+
+The following classes are being used by more than 1 class so to avoid repetition I placed them in 1 file:
+
+1. ClearTerminalMixin
+2. AsciiArtMixin

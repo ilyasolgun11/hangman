@@ -84,15 +84,15 @@ class Game(Player, Leaderboard, RandomWord, AsciiArt, ClearTerminal,
         print(
             Fore.YELLOW +
             f"""Hello {
-                self.name_of_player}! We suggest you to read the how to play\n""" \
-                """guide above before you begin.\n""")
+                self.name_of_player}! We suggest you to read the how to \
+play guide above before you begin.\n""")
         while True:
             # Try statement to avoid quitting game when player attempts
             # keyboard interruption (ctrl + c)
             try:
                 player_option = input(
-                    """A - Choose game mode\nB - Go back\n""" \
-                    """Type 'a' or 'b' below\n>>> """)
+                    """A - Choose game mode\nB - Go back\n\
+Type 'a' or 'b' below\n>>> """)
                 if player_option.lower() == "a":
                     # Navigates player to game mode screen
                     self.choose_game_mode()
@@ -174,8 +174,8 @@ class Game(Player, Leaderboard, RandomWord, AsciiArt, ClearTerminal,
         self.start_time = time.time()
         # This message changes depending on what the user does
         # during the game
-        self.game_hint_message = Fore.GREEN + """This word is""" \
-        f""" {len(self.hangman_word)} letters in length, good luck!"""
+        self.game_hint_message = Fore.GREEN + f"""This word is\
+{len(self.hangman_word)} letters in length, good luck!"""
         # While the game is still going on, do the following
         while self.score > 0:
             self.clear_terminal()
@@ -213,10 +213,9 @@ class Game(Player, Leaderboard, RandomWord, AsciiArt, ClearTerminal,
                 # Display a call to action, if the user wants to use their
                 # hint they have to type 'hint'
                 if self.hints_remaining != 0 and self.selected_worksheet != "country mode":
-                    print(Fore.CYAN + "Hint token" + Fore.RESET + \
-                          ": type 'hint' to get the words definition")
+                    print(Fore.CYAN + "Hint token" + Fore.RESET + ": type 'hint' to get the words definition")
                 elif self.hints_remaining != 0 and \
-                self.selected_worksheet == "country mode":
+                self.selected_worksheet == "country mode": \
                    print(Fore.CYAN + "Hint token" + Fore.RESET + ": type 'hint' to get country information")
                 else:
                     pass

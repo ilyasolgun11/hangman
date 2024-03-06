@@ -82,7 +82,7 @@ class Game(Player, Leaderboard, RandomWord, AsciiArtMixin, ClearTerminalMixin,
         self.clear_terminal()
         print(self.ascii_art.how_to_play_guide)
         print(
-            Fore.YELLOW +
+            Fore.LIGHTYELLOW_EX +
             f"""Hello {
                 self.name_of_player}! We suggest you to read the how to \
 play guide above before you begin.\n""")
@@ -102,9 +102,9 @@ Type 'a' or 'b' below\n>>> """)
                     self.collect_info()
                     break
                 else:
-                    print(Fore.YELLOW + "Please enter a valid option.")
+                    print(Fore.LIGHTYELLOW_EX + "Please enter a valid option.")
             except KeyboardInterrupt:
-                print(Fore.YELLOW + """KeyboardInterrupt (ctrl + c) is not
+                print(Fore.LIGHTYELLOW_EX + """KeyboardInterrupt (ctrl + c) is not
                       allowed during input. Please try again.""")
 
     def choose_game_mode(self):
@@ -133,13 +133,13 @@ Type 'a' or 'b' below\n>>> """)
             # attempts keyboard interruption (ctrl + c)
             try:
                 player_mode_option = input(
-                    Fore.GREEN +
+                    Fore.LIGHTGREEN_EX +
                     """A - Easy mode\n""" +
-                    Fore.YELLOW +
+                    Fore.LIGHTYELLOW_EX +
                     """B - Intermediate mode\n""" +
-                    Fore.RED +
+                    Fore.LIGHTRED_EX +
                     """C - Hard mode\n""" +
-                    Fore.CYAN +
+                    Fore.LIGHTCYAN_EX +
                     """D - Country mode\n""" +
                     Fore.WHITE +
                     """Type 'a', 'b', 'c' or 'd' below\n>>> """)
@@ -156,9 +156,9 @@ Type 'a' or 'b' below\n>>> """)
                     handle_game_mode("country mode", "country mode")
                     break
                 else:
-                    print(Fore.YELLOW + "Please enter a valid option.")
+                    print(Fore.LIGHTYELLOW_EX + "Please enter a valid option.")
             except KeyboardInterrupt:
-                print(Fore.YELLOW + """KeyboardInterrupt (ctrl + c) is not
+                print(Fore.LIGHTYELLOW_EX + """KeyboardInterrupt (ctrl + c) is not
                       allowed during input. Please try again.""")
 
     def play(self):
@@ -174,8 +174,8 @@ Type 'a' or 'b' below\n>>> """)
         self.start_time = time.time()
         # This message changes depending on what the user does
         # during the game
-        self.game_hint_message = Fore.GREEN + f"""This word is\
-{len(self.hangman_word)} letters in length, good luck!"""
+        self.game_hint_message = Fore.LIGHTGREEN_EX + f"""This word is\
+ {len(self.hangman_word)} letters in length, good luck!"""
         # While the game is still going on, do the following
         while self.score > 0:
             self.clear_terminal()
@@ -188,7 +188,7 @@ Type 'a' or 'b' below\n>>> """)
                 print(f"{self.game_hint_message}\n")
                 # Displays the wrongly guessed letters and words
                 print(
-                    Fore.RED +
+                    Fore.LIGHTRED_EX +
                     f"""Wrong guesses:\n{
                         self.guessed_letters +
                         self.guessed_words}\n""")
@@ -198,36 +198,36 @@ Type 'a' or 'b' below\n>>> """)
                 # Depending on how many points the user has,
                 # display them in either red or green
                 if self.points >= 25:
-                    print(Fore.GREEN + f"Points: {self.points}\n")
+                    print(Fore.LIGHTGREEN_EX + f"Points: {self.points}\n")
                 else:
-                    print(Fore.RED + f"Points: {self.points}\n")
+                    print(Fore.LIGHTRED_EX + f"Points: {self.points}\n")
                 # Use line for separation
                 print("---------------------------------------------------")
                 # Display the amount of attempts the user has, and if
                 # they have less than 3, display
                 # it in yellow
                 if self.score < 3:
-                    print(Fore.YELLOW + f"You have {self.score} attempt left")
+                    print(Fore.LIGHTYELLOW_EX + f"You have {self.score} attempt left")
                 else:
-                    print(Fore.GREEN + f"You have {self.score} attempts left")
+                    print(Fore.LIGHTGREEN_EX + f"You have {self.score} attempts left")
                 # Display a call to action, if the user wants to use their
                 # hint they have to type 'hint'
                 if self.hints_remaining != 0 and self.selected_worksheet != "\
 country mode":
-                    print(Fore.CYAN + "Hint token" + Fore.RESET + ": type\
+                    print(Fore.LIGHTCYAN_EX + "Hint token" + Fore.RESET + ": type\
  'hint' to get the words definition")
                 elif (
                     self.hints_remaining != 0 and
                     self.selected_worksheet == "country mode"
                 ):
-                    print(Fore.CYAN + "Hint token" + Fore.RESET + "\
+                    print(Fore.LIGHTCYAN_EX + "Hint token" + Fore.RESET + "\
 : type 'hint' to get country information")
                 else:
                     pass
                 user_input = input(
                     "Guess a letter or a word: \n>>> \
 ").lower() if self.score > 2 else input(
-                    Fore.RED + "Guess a letter or a word\
+                    Fore.LIGHTRED_EX + "Guess a letter or a word\
 , Hurry!: \n>>> ").lower()
                 # If the players input is a letter, pass that input to the
                 # guess_letter() otherwise pass to guess_word()
@@ -239,7 +239,7 @@ country mode":
                         user_input = input(
                             "Guess a letter or a word\
 : \n>>> ").lower() if self.score > 2 else input(
-                            Fore.RED + "Guess a letter or a word\
+                            Fore.LIGHTRED_EX + "Guess a letter or a word\
 , Hurry!: \n>>> ").lower()
                         if len(user_input) == 1:
                             self.guess_letter(user_input)
@@ -257,7 +257,7 @@ country mode":
                     else:
                         # If player input is neither a letter or a word,
                         # display message
-                        self.game_hint_message = Fore.RED + \
+                        self.game_hint_message = Fore.LIGHTRED_EX + \
                             "Your input is neither a letter or a \
 word, try again."
                 except KeyboardInterrupt:
@@ -293,7 +293,7 @@ word, try again."
         """
         # If player input is already guessed, display message
         if user_input in self.guessed_words:
-            self.game_hint_message = Fore.YELLOW + \
+            self.game_hint_message = Fore.LIGHTYELLOW_EX + \
                 f"You have guessed the word '{user_input}' already."
         else:
             # If player input is correct ddo the following
@@ -313,7 +313,7 @@ word, try again."
                 self.points = 0
                 self.score -= 1
                 self.guessed_words.append(user_input)
-                self.game_hint_message = Fore.RED + \
+                self.game_hint_message = Fore.LIGHTRED_EX + \
                     f"Wrong! {user_input} is not the word"
                 if self.score != 0:
                     self.stages += 1
@@ -330,14 +330,14 @@ word, try again."
             user_input in self.guessed_letters
             or user_input in self.guessed_correct_letters
         ):
-            self.game_hint_message = Fore.YELLOW + \
+            self.game_hint_message = Fore.LIGHTYELLOW_EX + \
                 f"You have guessed the letter '{user_input}' already"
         else:
             # If player guessed a letter correctly do the following
             if user_input in self.hangman_word:
                 self.guessed_correct_letters.append(user_input)
                 self.update_display_word(user_input)
-                self.game_hint_message = Fore.GREEN + \
+                self.game_hint_message = Fore.LIGHTGREEN_EX + \
                     f"Correct! the letter '{user_input}' is in the word!"
                 self.points += 25
                 # If there are no more underscores in display_word, turn
@@ -352,7 +352,7 @@ word, try again."
                     self.points -= 10
                 self.score -= 1
                 self.guessed_letters.append(user_input)
-                self.game_hint_message = Fore.RED + \
+                self.game_hint_message = Fore.LIGHTRED_EX + \
                     f"Wrong! the letter {user_input} is not in the word"
                 if self.score != 0:
                     self.stages += 1
@@ -410,7 +410,7 @@ word, try again."
             # keyboard interruption (ctrl + c)
             try:
                 user_choice = input(
-                    Fore.CYAN +
+                    Fore.LIGHTCYAN_EX +
                     "\nA - Easy mode leaderboard\nB - Intermediate mode \
 leaderboard\nC - Hard mode leaderboard\nD - Country mode leaderboard\n" +
                     Fore.RESET +
@@ -428,10 +428,10 @@ leaderboard\nC - Hard mode leaderboard\nD - Country mode leaderboard\n" +
                     handle_leaderboard_mode_options("country mode")
                     break
                 else:
-                    print(Fore.YELLOW + "Please enter a valid option.")
+                    print(Fore.LIGHTYELLOW_EX + "Please enter a valid option.")
             except KeyboardInterrupt:
                 print(
-                    Fore.YELLOW +
+                    Fore.LIGHTYELLOW_EX +
                     "KeyboardInterrupt (ctrl + c) is not allowed during\
  input. Please try again.")
 
@@ -463,10 +463,10 @@ Exit game\nType 'a', 'b' or 'c' below\n>>>")
                         self.location_of_player)
                     sys.exit()
                 else:
-                    print(Fore.YELLOW + "Please enter a valid option.")
+                    print(Fore.LIGHTYELLOW_EX + "Please enter a valid option.")
             except KeyboardInterrupt:
                 print(
-                    Fore.YELLOW +
+                    Fore.LIGHTYELLOW_EX +
                     "KeyboardInterrupt (ctrl + c) is not\
  allowed during input. Please try again.")
 
@@ -480,16 +480,16 @@ Exit game\nType 'a', 'b' or 'c' below\n>>>")
         self.times_player_won += 1
         if self.player_won:
             print(self.ascii_art.win_logo_hangman)
-            print(Fore.GREEN + f"Amazing job! you saved him!\n")
-            print(Fore.YELLOW + "Leaderboard's updated.\n")
+            print(Fore.LIGHTGREEN_EX + f"Amazing job! you saved him!\n")
+            print(Fore.LIGHTYELLOW_EX + "Leaderboard's updated.\n")
         else:
             print(self.ascii_art.lose_logo_hangman)
-            print(Fore.RED + "Better luck next time, my dude is dead!\n")
+            print(Fore.LIGHTRED_EX + "Better luck next time, my dude is dead!\n")
 
-        print(f"The word was " + Fore.CYAN + f"{self.hangman_word}\n")
+        print(f"The word was " + Fore.LIGHTCYAN_EX + f"{self.hangman_word}\n")
         print(
             """Points:""" +
-            Fore.GREEN +
+            Fore.LIGHTGREEN_EX +
             f""" {
                 self.points}\n""" +
             Fore.RESET)

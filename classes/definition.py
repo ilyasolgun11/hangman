@@ -14,7 +14,7 @@ class GrabDefinition:
         """
         @staticmethod
         def grab_word_definition(word):
-            print(Fore.YELLOW + "Grabbing definition...")
+            print(Fore.LIGHTYELLOW_EX + "Grabbing definition...")
             # URL in which would be used to gather the definition data for the self.hangman_word
             # if the user decides to use the hint token
             url = f"""https://dictionary-data-api.p.rapidapi.com/definition/{
@@ -33,7 +33,7 @@ class GrabDefinition:
                         definition = meanings[0]["values"][0]
                         # Display definition to player and hide the word by replacing
                         # it with "(hidden correct word)"
-                        print(Fore.CYAN + """Definition of word: """ \
+                        print(Fore.LIGHTCYAN_EX + """Definition of word: """ \
                         f"""{definition.replace(word, '(hidden correct word)')}""" + Fore.RESET)
                     else:
                         # If no definition is found, let the player know
@@ -47,7 +47,7 @@ class GrabDefinition:
 
         @staticmethod
         def grab_country_data(country):
-            print(Fore.YELLOW + "Grabbing country data...")
+            print(Fore.LIGHTYELLOW_EX + "Grabbing country data...")
             # URL in which would be used to gather the definition data for the self.hangman_word
             # if the user decides to use the hint token 
             url = f"""https://geography4.p.rapidapi.com/apis/geography/v1/country/name/{
@@ -67,7 +67,7 @@ class GrabDefinition:
                     capital = capital_list[0].get('name')
                     currency_list = country_data_list.get('currencies', [])
                     currency = currency_list[0].get('alphaCode')
-                    print(Fore.CYAN + f"This country is in the region of {region} and it's capital city is {capital}\nand they use the currency with the alpha code of {currency}" + Fore.RESET)
+                    print(Fore.LIGHTCYAN_EX + f"This country is in the region of {region} and it's capital city is {capital}\nand they use the currency with the alpha code of {currency}" + Fore.RESET)
                 else:
                     # If no data has been grabbed, let the player know
                     print(f"Error: Sorry, no definitions found...")

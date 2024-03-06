@@ -54,16 +54,16 @@ class Leaderboard(ClearTerminalMixin):
             leaderboard_header_mode = "C O U N T R Y   M O D E"
         self.clear_terminal()
         print(
-            Fore.YELLOW +
+            Fore.LIGHTYELLOW_EX +
             "--------------------------------------------------------------------------------")
         print(
-            Fore.YELLOW +
+            Fore.LIGHTYELLOW_EX +
             f"  T O P   2 0   L E A D E R B O A R D  |  {leaderboard_header_mode}")
         print(
-            Fore.YELLOW +
+            Fore.LIGHTYELLOW_EX +
             "--------------------------------------------------------------------------------\n")
         print(
-            Fore.BLUE +
+            Fore.LIGHTBLUE_EX +
             "POSITION  NAME      POINTS LOCATION    DATE        TIME TO WIN    WORD        HINT USED?")
         # Using the data from worksheet.get_all_records(), the data is displayed with designated column widths to separate
         # columns evenly without overflow
@@ -77,5 +77,5 @@ class Leaderboard(ClearTerminalMixin):
             time_to_win_str = player_data['Time to win'].ljust(15)
             winning_word = player_data['Winning word'].ljust(12).capitalize()
             hint_used = player_data['Hint used?'].ljust(12).capitalize()
-            print(Fore.GREEN + f"""{position_str}{name_str}{points_str}{location_str}{
+            print(Fore.LIGHTGREEN_EX + f"""{position_str}{name_str}{points_str}{location_str}{
                   date_str}{time_to_win_str}{winning_word}{hint_used}""")

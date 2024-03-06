@@ -400,4 +400,6 @@ I opted for the requests library in this project to simplify HTTP requests. This
 
 ### **_google auth:_**
 
-I used the Google auth library for my project specifically to leverage its Credentials module. This allows me to securely authenticate and authorize access to Google APIs.
+I used the Google auth library for my project specifically to leverage its Credentials module. This allows me to securely authenticate and authorize access to the Google API.
+
+# **Deployment**

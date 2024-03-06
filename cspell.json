@@ -9,7 +9,7 @@
     }
   ],
   "dictionaries": ["custom-dictionary"],
-  "words": ["duuu", "leaderboards", "dotenv"],
+  "words": ["duuu", "leaderboards", "dotenv", "Colorama", "gspread"],
   "ignoreWords": [],
   "import": []
 }

@@ -45,6 +45,18 @@ The game's challenging nature alongside the leaderboard system creates a competi
     - [**Audio**](#audio)
   - [**Data model**](#data-model)
     - [**Overview of classes**](#overview-of-classes)
+  - [**Testing phase**](#testing-phase)
+  - [**Libraries**](#libraries)
+    - [**Python standard libraries**](#python-standard-library)
+      - [**time**](#time)
+      - [**sys**](#sys)
+      - [**os**](#os)
+    - [**3rd party libraries**](#3rd-party-libraries)
+      - [**colorama**](#colorama)
+      - [**dotenv**](#dotenv)
+      - [**gspread**](#gspread)
+      - [**requests**](#requests)
+      - [**google auth**](#google-auth)
 
 ## **How to Play:**
 
@@ -345,3 +357,47 @@ The following classes are being used by more than 1 class so to avoid repetition
 
 1. ClearTerminalMixin
 2. AsciiArtMixin
+
+# **Testing Phase**
+
+I have written my testing in a different file for both during-development and post-development called [TESTING.md](TESTING.md).
+
+# **Libraries**
+
+For this project to function, I imported the following libraries:
+
+## **Python standard library**
+
+### **_time:_**
+
+I included the time module from the Python standard library in this project to manage time-related operations. Specifically for the game class, to calculate how much time the player spent in a game.
+
+### **_sys:_**
+
+I integrated the sys module from the Python standard library into this project to interact with the Python interpreter. Specifically the exit function, to terminate the terminal when the user decides to exit the game.
+
+### **_os:_**
+
+A system employed alongside the clear/cls command to reset the console, preventing users from being inundated with outdated data from prior sessions.
+
+## **3rd party libraries**
+
+### **_colorama:_**
+
+Colorama is a Python library that simplifies colored text output in the terminal. It allows me to easily add colored text to my console applications, making them more visually appealing and enhancing the user experience. With just a few lines of code, I can apply different colors to my text, making this terminal-based project more dynamic and appealing.
+
+### **_dotenv:_**
+
+I used the dotenv library in my project to securely manage sensitive information, such as my API key, stored in an environment file (env.py). This allows me to keep sensitive data separate from my codebase and easily access it in other files, promoting better security practices and simplifying configuration management.
+
+### **_gspread:_**
+
+I incorporated the gspread library into this project to seamlessly interact with Google Sheets. This library facilitates easy integration, providing a straightforward way to access and manipulate data within Google Sheets.
+
+### **_requests:_**
+
+I opted for the requests library in this project to simplify HTTP requests. This library streamlines communication with APIs and web services, making it convenient to send and receive data.
+
+### **_google auth:_**
+
+I used the Google auth library for my project specifically to leverage its Credentials module. This allows me to securely authenticate and authorize access to Google APIs.

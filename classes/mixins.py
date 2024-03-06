@@ -22,7 +22,7 @@ class ClearTerminalMixin:
 
 class AsciiArtMixin:
     """
-    Contains Ascii art to be used across the game classes
+    Contains Ascii art to be used across the games classes
     """
     def __init__(self):
         self.hangman_stages = [

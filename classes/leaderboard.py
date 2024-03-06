@@ -24,18 +24,20 @@ class Leaderboard(ClearTerminalMixin):
     """
     def __init__(self):
         super().__init__()
-        
+
     @staticmethod
     def append_to_worksheet(sheet, data):
         """
-        Accepts 2 arguments, first is the worksheet we want to add to. Second is the data
+        Accepts 2 arguments, first is the worksheet we
+        want to add to. Second is the data
         passed to the worksheet
         """
         return SHEET.worksheet(sheet).append_row(data)
 
     def get_leaderboard_data(self, mode):
         """
-        Gets leaderboard data from google sheets and displays the top 15 highest scores, also gives user the option
+        Gets leaderboard data from google sheets and
+        displays the top 15 highest scores, also gives user the option
         to play again, choose a different modes leaderboard or exit the game
         """
         leaderboard_sheet = SHEET.worksheet(mode)
@@ -55,17 +57,22 @@ class Leaderboard(ClearTerminalMixin):
         self.clear_terminal()
         print(
             Fore.LIGHTYELLOW_EX +
-            "--------------------------------------------------------------------------------")
+            "--------------------------------------\
+------------------------------------------")
         print(
             Fore.LIGHTYELLOW_EX +
-            f"  T O P   2 0   L E A D E R B O A R D  |  {leaderboard_header_mode}")
+            f"  T O P   2 0   L E A D E R B O A R D  \
+|  {leaderboard_header_mode}")
         print(
             Fore.LIGHTYELLOW_EX +
-            "--------------------------------------------------------------------------------\n")
+            "--------------------------------------\
+------------------------------------------\n")
         print(
             Fore.LIGHTBLUE_EX +
-            "POSITION  NAME      POINTS LOCATION    DATE        TIME TO WIN    WORD        HINT USED?")
-        # Using the data from worksheet.get_all_records(), the data is displayed with designated column widths to separate
+            "POSITION  NAME      POINTS LOCATION    DATE        \
+TIME TO WIN    WORD        HINT USED?")
+        # Using the data from worksheet.get_all_records(), the data is
+        # displayed with designated column widths to separate
         # columns evenly without overflow
         for position, player_data in enumerate(
                 sorted_leaderboard[:20], start=1):
@@ -77,5 +84,6 @@ class Leaderboard(ClearTerminalMixin):
             time_to_win_str = player_data['Time to win'].ljust(15)
             winning_word = player_data['Winning word'].ljust(12).capitalize()
             hint_used = player_data['Hint used?'].ljust(12).capitalize()
-            print(Fore.LIGHTGREEN_EX + f"""{position_str}{name_str}{points_str}{location_str}{
-                  date_str}{time_to_win_str}{winning_word}{hint_used}""")
+            print(Fore.LIGHTGREEN_EX + f"""{position_str}{name_str}\
+{points_str}{location_str}{date_str}{time_to_win_str}{winning_word}\
+{hint_used}""")

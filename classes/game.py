@@ -104,8 +104,8 @@ Type 'a' or 'b' below\n>>> """)
                 else:
                     print(Fore.LIGHTYELLOW_EX + "Please enter a valid option.")
             except KeyboardInterrupt:
-                print(Fore.LIGHTYELLOW_EX + """KeyboardInterrupt (ctrl + c) is not
-                      allowed during input. Please try again.""")
+                print(Fore.LIGHTYELLOW_EX + """KeyboardInterrupt (ctrl + c) \
+is not allowed during input. Please try again.""")
 
     def choose_game_mode(self):
         """
@@ -158,8 +158,8 @@ Type 'a' or 'b' below\n>>> """)
                 else:
                     print(Fore.LIGHTYELLOW_EX + "Please enter a valid option.")
             except KeyboardInterrupt:
-                print(Fore.LIGHTYELLOW_EX + """KeyboardInterrupt (ctrl + c) is not
-                      allowed during input. Please try again.""")
+                print(Fore.LIGHTYELLOW_EX + """KeyboardInterrupt (ctrl + c) \
+is not allowed during input. Please try again.""")
 
     def play(self):
         """
@@ -207,15 +207,17 @@ Type 'a' or 'b' below\n>>> """)
                 # they have less than 3, display
                 # it in yellow
                 if self.score < 3:
-                    print(Fore.LIGHTYELLOW_EX + f"You have {self.score} attempt left")
+                    print(Fore.LIGHTYELLOW_EX + f"You have {self.score}\
+ attempt left")
                 else:
-                    print(Fore.LIGHTGREEN_EX + f"You have {self.score} attempts left")
+                    print(Fore.LIGHTGREEN_EX + f"You have {self.score}\
+ attempts left")
                 # Display a call to action, if the user wants to use their
                 # hint they have to type 'hint'
                 if self.hints_remaining != 0 and self.selected_worksheet != "\
 country mode":
-                    print(Fore.LIGHTCYAN_EX + "Hint token" + Fore.RESET + ": type\
- 'hint' to get the words definition")
+                    print(Fore.LIGHTCYAN_EX + "Hint token" + Fore.RESET + "\
+: type'hint' to get the words definition")
                 elif (
                     self.hints_remaining != 0 and
                     self.selected_worksheet == "country mode"
@@ -484,7 +486,8 @@ Exit game\nType 'a', 'b' or 'c' below\n>>>")
             print(Fore.LIGHTYELLOW_EX + "Leaderboard's updated.\n")
         else:
             print(self.ascii_art.lose_logo_hangman)
-            print(Fore.LIGHTRED_EX + "Better luck next time, my dude is dead!\n")
+            print(Fore.LIGHTRED_EX + "Better \
+luck next time, my dude is dead!\n")
 
         print(f"The word was " + Fore.LIGHTCYAN_EX + f"{self.hangman_word}\n")
         print(

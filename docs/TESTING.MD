@@ -25,6 +25,6 @@ Below are screenshots of the results i got back from Python linter on all python
 
 ![words.py](screenshots/ultimate-hangman-words-python-linter.png)
 
-#### **_definition.py_**
+#### **_response.py_**
 
-![definition.py](screenshots/ultimate-hangman-words-python-linter.png)
+![response.py](screenshots/ultimate-hangman-response-python-linter.png)

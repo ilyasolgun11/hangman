@@ -1,7 +1,8 @@
 import colorama
+import os
 from colorama import Fore
 colorama.init(autoreset=True)
-import os
+
 
 class ClearTerminalMixin:
     """
@@ -16,8 +17,7 @@ class ClearTerminalMixin:
                 'nt', 'dos'):  # If Machine is running on Windows, use cls
             command = 'cls'
         os.system(command)
-        print("\033c", end="") 
-
+        print("\033c", end="")
 
 
 class AsciiArtMixin:

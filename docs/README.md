@@ -57,6 +57,7 @@ The game's challenging nature alongside the leaderboard system creates a competi
       - [**gspread**](#gspread)
       - [**requests**](#requests)
       - [**google auth**](#google-auth)
+  - [**Deployment to heroku**](#deployment-to-heroku)
 
 ## **How to Play:**
 
@@ -402,4 +403,26 @@ I opted for the requests library in this project to simplify HTTP requests. This
 
 I used the Google auth library for my project specifically to leverage its Credentials module. This allows me to securely authenticate and authorize access to the Google API.
 
-# **Deployment**
+# **Deployment to Heroku**
+
+The project was deployed to [Heroku](https://www.heroku.com) using the following steps:
+
+1. _Log in to Heroku_ or create an account if required.
+2. _Click on the dashboard_ from the hamburger menu on the top right to be navigated to the apps page.
+3. _Click the new_ button on the top right of the page.
+4. _Select the "create new app"_ option.
+5. _Enter_ the app name. I named mine ultimate-hangman (this has to be unique).
+6. _Once Heroku accepts the app name_ select your region.
+7. Click the purple _Create app button_ when you are ready to proceed.
+8. This will bring you to the project _Deploy_ tab. From here, navigate to the _settings tab_ and scroll down to the _Config Vars_ section.
+9. _Click_ the button labeled _Reveal \_Config Vars_, _Enter_ the key as port, the value as 8000 and _Click the add button_.
+10. Scroll down to the _buildpacks section_ of the settings page, click the button labeled Add buildpack, select Python, and click _Save Changes_.
+11. _Repeat step 10_ but this time add node.js instead of python.
+    - Remember to keep the buildpacks in the correct order, Python first and Node second.
+12. _Scroll back to the top_ of the settings page, and navigate to the _Deploy_ tab.
+13. From the deploy tab select _Github as the deployment_ method.
+14. _Confirm_ you want to connect to GitHub.
+15. _Search_ for the repository name and _click the connect button_ next to the intended repository.
+16. From the bottom of the deploy page _select your preferred deployment type_ by following one of the steps below:
+    - Clicking either "Enable Automatic Deploys" for automatic deployment when you push updates to GitHub.
+    - Select the correct branch for deployment from the drop-down menu and click the "Deploy Branch" button for manual deployment.

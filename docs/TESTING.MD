@@ -28,3 +28,15 @@ Below are screenshots of the results i got back from Python linter on all python
 #### **_response.py_**
 
 ![response.py](screenshots/ultimate-hangman-response-python-linter.png)
+
+#### **_hinttoken.py_**
+
+![hinttoken.py](screenshots/ultimate-hangman-hinttoken-python-linter.png)
+
+#### **_mixins.py_**
+
+![mixins.py](screenshots/ultimate-hangman-mixins-python-linter.png)
+
+#### **_leaderboard.py_**
+
+![leaderboard.py](screenshots/ultimate-hangman-leaderboard-python-linter.png)

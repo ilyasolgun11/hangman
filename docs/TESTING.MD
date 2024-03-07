@@ -4,3 +4,27 @@
 
 - [**Testing**](#testing)
   - [**Table of contents**](#table-of-contents)
+
+## **Manual testing:**
+
+I performed manual testing throughout this project in the following ways:
+
+### **_PEP8 Python Linter:_**
+
+Below are screenshots of the results i got back from Python linter on all python files:
+
+#### **_run.py_**
+
+![run.py](screenshots/ultimate-hangman-run-python-linter.png)
+
+#### **_game.py_**
+
+![game.py](screenshots/ultimate-hangman-game-python-linter.png)
+
+#### **_words.py_**
+
+![words.py](screenshots/ultimate-hangman-words-python-linter.png)
+
+#### **_definition.py_**
+
+![definition.py](screenshots/ultimate-hangman-words-python-linter.png)

@@ -415,7 +415,7 @@ The project was deployed to [Heroku](https://www.heroku.com) using the following
 6. _Once Heroku accepts the app name_ select your region.
 7. Click the purple _Create app button_ when you are ready to proceed.
 8. This will bring you to the project _Deploy_ tab. From here, navigate to the _settings tab_ and scroll down to the _Config Vars_ section.
-9. _Click_ the button labeled _Reveal \_Config Vars_, _Enter_ the key as port, the value as 8000 and _Click the add button_.
+9. _Click_ the button labeled _Reveal \_Config Vars_, _Enter_ the key as Port, the Value as 8000 and _Click the add button_.
 10. Scroll down to the _buildpacks section_ of the settings page, click the button labeled Add buildpack, select Python, and click _Save Changes_.
 11. _Repeat step 10_ but this time add node.js instead of python.
     - Remember to keep the buildpacks in the correct order, Python first and Node second.

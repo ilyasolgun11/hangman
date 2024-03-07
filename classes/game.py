@@ -217,7 +217,7 @@ is not allowed during input. Please try again.""")
                 if self.hints_remaining != 0 and self.selected_worksheet != "\
 country mode":
                     print(Fore.LIGHTCYAN_EX + "Hint token" + Fore.RESET + "\
-: type'hint' to get the words definition")
+: type 'hint' to get the words definition")
                 elif (
                     self.hints_remaining != 0 and
                     self.selected_worksheet == "country mode"

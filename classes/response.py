@@ -8,9 +8,9 @@ load_dotenv(dotenv_path='env.py')
 api_key = os.getenv('API_KEY')
 
 
-class GrabDefinition:
+class GrabResponse:
     """
-    Class representing the definition functionality
+    Class representing the response functionality
     of the hangman game
     """
     @staticmethod

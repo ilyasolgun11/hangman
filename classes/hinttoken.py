@@ -1,7 +1,7 @@
-from .definition import GrabDefinition
+from .response import GrabResponse
 
 
-class HintToken(GrabDefinition):
+class HintToken(GrabResponse):
     """
     Class representing the hint token functionality of the hangman game
     """

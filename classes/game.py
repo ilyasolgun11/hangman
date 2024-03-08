@@ -60,7 +60,7 @@ class Game(Player, Leaderboard, RandomWord, AsciiArtMixin, ClearTerminalMixin,
         self.player_won = False
         self.selected_worksheet = "easy mode"
         self.ascii_art = AsciiArtMixin()
-        self.hangman_word = self.game_modes("hard mode")
+        self.hangman_word = self.game_modes("easy mode")
         self.display_word = "_" * \
             len(self.hangman_word)
         self.stages = 0

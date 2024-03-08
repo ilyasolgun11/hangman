@@ -479,8 +479,8 @@ Exit game\nType 'a', 'b' or 'c' below\n>>>")
         want to play again, check leaderboard or exit the game
         """
         self.clear_terminal()
-        self.times_player_won += 1
         if self.player_won:
+            self.times_player_won += 1
             print(self.ascii_art.win_logo_hangman)
             print(Fore.LIGHTGREEN_EX + f"Amazing job! you saved him!\n")
             print(Fore.LIGHTYELLOW_EX + "Leaderboard's updated.\n")

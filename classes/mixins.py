@@ -273,11 +273,12 @@ __|/\\/|______________
 """
 
     def thank_user(self, name, times_won, location):
-        if times_won > 1:
-            times = f" {times_won} TIMES!"
-        else:
-            times = "!"
-        print(Fore.LIGHTGREEN_EX + f"""\n\n\n
+        if times_won > 0:
+          if times_won >= 2:
+              times = f" {times_won} TIMES!"
+          else:
+              times = "!"
+          print(Fore.LIGHTGREEN_EX + f"""\n\n\n
     ______________________________
     |/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\|
         |/\\/|
@@ -297,3 +298,5 @@ __|/\\/|______________
               / __  / ___ |/ /|  / /_/ / /  / / ___ |/ /|  /
              /_/ /_/_/  |_/_/ |_/\\____/_/  /_/_/  |_/_/ |_/
 """)
+        else:
+            print(f"Thank you for playing {name}!")

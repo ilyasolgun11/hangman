@@ -84,3 +84,39 @@ Moreover, I've incorporated a proactive approach to prevent unintended issues, i
   - There were no measures to prevent this in my input sections.
 - Solution Found:
   - I used a try statement which was inside a while loop, the while loop was used to keep running the input fields until a valid input was obtained. In an event of an exception, the except block of the try statement would fire and let the user know that the keyboard shortcut they used which could break the game was not allowed, and display the input again.
+
+4. Intended Outcome: Ensure that the game resets properly after completion, allowing the player to start a new game without any residual data from the previous one.
+
+- Issue Found:
+  - After completing a game and choosing to play again, some game attributes were not resetting correctly, leading to unexpected behavior in subsequent rounds.
+- Cause:
+  - Certain attributes related to game state and player data were not properly reset in the reset_game() method.
+- Solution Found:
+- Modified the reset_game() method to reset all relevant attributes, including game mode, guessed letters and words, hint tokens, and player score. This ensures that each new game starts with a clean slate and no carryover from previous rounds.
+
+5. Intended Outcome: Implement a safeguard to prevent the game from crashing if the player exceeds the maximum allowed number of wrong guesses.
+
+- Issue Found:
+  - When the player exhausts all their attempts without guessing the word correctly, the game abruptly ends without providing any feedback or option to continue.
+- Cause:
+  - Lack of error handling for the scenario where the player runs out of attempts.
+- Solution Found:
+- Implemented a condition to check if the player's score reaches zero, indicating that they have no more attempts left. In this case, display a message informing the player that the game is over and provide options to play again, view leaderboards, or exit. This ensures a graceful handling of game termination scenarios and gives the player clear guidance on what to do next.
+
+6. Intended Outcome: Prevent the game from displaying duplicate incorrect guesses in the list of wrong guesses.
+
+- Issue Found:
+  - When the player guesses the same incorrect letter multiple times, the letter gets added to the list of wrong guesses each time, resulting in duplicate entries.
+- Cause:
+  - Lack of check for duplicate entries in the list of wrong guesses.
+- Solution Found:
+  - Implemented a check to verify if the guessed letter is already in the list of wrong guesses before adding it. If the letter is already present, display a message informing the player that they've already guessed that letter incorrectly.
+
+7. Intended Outcome: Ensure that the game handles unexpected input gracefully and provides clear instructions to the player in case of invalid input.
+
+- Issue Found:
+  - If the player enters a non-alphabetic character as input (e.g., a number or special symbol), the game crashes with an unhandled exception.
+- Cause:
+  - Lack of input validation and error handling for non-alphabetic characters.
+- Solution Found:
+  - Implemented input validation to check if the player's input consists of alphabetic characters only. If the input contains non-alphabetic characters, display a message informing the player that only letters are allowed and prompt them to enter a valid guess.

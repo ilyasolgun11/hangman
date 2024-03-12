@@ -17,6 +17,7 @@ class ClearTerminalMixin:
                 'nt', 'dos'):  # If Machine is running on Windows, use cls
             command = 'cls'
         os.system(command)
+        
         print("\033c", end="")
 
 

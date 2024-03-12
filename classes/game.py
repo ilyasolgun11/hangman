@@ -38,10 +38,10 @@ class Game(Player, Leaderboard, RandomWord, AsciiArtMixin, ClearTerminalMixin,
     - how_to_play(): Provides instructions on how to play the game.
     - choose_game_mode(): Allows the player to choose the game mode.
     - play(): Starts the game and manages user input.
-    - guess_word(user_input): Handles the user's attempt to guess a word.
-    - guess_letter(user_input): Handles the user's attempt to guess
+    - guess_word(): Handles the user's attempt to guess a word.
+    - guess_letter(): Handles the user's attempt to guess
       a letter.
-    - update_display_word(user_input): Updates the displayed word
+    - update_display_word(): Updates the displayed word
       based on correct letter guesses.
     - reset_game(): Resets relevant game attributes for a new round.
     - leaderboard_mode_options(): Allows the player to view

@@ -124,3 +124,16 @@ Moreover, I've incorporated a proactive approach to prevent unintended issues, i
 ## **Post Development Testing**
 
 ### **Validators**
+
+#### **_HTML_** - https://validator.w3.org/nu/
+
+No issues found regarding my changes, the changes i added are:
+
+- Meta tags to improve the Lighthouse score of the site.
+- Adjusted the col and row of the terminal.
+
+#### **_CSS_** - https://jigsaw.w3.org/css-validator/
+
+The style code was tested using direct input, with no issues found.
+
+![CSS](screenshots/css-no-errors.png)

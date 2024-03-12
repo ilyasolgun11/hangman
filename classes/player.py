@@ -38,7 +38,7 @@ your name and location to\nsee the how to play guide.\n")
             # attempts keyboard interruption (ctrl + c)
             try:
                 self.name_of_player = input(
-                    Fore.LIGHTCYAN_EX + "What is your first name?\n>>> ")
+                    Fore.LIGHTCYAN_EX + "What is your first name?\n")
                 if len(self.name_of_player) == 0:
                     print(Fore.LIGHTYELLOW_EX + "Please enter your name..")
                 elif any(char.isdigit() for char in self.name_of_player):
@@ -56,7 +56,7 @@ is not allowed during input. Please try again.")
             try:
                 self.location_of_player = input(
                     Fore.LIGHTCYAN_EX + "Which country/city \
-are your from?\n>>> ")
+are your from?\n")
                 if len(self.location_of_player) == 0:
                     print(Fore.LIGHTYELLOW_EXW + "Please \
 enter your location..")

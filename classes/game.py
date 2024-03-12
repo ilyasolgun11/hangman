@@ -92,7 +92,7 @@ play guide above before you begin.\n""")
             try:
                 player_option = input(
                     """A - Choose game mode\nB - Go back\n\
-Type 'a' or 'b' below\n>>> """)
+Type 'a' or 'b' below\n""")
                 if player_option.lower() == "a":
                     # Navigates player to game mode screen
                     self.choose_game_mode()
@@ -142,7 +142,7 @@ is not allowed during input. Please try again.""")
                     Fore.LIGHTCYAN_EX +
                     """D - Country mode\n""" +
                     Fore.WHITE +
-                    """Type 'a', 'b', 'c' or 'd' below\n>>> """)
+                    """Type 'a', 'b', 'c' or 'd' below\n""")
                 if player_mode_option.lower() == "a":
                     handle_game_mode("easy mode", "easy mode")
                     break
@@ -227,10 +227,10 @@ country mode":
                 else:
                     pass
                 user_input = input(
-                    "Guess a letter or a word: \n>>> \
+                    "Guess a letter or a word: \n\
 ").lower() if self.score > 2 else input(
                     Fore.LIGHTRED_EX + "Guess a letter or a word\
-, Hurry!: \n>>> ").lower()
+, Hurry!: \n").lower()
                 # If the players input is a letter, pass that input to the
                 # guess_letter() otherwise pass to guess_word()
                 try:
@@ -240,9 +240,9 @@ country mode":
                                             self.selected_worksheet)
                         user_input = input(
                             "Guess a letter or a word\
-: \n>>> ").lower() if self.score > 2 else input(
+: \n").lower() if self.score > 2 else input(
                             Fore.LIGHTRED_EX + "Guess a letter or a word\
-, Hurry!: \n>>> ").lower()
+, Hurry!: \n").lower()
                         if len(user_input) == 1:
                             self.guess_letter(user_input)
                         else:
@@ -416,7 +416,7 @@ word, try again."
                     "\nA - Easy mode leaderboard\nB - Intermediate mode \
 leaderboard\nC - Hard mode leaderboard\nD - Country mode leaderboard\n" +
                     Fore.RESET +
-                    "Type 'a', 'b' or 'c' below\n>>> ")
+                    "Type 'a', 'b' or 'c' below\n")
                 if user_choice.lower() == "a":
                     handle_leaderboard_mode_options("easy mode")
                     break
@@ -448,7 +448,7 @@ leaderboard\nC - Hard mode leaderboard\nD - Country mode leaderboard\n" +
 
                 user_choice = input(
                     "A - Play again\nB - Leaderboard's\nC - \
-Exit game\nType 'a', 'b' or 'c' below\n>>>")
+Exit game\nType 'a', 'b' or 'c' below\n")
                 if user_choice.lower() == "a":
                     self.reset_game()
                     self.choose_game_mode()

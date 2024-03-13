@@ -9,6 +9,10 @@
     - [**Game play**](#game-play)
     - [**Inputs**](#inputs)
   - [**Bugs and fixes**](#bugs-and-fixes)
+  - [**Post development testing**](#post-development-testing)
+    - [**Validators**](#validators)
+      - [**HTML**](#html---httpsvalidatorw3orgnu)
+      - [**CSS**](#css---httpsjigsaww3orgcss-validator)
 
 ## **Manual testing:**
 

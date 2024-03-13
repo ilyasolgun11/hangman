@@ -359,6 +359,10 @@ The following classes are being used by more than 1 class so to avoid repetition
 1. ClearTerminalMixin
 2. AsciiArtMixin
 
+<!-- ### **Logic Flow**
+
+The game object gets created in the global scope and calls the collect_info function within the Player class using dot notation. The player is then greeted with a welcome screen displaying a welcome message. Within this screen i used input fields to collect the players name and location to be used later on. Once the player has entered their name and location, the how_to_play function is called within the Game class to display the how to play guide to the player, the player is also encouraged to read the guide to have a better understanding of the game. They are then met with 2 options, choose game mode or go back to change update their name and location. Once the player chooses the choose game mode option they see the following game modes: Easy mode, Intermediate mode, Hard mode and Country mode. Upon clicking either one of the game modes the play function is called from within the Game class and the following happens: Depending on which game mode the player chooses the game_modes function within the RandomWord class is called to select the hangman word, The timer starts to keep track of how much time it takes the player to complete a game, -->
+
 # **Testing Phase**
 
 I have written my testing in a different file for both during-development and post-development called [TESTING.md](TESTING.md).
@@ -426,3 +430,17 @@ The project was deployed to [Heroku](https://www.heroku.com) using the following
 16. From the bottom of the deploy page _select your preferred deployment type_ by following one of the steps below:
     - Clicking either "Enable Automatic Deploys" for automatic deployment when you push updates to GitHub.
     - Select the correct branch for deployment from the drop-down menu and click the "Deploy Branch" button for manual deployment.
+
+# **Honorable mentions**
+
+These awesome people helped me in the process of making this project, so I will mention them below in no particular order:
+
+- [David Bowers](https://github.com/dnlbowers) - An amazing mentor and I could not ask for more. He has helped me on my previous 2 projects (which received a distinction grade due to his help) and he has helped me a lot on this one too, guided me to take an OOP (Object Oriented Programming) approach which was challenging but also very fulfilling when I learned I could do it.
+
+- [Lino Bollansee](https://github.com/linobollansee) - Amazing help to me towards the end of the project, helped point out the many errors I had, which may not have been resolved if they had not been mentioned by Lino.
+
+- [Dajana Isbaner] - Great help to me, helped point out bugs in the project such as input errors and the terminal not being fully wiped after every loop of the game.
+
+- [Niclas Hugdahl](https://github.com/NiclO1337) - Niclas was also a great help to me in the project by pointing out the quality of life changes I could have made for the project which I implemented swiftly, these changes improved my project so I am grateful to him.
+
+- [James Evans](https://www.linkedin.com/in/james-evans-682ba29b/) - James was also really helpful in improving the contrast of some texts that were hard to see by players who might have had low brightness settings enabled on their display.

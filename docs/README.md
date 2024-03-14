@@ -467,8 +467,14 @@ These awesome people helped me in the process of making this project, so I will 
 
 - [Lino Bollansee](https://github.com/linobollansee) - Amazing help to me towards the end of the project, helped point out the many errors I had, which may not have been resolved if they had not been mentioned by Lino.
 
-- [Dajana Isbaner] - Great help to me, helped point out bugs in the project such as input errors and the terminal not being fully wiped after every loop of the game.
+- Dajana Isbaner - Great help to me, helped point out bugs in the project such as input errors and the terminal not being fully wiped after every loop of the game.
 
 - [Niclas Hugdahl](https://github.com/NiclO1337) - Niclas was also a great help to me in the project by pointing out the quality of life changes I could have made for the project which I implemented swiftly, these changes improved my project so I am grateful to him.
 
 - [James Evans](https://www.linkedin.com/in/james-evans-682ba29b/) - James was also really helpful in improving the contrast of some texts that were hard to see by players who might have had low brightness settings enabled on their display.
+
+# **Credits**
+
+- [lucidchart.com](https://www.lucidchart.com/pages/) was used to create the game flow chart "hangman-logic-flowchart.png"
+- [Text to ASCII art generator](https://patorjk.com/software/taag/#p=display&f=Graffiti&t=Type%20Something%20) used for the ultimate hangman logo text.
+- Clear console function copied from [delfstack.com](https://www.delftstack.com/howto/python/python-clear-console/)

@@ -8,6 +8,7 @@
     - [**PEP8 python linter**](#pep8-python-linter)
     - [**Game play**](#game-play)
     - [**Inputs**](#inputs)
+    - [**Browser cross-compatibility**](#browser-cross-compatibility)
   - [**Bugs and fixes**](#bugs-and-fixes)
   - [**Post development testing**](#post-development-testing)
     - [**Validators**](#validators)
@@ -59,6 +60,16 @@ Throughout development, I extensively tested the game in the Visual Studio Code 
 In the input sections of this project, I have thoroughly tested for potential errors arising from player input. I have specifically addressed scenarios where errors could occur, such as entering a number when a string is required and handling special characters. To ensure robust error handling, I've implemented comprehensive input validation for all user inputs.
 
 Moreover, I've incorporated a proactive approach to prevent unintended issues, including the detection and handling of "Ctrl + C" inputs. By placing try and except statements, I've effectively safeguarded the project against unexpected interruptions caused by user actions like copying or halting the program.
+
+### **_Browser cross-compatibility_**
+
+During testing I used 5 different browsers to ensure cross-compatibility. The browsers used were:
+
+- Chrome
+- Firefox
+- Firefox developer edition
+- Opera GX
+- Microsoft Edge
 
 ## **_Bugs and fixes:_**
 
@@ -131,7 +142,7 @@ Moreover, I've incorporated a proactive approach to prevent unintended issues, i
 
 #### **_HTML_** - https://validator.w3.org/nu/
 
-No issues found regarding my changes, the changes i added are:
+No issues found when using direct input regarding my changes, the changes i added are:
 
 - Meta tags to improve the Lighthouse score of the site.
 - Adjusted the col and row of the terminal.

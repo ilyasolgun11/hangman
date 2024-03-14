@@ -33,6 +33,7 @@ class Game(Player, Leaderboard, RandomWord, AsciiArtMixin, ClearTerminalMixin,
     - guessed_words (list): List of guessed words.
     - guessed_correct_letters (list): List of correctly guessed letters.
     - game_hint_message (str): Message related to hints during the game.
+    - times_player_won (int): Keeps track of the times the player has won.
     """
 
     def __init__(self):
@@ -331,8 +332,7 @@ word, try again."
 
     def reset_game(self):
         """
-        Resets only the class attributes that need to be reset,
-        leaves the user name and location the same
+        Resets only the class attributes that need to be reset
         """
         self.player_won = False
         self.hangman_word = self.game_modes("easy mode")

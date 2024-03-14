@@ -49,6 +49,7 @@ The game's challenging nature alongside the leaderboard system creates a competi
     - [**Logic flow**](#logic-flow)
       - [**Setup phase**](#setup-phase)
       - [**Game phase**](#game-phase)
+      - [**Game end phase**](#game-end-phase)
   - [**Testing phase**](#testing-phase)
   - [**Libraries**](#libraries)
     - [**Python standard libraries**](#python-standard-library)
@@ -378,11 +379,17 @@ The following classes are being used by more than 1 class so to avoid repetition
 
 #### **_Setup Phase_**
 
-The game object gets created in the global scope and calls the collect_info method within the Player class using dot notation. The player is then greeted with a welcome screen displaying a welcome message. Within this screen, I used input fields to collect the player's name and location to be used later on. Once the player has entered their name and location, the how_to_play method is called within the Game class to display the how-to-play guide to the player, the player is also encouraged to read the guide to have a better understanding of the game. They are then met with 2 options, choose game mode or go back to change and update their name and location. Once the player chooses the choose game mode option they see the following game modes: Easy mode, Intermediate mode, Hard mode and Country mode. Upon clicking either one of the game modes the play method is called from within the Game class and the following happens: Depending on which game mode the player chooses the game_modes method within the RandomWord class is called to select the hangman word, The timer starts to keep track of how much time it takes the player to complete a game, the value of game_hint_message is set to "This word is (the number of letters in the hangman word) in length, good luck".
+The game initializes by creating a game object in the global scope, which triggers the collect_info method within the Player class which inherits the Game class. The player is warmly welcomed with a greeting screen displaying a personalized welcome message. Utilizing input fields, the player is prompted to enter their name and location, crucial pieces of information for their journey ahead. Once the player inputs their details, they are directed to the how-to-play guide by invoking the how_to_play method within the Game class. The guide provides essential instructions for navigating the game, encouraging players to peruse it for a comprehensive understanding. Following this, players are presented with two options: selecting a game mode or returning to amend their name and location. Opting for the game mode selection prompts the choose_game_mode method, showcasing various modes such as Easy, Intermediate, Hard, and Country. Upon choosing a mode, the play method from the Game class initiates a series of events: selecting a hangman word using the game_modes method within the RandomWord class, activating a timer to track gameplay duration, and setting the game_hint_message to provide a hint about the word's length.
 
 #### **_Game Phase_**
 
-Now that the hangman word is chosen, the timer has started and the game_hint_message is set, the following things will be printed to the console over and over again until the game ends: The current hangman stage the player is on, the game_hint_message, the wrong guesses made by the player, the display word (which is the amount of letters in the hangman word multiplied by underscores), the amount of points the player has, the amount of attempts the player has left, hint token option (only visible if the player has not used the hint token already), and a prompt to tell the player to type a letter or a word.
+With the hangman word chosen, the timer ticking, and the hint message set, the game phase unfolds, presenting vital information repeatedly until its conclusion. Players are provided with updates on the current hangman stage, the hint message, any incorrect guesses, the display word (comprising underscores representing un-guessed letters), accumulated points, remaining attempts, and an option to use a hint token (visible if unused). A prompt encourages players to input a letter or word to progress.
+
+Should a player opt to utilize the hint token by typing "hint," the hangman word and game mode are passed to the use_hint_token method within the HintToken class. For "country mode," the hangman word is transmitted to the grab_country_data method within the GrabResponse class, which retrieves relevant data for player viewing. Conversely, for modes other than "country mode," the hangman word is forwarded to the grab_word_definition method within the GrabResponse class, facilitating the display of pertinent data.
+
+#### **_Game End Phase_**
+
+Upon game conclusion, determined by the player's victory or defeat, an appropriate game end screen is presented, either commending the player or offering encouragement for future attempts. Below the screen, players are presented with three options: Play Again, Leaderboards, or Exit Game. Opting to play again triggers the reset_game method within the Game class, redirecting players to the game mode selection screen. Choosing Leaderboards grants access to four distinct leaderboards: Easy, Intermediate, Hard, and Country modes. These leaderboards showcase the top 20 players ranked by points accumulated during gameplay. Selecting the Exit Game option delivers a farewell message, incorporating a thank you note and, for victorious players, a personalized accolade highlighting their success and praising their location.
 
 # **Testing Phase**
 

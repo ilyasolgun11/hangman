@@ -16,7 +16,8 @@
     "Colorama",
     "gspread",
     "buildpacks",
-    "buildpack"
+    "buildpack",
+    "gameplay"
   ],
   "ignoreWords": [],
   "import": []

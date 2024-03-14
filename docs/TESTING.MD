@@ -119,7 +119,7 @@ Moreover, I've incorporated a proactive approach to prevent unintended issues, i
 7. Intended Outcome: Ensure that the game handles unexpected input gracefully and provides clear instructions to the player in case of invalid input.
 
 - Issue Found:
-  - If the player enters a non-alphabetic character as input (e.g., a number or special symbol), the game crashes with an unhandled exception.
+  - If the player enters a non-alphabetic character as input (e.g. a number or special symbol), the game crashes with an unhandled exception.
 - Cause:
   - Lack of input validation and error handling for non-alphabetic characters.
 - Solution Found:

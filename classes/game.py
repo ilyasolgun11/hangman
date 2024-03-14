@@ -117,10 +117,6 @@ is not allowed during input. Please try again.""")
         # Clears the terminal
         self.clear_terminal()
         print(self.ascii_art.game_modes_display)
-        # Sets self.hangman_word to a randomized word gathered from the
-        # RandomWord class. Also sets the display word,
-        # but multiplying "_" with the letters in self.hangman_word
-
         def handle_game_mode(mode, worksheet):
             self.hangman_word = self.game_modes(
                 mode)

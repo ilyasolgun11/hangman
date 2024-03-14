@@ -45,6 +45,9 @@ The game's challenging nature alongside the leaderboard system creates a competi
     - [**Audio**](#audio)
   - [**Data model**](#data-model)
     - [**Overview of classes**](#overview-of-classes)
+    - [**Logic flow**](#logic-flow)
+      - [**Setup phase**](#setup-phase)
+      - [**Game phase**](#game-phase)
   - [**Testing phase**](#testing-phase)
   - [**Libraries**](#libraries)
     - [**Python standard libraries**](#python-standard-library)
@@ -58,6 +61,7 @@ The game's challenging nature alongside the leaderboard system creates a competi
       - [**requests**](#requests)
       - [**google auth**](#google-auth)
   - [**Deployment to heroku**](#deployment-to-heroku)
+  - [**Honorable mentions**](#honorable-mentions)
 
 ## **How to Play:**
 
@@ -359,9 +363,15 @@ The following classes are being used by more than 1 class so to avoid repetition
 1. ClearTerminalMixin
 2. AsciiArtMixin
 
-<!-- ### **Logic Flow**
+### **Logic Flow**
 
-The game object gets created in the global scope and calls the collect_info function within the Player class using dot notation. The player is then greeted with a welcome screen displaying a welcome message. Within this screen i used input fields to collect the players name and location to be used later on. Once the player has entered their name and location, the how_to_play function is called within the Game class to display the how to play guide to the player, the player is also encouraged to read the guide to have a better understanding of the game. They are then met with 2 options, choose game mode or go back to change update their name and location. Once the player chooses the choose game mode option they see the following game modes: Easy mode, Intermediate mode, Hard mode and Country mode. Upon clicking either one of the game modes the play function is called from within the Game class and the following happens: Depending on which game mode the player chooses the game_modes function within the RandomWord class is called to select the hangman word, The timer starts to keep track of how much time it takes the player to complete a game, -->
+#### **_Setup Phase_**
+
+The game object gets created in the global scope and calls the collect_info method within the Player class using dot notation. The player is then greeted with a welcome screen displaying a welcome message. Within this screen, I used input fields to collect the player's name and location to be used later on. Once the player has entered their name and location, the how_to_play method is called within the Game class to display the how-to-play guide to the player, the player is also encouraged to read the guide to have a better understanding of the game. They are then met with 2 options, choose game mode or go back to change and update their name and location. Once the player chooses the choose game mode option they see the following game modes: Easy mode, Intermediate mode, Hard mode and Country mode. Upon clicking either one of the game modes the play method is called from within the Game class and the following happens: Depending on which game mode the player chooses the game_modes method within the RandomWord class is called to select the hangman word, The timer starts to keep track of how much time it takes the player to complete a game, the value of game_hint_message is set to "This word is (the number of letters in the hangman word) in length, good luck".
+
+#### **_Game Phase_**
+
+Now that the hangman word is chosen, the timer has started and the game_hint_message is set, the following things will be printed to the console over and over again until the game ends: The current hangman stage the player is on, the game_hint_message, the wrong guesses made by the player, the display word (which is the amount of letters in the hangman word multiplied by underscores), the amount of points the player has, the amount of attempts the player has left, hint token option (only visible if the player has not used the hint token already), and a prompt to tell the player to type a letter or a word.
 
 # **Testing Phase**
 
@@ -435,7 +445,7 @@ The project was deployed to [Heroku](https://www.heroku.com) using the following
 
 These awesome people helped me in the process of making this project, so I will mention them below in no particular order:
 
-- [David Bowers](https://github.com/dnlbowers) - An amazing mentor and I could not ask for more. He has helped me on my previous 2 projects (which received a distinction grade due to his help) and he has helped me a lot on this one too, guided me to take an OOP (Object Oriented Programming) approach which was challenging but also very fulfilling when I learned I could do it.
+- [David Bowers](https://github.com/dnlbowers) - David is an amazing mentor and I could not ask for more. He has helped me on my previous 2 projects (which received a distinction grade due to his help) and he has helped me a lot on this one too, guided me to take an OOP (Object Oriented Programming) approach which was challenging but also very fulfilling when I learned I could do it.
 
 - [Lino Bollansee](https://github.com/linobollansee) - Amazing help to me towards the end of the project, helped point out the many errors I had, which may not have been resolved if they had not been mentioned by Lino.
 

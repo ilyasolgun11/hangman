@@ -39,6 +39,7 @@ The game's challenging nature alongside the leaderboard system creates a competi
     - [**Game end screen**](#game-end-screens)
       - [**Game win screen**](#game-win-screen)
       - [**Game lose screen**](#game-lose-screen)
+    - [**Exit game screens**](#exit-game-screens)
   - [**Future enhancements**](#future-enhancements)
     - [**Ranked mode**](#ranked-mode)
     - [**Custom modes**](#custom-modes)
@@ -319,6 +320,16 @@ When the player loses, they see the following:
 - Options to Play again, see leaderboards or exit the game
 
 ![Game lose screen](screenshots/ultimate-hangman-lose-screen.png)
+
+## **Exit Game Screens:**
+
+If the player exit's the game but _has not_ won a game before doing so, they see the following:
+
+![Exit game screen 1](screenshots/ultimate-hangman-thank-you.png)
+
+If the player exit's the game and _has_ won a game before doing so, they see the following:
+
+![Exit game screen 2](screenshots/ultimate-hangman-thank-you-2.png)
 
 # **Future-Enhancements**
 

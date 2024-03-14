@@ -33,22 +33,6 @@ class Game(Player, Leaderboard, RandomWord, AsciiArtMixin, ClearTerminalMixin,
     - guessed_words (list): List of guessed words.
     - guessed_correct_letters (list): List of correctly guessed letters.
     - game_hint_message (str): Message related to hints during the game.
-
-    Methods:
-    - how_to_play(): Provides instructions on how to play the game.
-    - choose_game_mode(): Allows the player to choose the game mode.
-    - play(): Starts the game and manages user input.
-    - guess_word(): Handles the user's attempt to guess a word.
-    - guess_letter(): Handles the user's attempt to guess
-      a letter.
-    - update_display_word(): Updates the displayed word
-      based on correct letter guesses.
-    - reset_game(): Resets relevant game attributes for a new round.
-    - leaderboard_mode_options(): Allows the player to view
-      leaderboard's for different game modes.
-    - game_end_options(): Displays options after the game ends (play again,
-      view leaderboard, or exit).
-    - game_end(): Displays the win/lose screen and handles post-game options.
     """
 
     def __init__(self):
@@ -164,12 +148,8 @@ is not allowed during input. Please try again.""")
         or guess_letter(). Also if user selects the hint option
         it calls the api to get the definition of the hangman word.
         """
-        # Starts timer, this timer ends when player either wins or
-        # loses, this is later used to display the time it took
-        # for the player to win in the Leaderboard section
+        # Starts timer
         self.start_time = time.time()
-        # This message changes depending on what the user does
-        # during the game
         self.game_hint_message = Fore.LIGHTGREEN_EX + f"""This word is\
  {len(self.hangman_word)} letters in length, good luck!"""
         # While the game is still going on, do the following
@@ -178,38 +158,25 @@ is not allowed during input. Please try again.""")
             # Try statement to avoid quitting game when player
             # attempts keyboard interruption (ctrl + c)
             try:
-                # Display which stage the player is on
                 print(self.ascii_art.hangman_stages[self.stages])
-                # Display hint message to inform player
                 print(f"{self.game_hint_message}\n")
-                # Displays the wrongly guessed letters and words
                 print(
                     Fore.LIGHTRED_EX +
                     f"""Wrong guesses:\n{
                         self.guessed_letters +
                         self.guessed_words}\n""")
-                # Displays the self.hangman_word in underscores,
-                # till user reveals them by guessing correctly
                 print(f"""{" ".join(self.display_word)}\n""")
-                # Depending on how many points the user has,
-                # display them in either red or green
                 if self.points >= 25:
                     print(Fore.LIGHTGREEN_EX + f"Points: {self.points}\n")
                 else:
                     print(Fore.LIGHTRED_EX + f"Points: {self.points}\n")
-                # Use line for separation
                 print("---------------------------------------------------")
-                # Display the amount of attempts the user has, and if
-                # they have less than 3, display
-                # it in yellow
                 if self.score < 3:
                     print(Fore.LIGHTYELLOW_EX + f"You have {self.score}\
  attempt left")
                 else:
                     print(Fore.LIGHTGREEN_EX + f"You have {self.score}\
  attempts left")
-                # Display a call to action, if the user wants to use their
-                # hint they have to type 'hint'
                 if self.hints_remaining != 0 and self.selected_worksheet != "\
 country mode":
                     print(Fore.LIGHTCYAN_EX + "Hint token" + Fore.RESET + "\
@@ -227,8 +194,6 @@ country mode":
 ").lower() if self.score > 2 else input(
                     Fore.LIGHTRED_EX + "Guess a letter or a word\
 , Hurry!: \n").lower()
-                # If the players input is a letter, pass that input to the
-                # guess_letter() otherwise pass to guess_word()
                 try:
                     if user_input == "hint" and self.hints_remaining != 0:
                         self.hints_remaining -= 1
@@ -253,8 +218,6 @@ country mode":
                         else:
                             self.guess_word(user_input)
                     else:
-                        # If player input is neither a letter or a word,
-                        # display message
                         self.game_hint_message = Fore.LIGHTRED_EX + \
                             "Your input is neither a letter or a \
 word, try again."
@@ -289,16 +252,11 @@ word, try again."
         Checks if the user word input is correct or not,
         increments or decrements points accordingly
         """
-        # If player input is already guessed, display message
         if user_input in self.guessed_words:
             self.game_hint_message = Fore.LIGHTYELLOW_EX + \
                 f"You have guessed the word '{user_input}' already."
         else:
-            # If player input is correct ddo the following
             if user_input == self.hangman_word:
-                # If the player guessed correctly before revealing the
-                # first half of the word, award 750 points, otherwise 100
-                # points
                 if len(self.guessed_correct_letters) < round(
                         (len(self.hangman_word) / 2) + 1):
                     self.points += 750
@@ -307,7 +265,6 @@ word, try again."
                     self.points += 100
                     self.player_won = True
             else:
-                # If player guessed wrong, do the following
                 self.points = 0
                 self.score -= 1
                 self.guessed_words.append(user_input)
@@ -323,7 +280,6 @@ word, try again."
         Checks if user letter input is correct or not,
         increments or decrements points accordingly
         """
-        # If player already guessed a letter, display message
         if (
             user_input in self.guessed_letters
             or user_input in self.guessed_correct_letters
@@ -331,19 +287,15 @@ word, try again."
             self.game_hint_message = Fore.LIGHTYELLOW_EX + \
                 f"You have guessed the letter '{user_input}' already"
         else:
-            # If player guessed a letter correctly do the following
             if user_input in self.hangman_word:
                 self.guessed_correct_letters.append(user_input)
                 self.update_display_word(user_input)
                 self.game_hint_message = Fore.LIGHTGREEN_EX + \
                     f"Correct! the letter '{user_input}' is in the word!"
                 self.points += 25
-                # If there are no more underscores in display_word, turn
-                # player_won boolean to true
                 if "_" not in self.display_word:
                     self.player_won = True
             else:
-                # If player guessed incorrectly fo the following
                 if self.points < 10:
                     pass
                 else:

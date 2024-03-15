@@ -395,6 +395,8 @@ Should a player opt to utilize the hint token by typing "hint," the hangman word
 
 Upon game conclusion, determined by the player's victory or defeat, an appropriate game end screen is presented, either commending the player or offering encouragement for future attempts. Below the screen, players are presented with three options: Play Again, Leaderboards, or Exit Game. Opting to play again triggers the reset_game method within the Game class, redirecting players to the game mode selection screen. Choosing Leaderboards grants access to four distinct leaderboards: Easy, Intermediate, Hard, and Country modes. These leaderboards showcase the top 20 players ranked by points accumulated during gameplay. Selecting the Exit Game option delivers a farewell message, incorporating a thank you note and, for victorious players, a personalized accolade highlighting their success and praising their location.
 
+![Logic flow game end phase](screenshots/ultimate-hangman-logic-flow-game-end-phase.png)
+
 # **Testing Phase**
 
 I have written my testing in a different file for both during-development and post-development called [TESTING.md](TESTING.md).

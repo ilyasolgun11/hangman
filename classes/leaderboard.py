@@ -70,7 +70,7 @@ class Leaderboard(ClearTerminalMixin):
         print(
             Fore.LIGHTBLUE_EX +
             "POSITION  NAME      POINTS LOCATION    DATE        \
-TIME TO WIN    WORD         HINT USED?")
+TIME TO WIN    WORD        HINT USED?")
         # Using the data from worksheet.get_all_records(), the data is
         # displayed with designated column widths to separate
         # columns evenly without overflow
@@ -82,7 +82,7 @@ TIME TO WIN    WORD         HINT USED?")
             location_str = player_data['Country/City'].ljust(12).capitalize()
             date_str = player_data['Date'].ljust(12)
             time_to_win_str = player_data['Time to win'].ljust(15)
-            winning_word = player_data['Winning word'].ljust(13).capitalize()
+            winning_word = player_data['Winning word'].ljust(12).capitalize()
             hint_used = player_data['Hint used?'].ljust(12).capitalize()
             print(Fore.LIGHTGREEN_EX + f"""{position_str}{name_str}\
 {points_str}{location_str}{date_str}{time_to_win_str}{winning_word}\

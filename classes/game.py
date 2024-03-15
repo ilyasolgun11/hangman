@@ -102,6 +102,7 @@ is not allowed during input. Please try again.""")
         # Clears the terminal
         self.clear_terminal()
         print(self.ascii_art.game_modes_display)
+
         def handle_game_mode(mode, worksheet):
             self.hangman_word = self.game_modes(
                 mode)

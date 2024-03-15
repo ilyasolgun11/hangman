@@ -17,7 +17,7 @@ class ClearTerminalMixin:
                 'nt', 'dos'):  # If Machine is running on Windows, use cls
             command = 'cls'
         os.system(command)
-        
+
         print("\033c", end="")
 
 
@@ -275,11 +275,11 @@ __|/\\/|______________
 
     def thank_user(self, name, times_won, location):
         if times_won > 0:
-          if times_won >= 2:
-              times = f" {times_won} TIMES!"
-          else:
-              times = "!"
-          print(Fore.LIGHTGREEN_EX + f"""\n\n\n
+            if times_won >= 2:
+                times = f" {times_won} TIMES!"
+            else:
+                times = "!"
+            print(Fore.LIGHTGREEN_EX + f"""\n\n\n
     ______________________________
     |/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\|
         |/\\/|
@@ -304,11 +304,11 @@ __|/\\/|______________
     ______________________________
     |/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\|
         |/\\/|
-        |/\\/|    
+        |/\\/|
         |/\\/|
         |/\\/|    THANK YOU FOR PLAYING {name.upper()}
         |/\\/|
-        |/\\/|    
+        |/\\/|
         |/\\/|
    _____|/\\/|____________________  ____________
   / / / / / /_  __/  _/  |/  /   |/_  __/ ____/

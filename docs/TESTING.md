@@ -12,8 +12,8 @@
   - [**Bugs and fixes**](#bugs-and-fixes)
   - [**Post development testing**](#post-development-testing)
     - [**Validators**](#validators)
-      - [**HTML**](#html---httpsvalidatorw3orgnu)
-      - [**CSS**](#css---httpsjigsaww3orgcss-validator)
+      - [**HTML - https://validator.w3.org/nu/**](#html---httpsvalidatorw3orgnu)
+      - [**CSS - https://jigsaw.w3.org/css-validator/**](#css---httpsjigsaww3orgcss-validator)
 
 ## **Manual testing:**
 
@@ -152,3 +152,5 @@ No issues found when using direct input regarding my changes, the changes i adde
 The style code was tested using direct input, with no issues found.
 
 ![CSS](screenshots/css-no-errors.png)
+
+[return to README.md](README.md)

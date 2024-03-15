@@ -35,7 +35,7 @@ The game's challenging nature alongside the leaderboard system creates a competi
     - [**Game screen 4 attempts left**](#game-screen-4-attempts-left)
     - [**Game screen 3 attempts left**](#game-screen-3-attempts-left)
     - [**Game screen 2 attempts left**](#game-screen-2-attempts-left)
-    - [**Game screen 1 attempts left**](#game-screen-1-attempts-left)
+    - [**Game screen 1 attempt left**](#game-screen-1-attempts-left)
     - [**Game end screen**](#game-end-screens)
       - [**Game win screen**](#game-win-screen)
       - [**Game lose screen**](#game-lose-screen)
@@ -123,7 +123,7 @@ To achieve the above, the site will:
 
 1. Provide a welcome screen with the game logo in ASCII art.
 2. Anytime the user inputs something that is not recognized as a valid input, handle it with a clear message on what the user did and should not do to proceed.
-3. Not have any bugs that will hinder the player's experience resulting in an unfair game.
+3. Do not have any bugs that will hinder the player's experience resulting in an unfair game.
 4. Successfully handle and display error messages when an API request is not successfully sent or retrieved.
 
 ## **_Game Flow Chart:_**
@@ -324,11 +324,11 @@ When the player loses, they see the following:
 
 ## **Exit Game Screens:**
 
-If the player exit's the game but _has not_ won a game before doing so, they see the following:
+If the player exits the game but _has not_ won a game before doing so, they see the following:
 
 ![Exit game screen 1](screenshots/ultimate-hangman-thank-you.png)
 
-If the player exit's the game and _has_ won a game before doing so, they see the following:
+If the player exits the game and _has_ won a game before doing so, they see the following:
 
 ![Exit game screen 2](screenshots/ultimate-hangman-thank-you-2.png)
 
@@ -341,7 +341,7 @@ Like the idea I had for my last project, I believe a ranked system for this proj
 - On the welcome screen, ranked modes could be mentioned to get the user's attention.
 - During the game modes screen, I could first give the player the option of either playing ranked or normal.
 - Once the player chooses the ranked mode, they will be shown each rank stage, for example: Bronze, Silver, Gold, Platinum and Diamond. Each of these stages rewards more than the previous one.
-- Reward ideas: Badges (a badge of the rank stage the player finished the season on), In-game currency, Custom themes or Physical rewards such as ultimate hangman themed merchandise or gift cards.
+- Reward ideas: Badges (a badge of the rank stage the player finished the season on), In-game currency, Custom themes or Physical rewards such as ultimate hangman-themed merchandise or gift cards.
 
 ### **_Custom modes_**
 
@@ -355,7 +355,7 @@ The idea of custom game modes makes me excited and it is something I would come 
 
 Audio functionality would be great for this game and could be implemented in specific situations. This is how it could be implemented:
 
-- Import audio files such as: A high pitched 'ting' sound, A low pitched 'du-du-duuu' sound.
+- Import audio files such as A high-pitched 'ting' sound, A low-pitched 'du-du-duuu' sound.
 - These sounds could be played in the following situations: When the player gets a letter correct or incorrect or when the player wins or loses.
 
 # **Data Model**
@@ -419,19 +419,19 @@ A system employed alongside the clear/cls command to reset the console, preventi
 
 Colorama is a Python library that simplifies colored text output in the terminal. It allows me to easily add colored text to my console applications, making them more visually appealing and enhancing the user experience. With just a few lines of code, I can apply different colors to my text, making this terminal-based project more dynamic and appealing.
 
-### **_dotenv:_**
+### **_Dotenv:_**
 
-I used the dotenv library in my project to securely manage sensitive information, such as my API key, stored in an environment file (env.py). This allows me to keep sensitive data separate from my codebase and easily access it in other files, promoting better security practices and simplifying configuration management.
+I used the Dotenv library in my project to securely manage sensitive information, such as my API key, stored in an environment file (env.py). This allows me to keep sensitive data separate from my codebase and easily access it in other files, promoting better security practices and simplifying configuration management.
 
-### **_gspread:_**
+### **_Gspread:_**
 
-I incorporated the gspread library into this project to seamlessly interact with Google Sheets. This library facilitates easy integration, providing a straightforward way to access and manipulate data within Google Sheets.
+I incorporated the Gspread library into this project to seamlessly interact with Google Sheets. This library facilitates easy integration, providing a straightforward way to access and manipulate data within Google Sheets.
 
-### **_requests:_**
+### **_Requests:_**
 
 I opted for the requests library in this project to simplify HTTP requests. This library streamlines communication with APIs and web services, making it convenient to send and receive data.
 
-### **_google auth:_**
+### **_Google auth:_**
 
 I used the Google auth library for my project specifically to leverage its Credentials module. This allows me to securely authenticate and authorize access to the Google API.
 

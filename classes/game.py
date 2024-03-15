@@ -181,14 +181,14 @@ is not allowed during input. Please try again.""")
  attempts left")
                 if self.hints_remaining != 0 and self.selected_worksheet != "\
 country mode":
-                    print(Fore.LIGHTCYAN_EX + "Hint token" + Fore.RESET + "\
-: type 'hint' to get the words definition")
+                    print(Fore.LIGHTCYAN_EX + "Hint token \
+: type 'hint' to get the words definition" + Fore.RESET)
                 elif (
                     self.hints_remaining != 0 and
                     self.selected_worksheet == "country mode"
                 ):
-                    print(Fore.LIGHTCYAN_EX + "Hint token" + Fore.RESET + "\
-: type 'hint' to get country information")
+                    print(Fore.LIGHTCYAN_EX + "Hint token \
+: type 'hint' to get country information" + Fore.RESET)
                 else:
                     pass
                 user_input = input(

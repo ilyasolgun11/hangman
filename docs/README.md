@@ -381,11 +381,15 @@ The following classes are being used by more than 1 class so to avoid repetition
 
 The game initializes by creating a game object in the global scope, which triggers the collect_info method within the Player class which inherits the Game class. The player is warmly welcomed with a greeting screen displaying a personalized welcome message. Utilizing input fields, the player is prompted to enter their name and location, crucial pieces of information for their journey ahead. Once the player inputs their details, they are directed to the how-to-play guide by invoking the how_to_play method within the Game class. The guide provides essential instructions for navigating the game, encouraging players to peruse it for a comprehensive understanding. Following this, players are presented with two options: selecting a game mode or returning to amend their name and location. Opting for the game mode selection prompts the choose_game_mode method, showcasing various modes such as Easy, Intermediate, Hard, and Country. Upon choosing a mode, the play method from the Game class initiates a series of events: selecting a hangman word using the game_modes method within the RandomWord class, activating a timer to track gameplay duration, and setting the game_hint_message to provide a hint about the word's length.
 
+![Logic flow setup phase](screenshots/ultimate-hangman-logic-flow-setup-phase.png)
+
 #### **_Game Phase_**
 
 With the hangman word chosen, the timer ticking, and the hint message set, the game phase unfolds, presenting vital information repeatedly until its conclusion. Players are provided with updates on the current hangman stage, the hint message, any incorrect guesses, the display word (comprising underscores representing un-guessed letters), accumulated points, remaining attempts, and an option to use a hint token (visible if unused). A prompt encourages players to input a letter or word to progress.
 
 Should a player opt to utilize the hint token by typing "hint," the hangman word and game mode are passed to the use_hint_token method within the HintToken class. For "country mode," the hangman word is transmitted to the grab_country_data method within the GrabResponse class, which retrieves relevant data for player viewing. Conversely, for modes other than "country mode," the hangman word is forwarded to the grab_word_definition method within the GrabResponse class, facilitating the display of pertinent data.
+
+![Logic flow game phase](screenshots/ultimate-hangman-logic-flow-game-phase.png)
 
 #### **_Game End Phase_**
 

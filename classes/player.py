@@ -58,7 +58,7 @@ is not allowed during input. Please try again.")
                     Fore.LIGHTCYAN_EX + "Which country/city \
 are your from?\n")
                 if len(self.location_of_player) == 0:
-                    print(Fore.LIGHTYELLOW_EXW + "Please \
+                    print(Fore.LIGHTYELLOW_EX + "Please \
 enter your location..")
                 elif any(char.isdigit() for char in self.location_of_player):
                     print(Fore.LIGHTYELLOW_EX + "Please \

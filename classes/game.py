@@ -91,6 +91,9 @@ Type 'a' or 'b' below\n""")
             except KeyboardInterrupt:
                 print(Fore.LIGHTYELLOW_EX + """KeyboardInterrupt (ctrl + c) \
 is not allowed during input. Please try again.""")
+            except EOFError:
+                print(Fore.LIGHTYELLOW_EX + "(ctrl + z) \
+is not allowed during input. Please try again.")
 
     def choose_game_mode(self):
         """
@@ -142,6 +145,9 @@ is not allowed during input. Please try again.""")
             except KeyboardInterrupt:
                 print(Fore.LIGHTYELLOW_EX + """KeyboardInterrupt (ctrl + c) \
 is not allowed during input. Please try again.""")
+            except EOFError:
+                print(Fore.LIGHTYELLOW_EX + "(ctrl + z) \
+is not allowed during input. Please try again.")
 
     def play(self):
         """
@@ -225,6 +231,8 @@ country mode":
 word, try again."
                 except KeyboardInterrupt:
                     pass
+                except EOFError:
+                    pass
                 # If player score is 0, end the game
                 if self.score == 0:
                     self.game_end()
@@ -247,6 +255,8 @@ word, try again."
                         self.selected_worksheet, data_to_add)
                     self.game_end()
             except KeyboardInterrupt:
+                continue
+            except EOFError:
                 continue
 
     def guess_word(self, user_input):
@@ -385,6 +395,9 @@ leaderboard\nC - Hard mode leaderboard\nD - Country mode leaderboard\n" +
                     Fore.LIGHTYELLOW_EX +
                     "KeyboardInterrupt (ctrl + c) is not allowed during\
  input. Please try again.")
+            except EOFError:
+                print(Fore.LIGHTYELLOW_EX + "(ctrl + z) \
+is not allowed during input. Please try again.")
 
     def game_end_options(self):
         """
@@ -420,6 +433,9 @@ Exit game\nType 'a', 'b' or 'c' below\n")
                     Fore.LIGHTYELLOW_EX +
                     "KeyboardInterrupt (ctrl + c) is not\
  allowed during input. Please try again.")
+            except EOFError:
+                print(Fore.LIGHTYELLOW_EX + "(ctrl + z) \
+is not allowed during input. Please try again.")
 
     def game_end(self):
         """

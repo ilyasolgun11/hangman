@@ -4,7 +4,7 @@ from colorama import Fore
 colorama.init(autoreset=True)
 
 special_chars = set("!@#$%^&*()-_+=[]{}|;:'\"<>,.?/")
-shortcuts = {"ctrl+z", "ctrl+x", "ctrl+d"}
+
 
 class Player(AsciiArtMixin, ClearTerminalMixin):
     """
@@ -47,11 +47,13 @@ your name and location to\nsee the how to play guide.\n")
                     print(Fore.LIGHTYELLOW_EX + "Your name does \
 not have numbers in it... right??")
                 elif ' ' in self.name_of_player:
-                    print(Fore.LIGHTYELLOW_EX + "Your name cannot contain spaces.")
-                elif any(char in special_chars for char in self.name_of_player):
-                    print(Fore.LIGHTYELLOW_EX + "Your name cannot contain special characters.")
-                elif any(char in special_chars for char in self.name_of_player.lower()):
-                    print(Fore.LIGHTYELLOW_EX + "Shortcuts are not allowed as a name.")
+                    print(Fore.LIGHTYELLOW_EX + "Your name cannot contain \
+spaces.")
+                elif any(
+                    char in special_chars for char in self.name_of_player
+                ):
+                    print(Fore.LIGHTYELLOW_EX + "Your name cannot contain \
+special characters.")
                 else:
                     break
             except KeyboardInterrupt:
@@ -75,9 +77,13 @@ enter your location..")
                     print(Fore.LIGHTYELLOW_EX + "Please \
 do not use numbers..")
                 elif ' ' in self.location_of_player:
-                    print(Fore.LIGHTYELLOW_EX + "Your name cannot contain spaces.")
-                elif any(char in special_chars for char in self.location_of_player):
-                    print(Fore.LIGHTYELLOW_EX + "Your name cannot contain special characters.")
+                    print(Fore.LIGHTYELLOW_EX + "Your name cannot \
+contain spaces.")
+                elif any(
+                    char in special_chars for char in self.location_of_player
+                ):
+                    print(Fore.LIGHTYELLOW_EX + "Your name cannot \
+contain special characters.")
                 else:
                     self.how_to_play()
                     break

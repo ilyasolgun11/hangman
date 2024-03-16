@@ -59,7 +59,7 @@ Throughout development, I extensively tested the game in the Visual Studio Code 
 
 In the input sections of this project, I have thoroughly tested for potential errors arising from player input. I have specifically addressed scenarios where errors could occur, such as entering a number when a string is required and handling special characters. To ensure robust error handling, I've implemented comprehensive input validation for all user inputs.
 
-Moreover, I've incorporated a proactive approach to prevent unintended issues, including the detection and handling of "Ctrl + C" and "Ctrl + Z" inputs. By placing try and except statements, I've effectively safeguarded the project against unexpected interruptions caused by user actions like copying or halting the program.
+Moreover, I've incorporated a proactive approach to prevent unintended issues, including the detection and handling of "Ctrl + C", "Ctrl + Z" and "Ctrl + D" inputs. By placing try and except statements, I've effectively safeguarded the project against unexpected interruptions caused by user actions like copying or halting the program.
 
 ### **_Browser cross-compatibility_**
 

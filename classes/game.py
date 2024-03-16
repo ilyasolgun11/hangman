@@ -92,7 +92,7 @@ Type 'a' or 'b' below\n""")
                 print(Fore.LIGHTYELLOW_EX + "(ctrl + c) \
 is not allowed during input. Please try again.")
             except EOFError:
-                print(Fore.LIGHTYELLOW_EX + "(ctrl + z) \
+                print(Fore.LIGHTYELLOW_EX + "(ctrl + z) or (ctrl + d) \
 is not allowed during input. Please try again.")
 
     def choose_game_mode(self):
@@ -146,7 +146,7 @@ is not allowed during input. Please try again.")
                 print(Fore.LIGHTYELLOW_EX + "(ctrl + c) \
 is not allowed during input. Please try again.")
             except EOFError:
-                print(Fore.LIGHTYELLOW_EX + "(ctrl + z) \
+                print(Fore.LIGHTYELLOW_EX + "(ctrl + z) or (ctrl + d) \
 is not allowed during input. Please try again.")
 
     def play(self):
@@ -396,7 +396,7 @@ leaderboard\nC - Hard mode leaderboard\nD - Country mode leaderboard\n" +
                     "(ctrl + c) \
 is not allowed during input. Please try again.")
             except EOFError:
-                print(Fore.LIGHTYELLOW_EX + "(ctrl + z) \
+                print(Fore.LIGHTYELLOW_EX + "(ctrl + z) or (ctrl + d) \
 is not allowed during input. Please try again.")
 
     def game_end_options(self):
@@ -434,7 +434,7 @@ Exit game\nType 'a', 'b' or 'c' below\n")
                     "(ctrl + c) \
 is not allowed during input. Please try again.")
             except EOFError:
-                print(Fore.LIGHTYELLOW_EX + "(ctrl + z) \
+                print(Fore.LIGHTYELLOW_EX + "(ctrl + z) or (ctrl + d) \
 is not allowed during input. Please try again.")
 
     def game_end(self):

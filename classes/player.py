@@ -60,7 +60,7 @@ special characters.")
                 print(Fore.LIGHTYELLOW_EX + "(ctrl + c) \
 is not allowed during input. Please try again.")
             except EOFError:
-                print(Fore.LIGHTYELLOW_EX + "(ctrl + z) \
+                print(Fore.LIGHTYELLOW_EX + "(ctrl + z) or (ctrl + d) \
 is not allowed during input. Please try again.")
 
         while True:
@@ -91,5 +91,5 @@ contain special characters.")
                 print(Fore.LIGHTYELLOW_EX + "(ctrl + c) \
 is not allowed during input. Please try again.")
             except EOFError:
-                print(Fore.LIGHTYELLOW_EX + "(ctrl + z) \
+                print(Fore.LIGHTYELLOW_EX + "(ctrl + z) or (ctrl + d) \
 is not allowed during input. Please try again.")

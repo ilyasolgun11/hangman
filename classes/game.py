@@ -89,8 +89,8 @@ Type 'a' or 'b' below\n""")
                 else:
                     print(Fore.LIGHTYELLOW_EX + "Please enter a valid option.")
             except KeyboardInterrupt:
-                print(Fore.LIGHTYELLOW_EX + """KeyboardInterrupt (ctrl + c) \
-is not allowed during input. Please try again.""")
+                print(Fore.LIGHTYELLOW_EX + "(ctrl + c) \
+is not allowed during input. Please try again.")
             except EOFError:
                 print(Fore.LIGHTYELLOW_EX + "(ctrl + z) \
 is not allowed during input. Please try again.")
@@ -143,8 +143,8 @@ is not allowed during input. Please try again.")
                 else:
                     print(Fore.LIGHTYELLOW_EX + "Please enter a valid option.")
             except KeyboardInterrupt:
-                print(Fore.LIGHTYELLOW_EX + """KeyboardInterrupt (ctrl + c) \
-is not allowed during input. Please try again.""")
+                print(Fore.LIGHTYELLOW_EX + "(ctrl + c) \
+is not allowed during input. Please try again.")
             except EOFError:
                 print(Fore.LIGHTYELLOW_EX + "(ctrl + z) \
 is not allowed during input. Please try again.")
@@ -393,8 +393,8 @@ leaderboard\nC - Hard mode leaderboard\nD - Country mode leaderboard\n" +
             except KeyboardInterrupt:
                 print(
                     Fore.LIGHTYELLOW_EX +
-                    "KeyboardInterrupt (ctrl + c) is not allowed during\
- input. Please try again.")
+                    "(ctrl + c) \
+is not allowed during input. Please try again.")
             except EOFError:
                 print(Fore.LIGHTYELLOW_EX + "(ctrl + z) \
 is not allowed during input. Please try again.")
@@ -431,8 +431,8 @@ Exit game\nType 'a', 'b' or 'c' below\n")
             except KeyboardInterrupt:
                 print(
                     Fore.LIGHTYELLOW_EX +
-                    "KeyboardInterrupt (ctrl + c) is not\
- allowed during input. Please try again.")
+                    "(ctrl + c) \
+is not allowed during input. Please try again.")
             except EOFError:
                 print(Fore.LIGHTYELLOW_EX + "(ctrl + z) \
 is not allowed during input. Please try again.")

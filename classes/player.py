@@ -88,7 +88,7 @@ contain special characters.")
                     self.how_to_play()
                     break
             except KeyboardInterrupt:
-                print(Fore.LIGHTYELLOW_EX + "KeyboardInterrupt (ctrl + c) \
+                print(Fore.LIGHTYELLOW_EX + "(ctrl + c) \
 is not allowed during input. Please try again.")
             except EOFError:
                 print(Fore.LIGHTYELLOW_EX + "(ctrl + z) \

@@ -72,8 +72,6 @@ class Game(Player, Leaderboard, RandomWord, AsciiArtMixin, ClearTerminalMixin,
                 self.name_of_player}! We suggest you to read the how to \
 play guide above before you begin.\n""")
         while True:
-            # Try statement to avoid quitting game when player attempts
-            # keyboard interruption (ctrl + c)
             try:
                 player_option = input(
                     """A - Choose game mode\nB - Go back\n\
@@ -114,8 +112,6 @@ is not allowed during input. Please try again.")
             self.selected_worksheet = worksheet
             self.play()
         while True:
-            # Try statement to avoid quitting game when player
-            # attempts keyboard interruption (ctrl + c)
             try:
                 player_mode_option = input(
                     Fore.LIGHTGREEN_EX +
@@ -163,8 +159,6 @@ is not allowed during input. Please try again.")
         # While the game is still going on, do the following
         while self.score > 0:
             self.clear_terminal()
-            # Try statement to avoid quitting game when player
-            # attempts keyboard interruption (ctrl + c)
             try:
                 print(self.ascii_art.hangman_stages[self.stages])
                 print(f"{self.game_hint_message}\n")
@@ -367,8 +361,6 @@ word, try again."
             self.get_leaderboard_data(worksheet)
             self.game_end_options()
         while True:
-            # Try statement to avoid quitting game when player attempts
-            # keyboard interruption (ctrl + c)
             try:
                 user_choice = input(
                     Fore.LIGHTCYAN_EX +
@@ -404,8 +396,6 @@ is not allowed during input. Please try again.")
         Gives player options on either play again, leaderboard's or exit game
         """
         while True:
-            # Try statement to avoid quitting game when player attempts
-            # keyboard interruption (ctrl + c)
             try:
 
                 user_choice = input(

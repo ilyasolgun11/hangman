@@ -36,8 +36,6 @@ class Player(AsciiArtMixin, ClearTerminalMixin):
 to save this poor guy from a \ngruesome death? i hope so! fill in \
 your name and location to\nsee the how to play guide.\n")
         while True:
-            # Try statement to avoid quitting game when player
-            # attempts keyboard interruption (ctrl + c)
             try:
                 self.name_of_player = input(
                     Fore.LIGHTCYAN_EX + "What is your first name?\n")
@@ -64,8 +62,6 @@ is not allowed during input. Please try again.")
 is not allowed during input. Please try again.")
 
         while True:
-            # Try statement to avoid quitting game when player
-            # attempts keyboard interruption (ctrl + c)
             try:
                 self.location_of_player = input(
                     Fore.LIGHTCYAN_EX + "Which country/city \

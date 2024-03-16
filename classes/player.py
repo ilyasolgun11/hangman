@@ -3,7 +3,7 @@ import colorama
 from colorama import Fore
 colorama.init(autoreset=True)
 
-special_chars = set("!@#$%^&*()-_+=[]{}|;:'\"<>,.?/")
+special_chars = set("!@#$%^&*()-_+=[]{}|;:'\"<>,.?/¬`")
 
 
 class Player(AsciiArtMixin, ClearTerminalMixin):

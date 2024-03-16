@@ -471,7 +471,7 @@ These awesome people helped me in the process of making this project, so I will 
 
 - [David Bowers](https://github.com/dnlbowers) - David is an amazing mentor and I could not ask for more. He has helped me on my previous 2 projects (which received a distinction grade due to his help) and he has helped me a lot on this one too, guided me to take an OOP (Object Oriented Programming) approach which was challenging but also very fulfilling when I learned I could do it.
 
-- [Lino Bollansee](https://github.com/linobollansee) - Amazing help to me towards the end of the project, helped point out the many errors I had, which may not have been resolved if they had not been mentioned by Lino.
+- [Lino Bollansee](https://github.com/linobollansee) - Amazing help to me towards the end of the project, helped point out the following: Newlines were required at the end of input fields, going out of their way to screenshot information straight from the LMS, helped with contrast issues by pointing out lighter colors, helped with PEP8 errors specifically white space issues.
 
 - Dajana Isbaner - Great help to me, helped point out bugs in the project such as input errors and the terminal not being fully wiped after every loop of the game.
 

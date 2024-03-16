@@ -64,6 +64,7 @@ The game's challenging nature alongside the leaderboard system creates a competi
       - [**google auth**](#google-auth)
   - [**Deployment to heroku**](#deployment-to-heroku)
   - [**Honorable mentions**](#honorable-mentions)
+  - [**Credits**](#credits)
 
 ## **How to Play:**
 

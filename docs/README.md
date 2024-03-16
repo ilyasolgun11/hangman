@@ -485,8 +485,8 @@ These awesome people helped me in the process of making this project, so I will 
 - [lucidchart.com](https://www.lucidchart.com/pages/) was used to create the game flow chart "hangman-logic-flowchart.png"
 - [Text to ASCII art generator](https://patorjk.com/software/taag/#p=display&f=Graffiti&t=Type%20Something%20) used for the ultimate hangman logo text.
 - Clear console function copied from [delfstack.com](https://www.delftstack.com/howto/python/python-clear-console/)
-- [Code Institute's](https://codeinstitute.net/full-stack-software-development-diploma/?nab=2) LMS (Learning Management System) for teaching my Python to begin with.
+- [Code Institute's](https://codeinstitute.net/full-stack-software-development-diploma/?nab=2) LMS (Learning Management System) for teaching me Python to begin with.
 - The mock terminal was provided by [Code Institute](https://codeinstitute.net/full-stack-software-development-diploma/?nab=2)
-- Peer-code-review channel in [Code Institute's](https://codeinstitute.net/full-stack-software-development-diploma/?nab=2) Slack channel for helping me find bugs and issues.
+- Peer-code-review channel in [Code Institute's](https://codeinstitute.net/full-stack-software-development-diploma/?nab=2) Slack community for helping me find bugs and issues.
 - [Python tips book](https://book.pythontips.com/en/latest/) helped me gain knowledge about Python I otherwise would not have obtained.
 - My Dogs for keeping me motivated by biting my ankles half the time.

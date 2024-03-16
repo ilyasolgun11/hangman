@@ -33,7 +33,7 @@ class Player(AsciiArtMixin, ClearTerminalMixin):
         self.clear_terminal()
         print(self.ascii_art.hangman_logo)
         print(Fore.LIGHTYELLOW_EX + "Welcome! could you be the one \
-to save this poor guy from a \ngruesome death? i hope so! fill in \
+to save this poor guy from a \ngruesome death? I hope so! fill in \
 your name and location to\nsee the how to play guide.\n")
         while True:
             try:

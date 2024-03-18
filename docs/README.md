@@ -85,13 +85,15 @@ The game's challenging nature alongside the leaderboard system creates a competi
 
 ### **_Selection of Game Modes:_**
 
-The player has 3 options for game modes: Easy mode, Intermediate mode and Hard mode. All words used for these modes are stored in the RandomWord class:
+The player has 4 options for game modes: Easy mode, Intermediate mode, Hard mode and Country mode. All words used for these modes are stored in the RandomWord class:
 
 - Easy mode words are chosen by iterating through the list and using list comprehension, only words with less than 6 letters are chosen, then randomly picked to be used for the hangman word.
 
 - Intermediate mode words are chosen by iterating through the list and using list comprehension, only words with more than 6 but less than 8 letters are chosen, then randomly picked to be used for the hangman word.
 
 - Hard mode words are chosen by iterating through the list and using list comprehension, only words with more than 8 letters are chosen, then randomly picked to be used for the hangman word.
+
+- The Country mode encompasses a total of 195 countries, with names ranging from 4 to 13 letters in length. The selection of names is randomly picked from the self.countries list.
 
 ### **_How Players Win:_**
 
